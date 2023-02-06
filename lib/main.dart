@@ -19,7 +19,7 @@ class MyApp extends StatelessWidget {
         splitScreenMode: true,
         builder: (context, child) {
           return const MaterialApp(
-            home: Journey(),
+            home: CarSelectScreen(),
           );
         });
   }

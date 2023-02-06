@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class PaymentConfirmBottomSheet extends StatelessWidget {
   const PaymentConfirmBottomSheet({Key? key}) : super(key: key);
@@ -14,14 +15,25 @@ class PaymentConfirmBottomSheet extends StatelessWidget {
       child: Column(
         children: [
           SizedBox(
-            height: 24.h,
+            height:12.h
+          ),
+          Container(
+            height: 5.h,
+            width: 45.w,
+            decoration: BoxDecoration(
+              color: Colors.grey,
+                borderRadius: BorderRadius.circular(100)
+            ),
+          ),
+          SizedBox(
+            height: 16.h,
           ),
           Text(
             "Proceed for payment?",
-            style: TextStyle(fontSize: 16.sp, fontWeight: FontWeight.w500),
+            style: GoogleFonts.poppins(fontSize: 16.sp, fontWeight: FontWeight.w600),
           ),
           SizedBox(
-            height: 32.h,
+            height: 24.h,
           ),
           SizedBox(
             width: 267.w,
@@ -35,7 +47,8 @@ class PaymentConfirmBottomSheet extends StatelessWidget {
                     borderRadius: BorderRadius.circular(88.0),
                   ),
                 ),
-                child: Text("Yes")),
+                child: Text("Yes",
+                style: GoogleFonts.poppins(),)),
           ),
           SizedBox(
             height: 24.h,
@@ -44,7 +57,8 @@ class PaymentConfirmBottomSheet extends StatelessWidget {
             width: 267.w,
             height: 44.h,
             child: ElevatedButton(
-                onPressed: () {},
+                onPressed: ()=> Navigator.pop(context),
+
                 style: ElevatedButton.styleFrom(
                   primary: Color(0xffEEEEEE),
                   elevation: 0,
@@ -53,8 +67,8 @@ class PaymentConfirmBottomSheet extends StatelessWidget {
                   ),
                 ),
                 child: Text(
-                  "No",
-                  style: TextStyle(color: Colors.black),
+                  "Wait, journey not over yet",
+                  style: GoogleFonts.poppins(color: Colors.black),
                 )),
           )
         ],
