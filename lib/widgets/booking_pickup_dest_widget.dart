@@ -22,9 +22,9 @@ class _BookingPickDestWidgetState extends State<BookingPickDestWidget> {
           boxShadow: [
             BoxShadow(
                 color: Colors.black.withOpacity(0.25),
-                blurRadius: 0.1.r,
-                spreadRadius: 0,
-                offset: Offset(0.h, 0.5.h))
+                blurRadius: 1.r,
+                spreadRadius: 0.5.r,
+                offset: Offset(0.h, 1.h))
           ],
           color: Colors.white,
         ),
@@ -47,7 +47,7 @@ class _BookingPickDestWidgetState extends State<BookingPickDestWidget> {
               ),
             ),
             SizedBox(
-              height: 4.h,
+              height: 8.h,
             ),
             Row(
               //mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -62,12 +62,12 @@ class _BookingPickDestWidgetState extends State<BookingPickDestWidget> {
                 SizedBox(
                   width: 24.w,
                 ),
-                DropDownPickUp(),
+                DropDownPickUp("Hostle 7E"),
                 // SizedBox(width: 20.w,),
               ],
             ),
             SizedBox(
-              height: 16.h,
+              height: 24.h,
             ),
             Padding(
               padding: EdgeInsets.only(left: 70.w),
@@ -78,7 +78,7 @@ class _BookingPickDestWidgetState extends State<BookingPickDestWidget> {
               ),
             ),
             SizedBox(
-              height: 4.h,
+              height: 8.h,
             ),
             Row(
               // mainAxisAlignment: MainAxisAlignment.spaceAround,
@@ -86,14 +86,14 @@ class _BookingPickDestWidgetState extends State<BookingPickDestWidget> {
                 SizedBox(
                   width: 24.w,
                 ),
-                Icon(
+                const Icon(
                   Icons.circle,
                   color: Colors.green,
                 ),
                 SizedBox(
                   width: 24.w,
                 ),
-                DropDownPickUp(),
+                 DropDownPickUp("Snackers"),
                 //SizedBox(width: 20.w,),
               ],
             ),
