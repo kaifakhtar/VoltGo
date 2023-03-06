@@ -3,7 +3,8 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:untitled5/screens/onthejourney_screen.dart';
 
 import 'screens/car_select_screen.dart';
-
+import './widgets/booking_pickup_dest_widget.dart';
+import './screens/booking_pickup_screen.dart';
 void main() {
   runApp(const MyApp());
 }
@@ -19,7 +20,7 @@ class MyApp extends StatelessWidget {
         splitScreenMode: true,
         builder: (context, child) {
           return const MaterialApp(
-            home: CarSelectScreen(),
+            home: BookingPickupScreen()//CarSelectScreen(),
           );
         });
   }
