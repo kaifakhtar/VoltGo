@@ -87,7 +87,7 @@ class _SignUpPageState extends State<SignUpPage> {
                 TextFormField(
                   controller: _usernameController,
                   keyboardType: TextInputType.text,
-                  decoration: InputDecoration(labelText: 'Username'),
+                  decoration: const InputDecoration(labelText: 'Username'),
                   validator: (value) {
                     if (value!.isEmpty||value.length<4) {
                       return 'Please enter at least 4 characters';
