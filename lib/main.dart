@@ -27,7 +27,7 @@ class MyApp extends StatelessWidget {
         splitScreenMode: true,
         builder: (context, child) {
           return  MaterialApp(
-            home: BookingPickupScreen()//Login()//BookingPickupScreen()//CarSelectScreen(),
+            home: SignUpPage()//BookingPickupScreen()//Login()//BookingPickupScreen()//CarSelectScreen(),
           );
         });
   }
