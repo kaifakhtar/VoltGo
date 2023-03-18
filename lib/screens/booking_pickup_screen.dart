@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../widgets/booking_pickup_dest_widget.dart';
 
@@ -7,10 +8,18 @@ class BookingPickupScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
+    return  MaterialApp(
       home: Scaffold(
         backgroundColor: Color(0xffeeeeee),
-        body: BookingPickDestWidget(),
+        body: SafeArea(child: Center(
+          child: Column(
+            // crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              SizedBox(height:80.h),
+              BookingPickDestWidget(),
+            ],
+          ),
+        )),
       ),
     );
   }
