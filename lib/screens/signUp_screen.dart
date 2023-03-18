@@ -1,18 +1,38 @@
+
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_core/firebase_core.dart';
 
-class MyUIPage extends StatefulWidget {
-  const MyUIPage({Key? key}) : super(key: key);
 
+class SignUpPage extends StatefulWidget {
   @override
-  _MyUIPageState createState() => _MyUIPageState();
+  _SignUpPageState createState() => _SignUpPageState();
 }
 
-class _MyUIPageState extends State<MyUIPage> {
-  TextEditingController _emailController = TextEditingController();
-  TextEditingController _usernameController = TextEditingController();
-  TextEditingController _passwordController = TextEditingController();
+class _SignUpPageState extends State<SignUpPage> {
+  final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+  final TextEditingController _emailController = TextEditingController();
+  final TextEditingController _usernameController = TextEditingController();
+  final TextEditingController _passwordController = TextEditingController();
+ final _auth=FirebaseAuth.instance;
 
+
+
+
+  String _email='';
+  String _username='';
+  String _mob='';
+  String _password='';
+
+  @override
+  void initState() {
+    super.initState();
+    Firebase.initializeApp().whenComplete(() {
+      print("completed");
+      setState(() {});
+    });
+  }
   @override
   void dispose() {
     _emailController.dispose();
@@ -21,94 +41,98 @@ class _MyUIPageState extends State<MyUIPage> {
     super.dispose();
   }
 
+
+  void _trySubmit()async{
+    final isValid=_formKey.currentState!.validate();
+    FocusScope.of(context).unfocus();
+
+    if(isValid){
+
+      UserCredential authResult;
+      _formKey.currentState!.save();
+      print("username is ${_username}");
+      print("email is ${_email}");
+      print("password is ${_password}");
+      print("mob is ${_mob}");
+
+      authResult =await _auth.createUserWithEmailAndPassword(email: _email, password: _password);
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: SingleChildScrollView(
-        child: SafeArea(
-          child: Column(
-            children: [
-
-              Container(
-                height: 200.h,
-                width: double.infinity,
-                // decoration: const BoxDecoration(
-                //   image: DecorationImage(
-                //     image: AssetImage('assets/images/top_image.jpg'),
-                //     fit: BoxFit.cover,
-                //   ),
-                // ),
-              ),
-              Text("Sign Up",style: TextStyle(fontSize: 32.sp,fontWeight: FontWeight.bold),),
-              SizedBox(height: 28.h),
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 20),
-                child: TextField(
+      appBar: AppBar(title: Text("Sign up"),),
+      body: Center(
+        child: Padding(
+          padding:  EdgeInsets.all(16.h),
+          child: Form(
+            key: _formKey,
+            child: Column(
+              children: <Widget>[
+                TextFormField(
                   controller: _emailController,
                   keyboardType: TextInputType.emailAddress,
-                  decoration: const InputDecoration(
-                    labelText: 'Email',
-                    border: OutlineInputBorder(),
-                  ),
+                  decoration: const InputDecoration(labelText: 'Email'),
+                  validator: (value) {
+                    if (value!.isEmpty||!value.contains('@')) {
+                      return 'Please enter your email';
+                    }
+                    return null;
+                  },
+                  onSaved: (value){
+                    _email=value!;
+                  },
                 ),
-              ),
-              SizedBox(height: 20.h),
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 20),
-                child: TextField(
+                TextFormField(
                   controller: _usernameController,
-                  decoration: const InputDecoration(
-                    labelText: 'Username',
-                    border: OutlineInputBorder(),
-                  ),
+                  keyboardType: TextInputType.text,
+                  decoration: InputDecoration(labelText: 'Username'),
+                  validator: (value) {
+                    if (value!.isEmpty||value.length<4) {
+                      return 'Please enter at least 4 characters';
+                    }
+                    return null;
+                  },
+                  onSaved: (value){
+                    _username=value!;
+                  },
                 ),
-              ),
-              const SizedBox(height: 20),
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 20),
-                child: TextField(
+                TextFormField(
+                  keyboardType: TextInputType.number,
+                  decoration: const InputDecoration(labelText: 'Phone no.'),
+                  validator: (value) {
+                    if (value!.isEmpty||value.length<10) {
+                      return 'Please enter 10 digit';
+                    }
+                    return null;
+                  },
+                  onSaved: (value){
+                    _mob=value!;
+                  },
+                ),
+                TextFormField(
                   controller: _passwordController,
                   obscureText: true,
-
-                  decoration: const InputDecoration(
-                    labelText: 'Password',
-                    border: OutlineInputBorder(),
-                  ),
+                  decoration: const InputDecoration(labelText: 'Password'),
+                  validator: (value) {
+                    if (value!.isEmpty||value.length<4) {
+                      return 'Please enter your password';
+                    }
+                    return null;
+                  },
+                  onSaved: (value){
+                    _password=value!;
+                  },
                 ),
-              ),
-              const SizedBox(height: 200),
-              // ElevatedButton(
-              //   onPressed: () {
-              //     // Perform login action
-              //   },
-              //   child: const Text('Sign up'),
-              // ),
-              Container(
-                height: 50.h,
-                width: 328.w,
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(10),
-                  color: Colors.black,
+                ElevatedButton(
+                  onPressed: () {
+                    _trySubmit();
+                  },
+                  child: const Text('Sign up'),
                 ),
-                child: const Center(
-                  child: Text("Sign Up",
-                      style: TextStyle(color: Colors.white,
-                      fontSize: 18),),
-                ),
-              ),
-              SizedBox(height: 16.h,),
-              Row(mainAxisAlignment: MainAxisAlignment.center,
-                children:  [
-                  Text("Already have an account?",
-                  style: TextStyle(fontSize: 12.sp),),
-                  SizedBox(width: 5.w,),
-                  Text("Log in",
-                    style: TextStyle(color: Colors.blue,fontSize: 12.sp),),
-                ],
-              )
-
-
-            ],
+              ],
+            ),
           ),
         ),
       ),

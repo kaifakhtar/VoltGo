@@ -2,8 +2,8 @@ import 'dart:ui';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:untitled5/widgets/car_tile_selected.dart';
+//import 'package:google_fonts/google_fonts.dart';
+import 'package:HarRidePay/widgets/car_tile_selected.dart';
 
 import '../widgets/car_tile.dart';
 
@@ -35,19 +35,19 @@ class _CarSelectScreenState extends State<CarSelectScreen> {
                   padding:  EdgeInsets.only(top: 20.h),
                   child: Column(
                     children: [
-                      Image.asset('asset/images/car_image.png',
-                      height: 120.h,
-                      width: 120.w,),
+                      // Image.asset('asset/images/car_image.png',
+                      // height: 120.h,
+                      // width: 120.w,),
                        const SizedBox(height: 16,),
                        Text("Cars Available",
-                        style: GoogleFonts.poppins(
+                        style: TextStyle(
                           fontSize: 24.sp,
                           fontWeight: FontWeight.w500,
                         ),
                       ),
                       SizedBox(height: 4.sp,),
                       Text("Select a car",
-                        style: GoogleFonts.poppins(
+                        style: TextStyle(
                           fontSize: 16.sp,
                           //fontWeight: FontWeight.w200,
                           color: Colors.black.withOpacity(.4)

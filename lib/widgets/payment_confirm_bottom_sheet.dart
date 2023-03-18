@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:google_fonts/google_fonts.dart';
+//import 'package:google_fonts/google_fonts.dart';
 
 class PaymentConfirmBottomSheet extends StatelessWidget {
   const PaymentConfirmBottomSheet({Key? key}) : super(key: key);
@@ -30,7 +30,7 @@ class PaymentConfirmBottomSheet extends StatelessWidget {
           ),
           Text(
             "Proceed for payment?",
-            style: GoogleFonts.poppins(fontSize: 16.sp, fontWeight: FontWeight.w600),
+            style: TextStyle(fontSize: 16.sp, fontWeight: FontWeight.w600),
           ),
           SizedBox(
             height: 24.h,
@@ -48,7 +48,7 @@ class PaymentConfirmBottomSheet extends StatelessWidget {
                   ),
                 ),
                 child: Text("Yes",
-                style: GoogleFonts.poppins(),)),
+                style: TextStyle(),)),
           ),
           SizedBox(
             height: 24.h,
@@ -68,7 +68,7 @@ class PaymentConfirmBottomSheet extends StatelessWidget {
                 ),
                 child: Text(
                   "Wait, journey not over yet",
-                  style: GoogleFonts.poppins(color: Colors.black),
+                  style: TextStyle(color: Colors.black),
                 )),
           )
         ],

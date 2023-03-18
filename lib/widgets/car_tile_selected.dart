@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:google_fonts/google_fonts.dart';
+//import 'package:google_fonts/google_fonts.dart';
 
 class CarTileSelected extends StatelessWidget {
   const CarTileSelected({Key? key}) : super(key: key);
@@ -26,12 +26,12 @@ class CarTileSelected extends StatelessWidget {
               children: [
                 Text(
                   "Car name",
-                  style: GoogleFonts.poppins(
+                  style: TextStyle(
                       fontSize: 10.sp, color: Colors.black.withOpacity(.5)),
                 ),
                 SizedBox(height: 8.h),
                 Text("Alpha",
-                    style: GoogleFonts.poppins(
+                    style: TextStyle(
                         fontSize: 16.sp, fontWeight: FontWeight.w500))
               ],
             ),
@@ -39,13 +39,13 @@ class CarTileSelected extends StatelessWidget {
               children: [
                 Text(
                   "Battery level",
-                  style: GoogleFonts.poppins(
+                  style: TextStyle(
                       fontSize: 10.sp, color: Colors.black.withOpacity(.5)),
                 ),
                 SizedBox(height: 8.h),
                 Text(
                   "${batteryLevel}%",
-                  style: GoogleFonts.poppins(
+                  style: TextStyle(
                       fontWeight: FontWeight.w500,
                       fontSize: 16.sp,
                       color:batteryLevel>50?Color(0xff51CB20):Colors.orange

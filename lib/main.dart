@@ -1,13 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:untitled5/screens/login_screen.dart';
-import 'package:untitled5/screens/signUp_screen.dart';
-import 'package:untitled5/screens/onthejourney_screen.dart';
+import 'package:HarRidePay/screens/login_screen.dart';
 
+import 'package:HarRidePay/screens/onthejourney_screen.dart';
+import 'package:HarRidePay/screens/signUp_screen.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'screens/car_select_screen.dart';
 import './widgets/booking_pickup_dest_widget.dart';
 import './screens/booking_pickup_screen.dart';
-void main() {
+void main()async {
+  WidgetsFlutterBinding.ensureInitialized();
+
+  await Firebase.initializeApp();
   runApp(const MyApp());
 }
 
@@ -21,8 +26,8 @@ class MyApp extends StatelessWidget {
         minTextAdapt: true,
         splitScreenMode: true,
         builder: (context, child) {
-          return const MaterialApp(
-            home: MyUIPage()//Login()//BookingPickupScreen()//CarSelectScreen(),
+          return  MaterialApp(
+            home: SignUpPage()//Login()//BookingPickupScreen()//CarSelectScreen(),
           );
         });
   }

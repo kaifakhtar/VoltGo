@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
+
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:google_fonts/google_fonts.dart';
+//import 'package:google_fonts/google_fonts.dart';
 import 'package:lottie/lottie.dart';
 
 import '../widgets/payment_confirm_bottom_sheet.dart';
@@ -30,14 +31,14 @@ class _JourneyState extends State<Journey> {
                 // ),
                 Text(
                   "On the journey",
-                  style: GoogleFonts.poppins(fontSize: 32.sp, fontWeight: FontWeight.w500),
+                  style: TextStyle(fontSize: 32.sp, fontWeight: FontWeight.w500),
                 ),
                 SizedBox(
                   height: 16.h,
                 ),
                 Text(
                   "sit back and relax",
-                  style: GoogleFonts.poppins(fontSize: 20.sp, fontWeight: FontWeight.normal,
+                  style: TextStyle(fontSize: 20.sp, fontWeight: FontWeight.normal,
                   color: Colors.black.withOpacity(.50)),
                 ),
 

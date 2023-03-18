@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "451378531001",
+    "project_id": "harridepay",
+    "storage_bucket": "harridepay.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:451378531001:android:3a936664d857eab94e6968",
+        "android_client_info": {
+          "package_name": "com.example.HarRidePay"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "451378531001-5hfjr5utq1qkmitdvmq15n52uhpiiqhp.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD2JbTK_32f43jblE34DMpiH44kxU9V9oM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "451378531001-5hfjr5utq1qkmitdvmq15n52uhpiiqhp.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
