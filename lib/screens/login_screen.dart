@@ -66,7 +66,7 @@ class _LoginScreenState extends State<LoginScreen> {
     }
     on PlatformException catch(err){
       setState((){_isLoading=false;});
-      var message ='An error occured!';
+      var message ='An error occured!!';
       if(err.message!=null){
         //message=err.message;
       }
