@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-import 'book_a_ride_buutton.dart';
+import 'search_for_ride_button.dart';
 import 'dropDown_pickups.dart';
 
 class BookingPickDestWidget extends StatefulWidget {
@@ -99,7 +99,7 @@ class _BookingPickDestWidgetState extends State<BookingPickDestWidget> {
           SizedBox(
             height: 48.h,
           ),
-          const Center(child: BookRideButton()),
+          const Center(child: SearchForRidesButton()),
           // SizedBox(height: 20.h,)
         ],
       ),

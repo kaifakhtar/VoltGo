@@ -178,7 +178,7 @@ class _SignUpPageState extends State<SignUpPage> {
                       color: Colors.black,
                     ),
                     child:  Center(
-                      child: _isLoading?CircularProgressIndicator(): Text("Sign Up",
+                      child: _isLoading?const CircularProgressIndicator(): Text("Sign Up",
                       style: GoogleFonts.poppins(fontSize: 18,color: Colors.white),),
                     ),
               ),
@@ -191,7 +191,9 @@ class _SignUpPageState extends State<SignUpPage> {
                       style: GoogleFonts.poppins(fontSize: 12.sp),),
                       TextButton(
                         child: Text("Login",style: GoogleFonts.poppins(fontSize: 12.sp)),
-                      onPressed: (){},)
+                      onPressed: (){
+                        Navigator.push(context, MaterialPageRoute(builder: (BuildContext context) => LoginScreen()));
+                      },)
                     ],
                   ),
               ]

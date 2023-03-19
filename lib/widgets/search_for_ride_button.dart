@@ -4,8 +4,8 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 
-class BookRideButton extends StatelessWidget {
-  const BookRideButton({Key? key}) : super(key: key);
+class SearchForRidesButton extends StatelessWidget {
+  const SearchForRidesButton({Key? key}) : super(key: key);
 
 
   void _searchForRides(){
