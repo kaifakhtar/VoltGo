@@ -7,6 +7,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 import 'booking_pickup_screen.dart';
+import 'login_screen.dart';
 
 
 class SignUpPage extends StatefulWidget {
@@ -63,7 +64,7 @@ class _SignUpPageState extends State<SignUpPage> {
 
         authResult =await _auth.createUserWithEmailAndPassword(email: _email, password: _password);
         setState((){_isLoading=false;});
-        Navigator.push(context, MaterialPageRoute(builder: (BuildContext context) => BookingPickupScreen()));
+        Navigator.push(context, MaterialPageRoute(builder: (BuildContext context) => LoginScreen()));
       }
     }
     on PlatformException catch(err){
