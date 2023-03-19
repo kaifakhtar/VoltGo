@@ -25,14 +25,19 @@ class _BookingPickupScreenState extends State<BookingPickupScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(title: Text("Gurdas Pal",style: GoogleFonts.poppins(color: Colors.black)),
-      backgroundColor: Colors.white,elevation: 1.h,),
-        backgroundColor: Color(0xffeeeeee),
-        body: Center(
+      backgroundColor: Colors.white,elevation: 1.h,
+        leading: IconButton(
+          icon: const Icon(Icons.menu, color: Colors.black),
+          onPressed: () {}
+        ), ),
+        backgroundColor: const Color(0xffeeeeee),
+
+      body: Center(
           child: Column(
             // crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               SizedBox(height:20.h),
-              BookingPickDestWidget(),
+              const BookingPickDestWidget(),
             ],
           ),
         ),
