@@ -27,7 +27,7 @@ class _BookingPickDestWidgetState extends State<BookingPickDestWidget> {
         ],
         color: Colors.white,
       ),
-      height: 260.h,
+      height: 280.h,
       width: 331.w,
       // margin: EdgeInsets.fromLTRB(14.w, 54.h, 14.h, 517.h),
       child: Column(
@@ -35,7 +35,7 @@ class _BookingPickDestWidgetState extends State<BookingPickDestWidget> {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           SizedBox(
-            height: 19.h,
+            height: 20.h,
           ),
           Padding(
             padding: EdgeInsets.only(left: 70.w),
@@ -97,9 +97,10 @@ class _BookingPickDestWidgetState extends State<BookingPickDestWidget> {
             ],
           ),
           SizedBox(
-            height: 32.h,
+            height: 48.h,
           ),
           const Center(child: BookRideButton()),
+         // SizedBox(height: 20.h,)
         ],
       ),
     );
