@@ -100,7 +100,7 @@ class _BookingPickDestWidgetState extends State<BookingPickDestWidget> {
             height: 48.h,
           ),
           const Center(child: BookRideButton()),
-         // SizedBox(height: 20.h,)
+          // SizedBox(height: 20.h,)
         ],
       ),
     );
