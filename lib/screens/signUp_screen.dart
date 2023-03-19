@@ -75,7 +75,7 @@ class _SignUpPageState extends State<SignUpPage> {
               key: _formKey,
               child: Column(
                 children: <Widget>[
-                  SizedBox(height: 210,),
+                  SizedBox(height: 220,),
                    Row(children:  [Text("Sign up",
                     style: GoogleFonts.poppins(fontSize: 36.sp,
                         fontWeight: FontWeight.w500,
