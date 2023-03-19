@@ -1,5 +1,6 @@
 
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -27,6 +28,7 @@ class _SignUpPageState extends State<SignUpPage> {
   String _username='';
   String _mob='';
   String _password='';
+  bool _isLoading=false;
 
   @override
   void initState() {
@@ -45,21 +47,31 @@ class _SignUpPageState extends State<SignUpPage> {
   }
 
 
-  void _trySubmit()async{
+  void _trySubmit()  async{ //after clicking sign up execute this function
     final isValid=_formKey.currentState!.validate();
     FocusScope.of(context).unfocus();
 
-    if(isValid){
+    try{
+      if(isValid){
+        setState((){_isLoading=true;});
+        UserCredential authResult;
+        _formKey.currentState!.save();
+        // print("username is ${_username}");
+        // print("email is ${_email}");
+        // print("password is ${_password}");
+        // print("mob is ${_mob}");
 
-      UserCredential authResult;
-      _formKey.currentState!.save();
-      print("username is ${_username}");
-      print("email is ${_email}");
-      print("password is ${_password}");
-      print("mob is ${_mob}");
-
-      authResult =await _auth.createUserWithEmailAndPassword(email: _email, password: _password);
-      Navigator.pushReplacement(context, MaterialPageRoute(builder: (BuildContext context) => BookingPickupScreen()));
+        authResult =await _auth.createUserWithEmailAndPassword(email: _email, password: _password);
+        setState((){_isLoading=false;});
+        Navigator.push(context, MaterialPageRoute(builder: (BuildContext context) => BookingPickupScreen()));
+      }
+    }
+    on PlatformException catch(err){
+      setState((){_isLoading=false;});
+      var message ='An error occured!';
+      if(err.message!=null){
+        //message=err.message;
+      }
     }
   }
 
@@ -70,12 +82,12 @@ class _SignUpPageState extends State<SignUpPage> {
       body: SingleChildScrollView(
         child: Center(
           child: Padding(
-            padding:  EdgeInsets.all(16.h),
+            padding:  EdgeInsets.all(20.h),
             child: Form(
               key: _formKey,
               child: Column(
                 children: <Widget>[
-                  SizedBox(height: 220,),
+                  SizedBox(height: 150.h,),
                    Row(children:  [Text("Sign up",
                     style: GoogleFonts.poppins(fontSize: 36.sp,
                         fontWeight: FontWeight.w500,
@@ -84,7 +96,7 @@ class _SignUpPageState extends State<SignUpPage> {
                   TextFormField(
                     controller: _emailController,
                     keyboardType: TextInputType.emailAddress,
-                    decoration:   InputDecoration(labelText: 'Email',
+                    decoration:   const InputDecoration(labelText: 'Email',
                       // enabledBorder: OutlineInputBorder(
                       //   // borderSide: BorderSide(
                       //   //     width: 3, color: Colors.black), //<-- SEE HERE
@@ -159,21 +171,21 @@ class _SignUpPageState extends State<SignUpPage> {
                       borderRadius: BorderRadius.circular(10.h),
                       color: Colors.black,
                     ),
-                    child: const Center(
-                      child: Text("Sign Up",
-                      style: TextStyle(fontSize: 18,color: Colors.white),),
+                    child:  Center(
+                      child: _isLoading?CircularProgressIndicator(): Text("Sign Up",
+                      style: GoogleFonts.poppins(fontSize: 18,color: Colors.white),),
                     ),
               ),
                   ),
-                  SizedBox(height: 16.h,),
+                  SizedBox(height: 8.h,),
                   Row(mainAxisAlignment: MainAxisAlignment.center,
                     children: [
 
                       Text("Already have an account?",
-                      style: TextStyle(fontSize: 12.h),),
-                      Text("  Log in",
-                        style: TextStyle(fontSize: 12.h,
-                        color: Colors.blue),)
+                      style: GoogleFonts.poppins(fontSize: 12.sp),),
+                      TextButton(
+                        child: Text("Login",style: GoogleFonts.poppins(fontSize: 12.sp)),
+                      onPressed: (){},)
                     ],
                   ),
               ]
