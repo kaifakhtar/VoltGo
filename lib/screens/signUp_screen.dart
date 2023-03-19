@@ -1,4 +1,5 @@
 
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -63,6 +64,10 @@ class _SignUpPageState extends State<SignUpPage> {
         // print("mob is ${_mob}");
 
         authResult =await _auth.createUserWithEmailAndPassword(email: _email, password: _password);
+        await FirebaseFirestore.instance.collection('users').doc(authResult.user!.email).set(({
+          'username': _username,
+          'mobile no.': _mob,
+        }));
         setState((){_isLoading=false;});
         Navigator.push(context, MaterialPageRoute(builder: (BuildContext context) => LoginScreen()));
       }

@@ -12,6 +12,15 @@ class BookingPickupScreen extends StatefulWidget {
 }
 
 class _BookingPickupScreenState extends State<BookingPickupScreen> {
+
+
+
+  void _searchForRides(){
+
+  }
+
+
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
