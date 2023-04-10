@@ -141,7 +141,7 @@ class _LoginScreenState extends State<LoginScreen> {
                             color: Colors.black,
                           ),
                           child:  Center(
-                            child: _isLoading?CircularProgressIndicator(): Text("Login",
+                            child: _isLoading?const CircularProgressIndicator(): Text("Login",
                               style: GoogleFonts.poppins(fontSize: 18,color: Colors.white),),
                           ),
                         ),
