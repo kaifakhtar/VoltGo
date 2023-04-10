@@ -25,7 +25,7 @@ class AvailableRidersTile extends StatelessWidget {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [Text(driverName),
-                BookDriverButton()],
+                const BookDriverButton()],
       ),
           )),
     );

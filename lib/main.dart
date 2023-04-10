@@ -9,6 +9,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'screens/car_select_screen.dart';
 import './widgets/booking_pickup_dest_widget.dart';
 import './screens/booking_pickup_screen.dart';
+import 'screens/driver_booked_screen.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -51,7 +52,8 @@ class _MyAppState extends State<MyApp> {
         minTextAdapt: true,
         splitScreenMode: true,
         builder: (context, child) {
-          return MaterialApp(
+          return  MaterialApp(
+           //home: DriverBookedScreen(),
               home: isLogin
                   ? const BookingPickupScreen()
                   : SignUpPage() //LoginScreen()//BookingPickupScreen()//Login()//BookingPickupScreen()//CarSelectScreen(),
