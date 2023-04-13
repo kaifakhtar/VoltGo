@@ -1,24 +1,34 @@
+import 'package:HarRidePay/modals/driver.dart';
+import 'package:HarRidePay/providers/online_driver_provider.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 import 'available_riders_tile.dart';
 
-class DriverTilesContainer extends StatefulWidget {
+class DriverTilesContainer extends ConsumerStatefulWidget {
   const DriverTilesContainer({Key? key}) : super(key: key);
 
   @override
-  State<DriverTilesContainer> createState() => _DriverTilesContainerState();
+  ConsumerState<DriverTilesContainer> createState() =>
+      _DriverTilesContainerState();
 }
 
-class _DriverTilesContainerState extends State<DriverTilesContainer> {
+class _DriverTilesContainerState extends ConsumerState<DriverTilesContainer> {
   @override
   Widget build(BuildContext context) {
     return Container(
       width: 332.w,
-
       decoration: BoxDecoration(
+        boxShadow: [
+          BoxShadow(
+              color: Colors.black.withOpacity(0.25),
+              blurRadius: 1.r,
+              spreadRadius: 0.5.r,
+              offset: Offset(0.h, 1.h))
+        ],
         borderRadius: BorderRadius.circular(12.r),
         color: Colors.white,
       ),
@@ -35,7 +45,7 @@ class _DriverTilesContainerState extends State<DriverTilesContainer> {
               Text(
                 "Rides available",
                 style: GoogleFonts.poppins(
-                    fontSize: 12.sp, fontWeight: FontWeight.w700),
+                    fontSize: 16.sp, fontWeight: FontWeight.w600),
               )
             ],
           ),
@@ -55,15 +65,38 @@ class _DriverTilesContainerState extends State<DriverTilesContainer> {
                 }
 
                 return Padding(
-                  padding:  EdgeInsets.all(16.w),
+                  padding: EdgeInsets.all(16.w),
                   child: Container(
                     height: 280.h,
                     child: ListView.builder(
                       itemCount: snapshot.data?.size,
                       itemBuilder: (BuildContext context, int index) {
-                        print(snapshot.data?.docs[index]["name"]);
-                        return AvailableRidersTile(
-                            snapshot.data?.docs[index]["name"], snapshot.data?.docs[index]["mob no"]);
+                        // ref
+                        //     .watch(onlineDriverProvider.notifier)
+                        //     .state
+                        //     .removeAllDriver();
+                        // if (!ref
+                        //     .watch(onlineDriverProvider.notifier)
+                        //     .state
+                        //     .hasUid(snapshot.data?.docs[index].id)) {
+                        //   ref
+                        //       .watch(onlineDriverProvider.notifier)
+                        //       .state
+                        //       .addDriver(Driver(
+                        //           snapshot.data?.docs[index].id,
+                        //           snapshot.data?.docs[index]["name"],
+                        //           snapshot.data?.docs[index]["mob no"]));
+                        // }
+
+                        print(
+                            ref.watch(onlineDriverProvider).online_driver_list);
+
+                        print(snapshot.data?.docs[index].id);
+
+                        return AvailableRidersTile(Driver(
+                            'uid',
+                            snapshot.data?.docs[index]["name"],
+                            snapshot.data?.docs[index]["mob no"]));
                       },
                     ),
                   ),

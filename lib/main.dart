@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:HarRidePay/screens/login_screen.dart';
 
@@ -52,12 +53,14 @@ class _MyAppState extends State<MyApp> {
         minTextAdapt: true,
         splitScreenMode: true,
         builder: (context, child) {
-          return  MaterialApp(
-           //home: DriverBookedScreen(),
-              home: isLogin
-                  ? const BookingPickupScreen()
-                  : SignUpPage() //LoginScreen()//BookingPickupScreen()//Login()//BookingPickupScreen()//CarSelectScreen(),
-              );
+          return  ProviderScope(
+            child: MaterialApp(
+             //home: DriverBookedScreen(),
+                home: isLogin
+                    ? const BookingPickupScreen()
+                    : SignUpPage() //LoginScreen()//BookingPickupScreen()//Login()//BookingPickupScreen()//CarSelectScreen(),
+                ),
+          );
         });
   }
 }
