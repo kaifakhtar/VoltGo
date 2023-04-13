@@ -9,7 +9,8 @@ import 'package:firebase_core/firebase_core.dart';
 import 'screens/car_select_screen.dart';
 import './widgets/booking_pickup_dest_widget.dart';
 import './screens/booking_pickup_screen.dart';
-void main()async {
+
+void main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
   await Firebase.initializeApp();
@@ -26,9 +27,10 @@ class MyApp extends StatelessWidget {
         minTextAdapt: true,
         splitScreenMode: true,
         builder: (context, child) {
-          return   MaterialApp(
-            home: SignUpPage()//LoginScreen()//BookingPickupScreen()//Login()//BookingPickupScreen()//CarSelectScreen(),
-          );
+          return MaterialApp(
+              home:
+                  SignUpPage() //LoginScreen()//BookingPickupScreen()//Login()//BookingPickupScreen()//CarSelectScreen(),
+              );
         });
   }
 }
