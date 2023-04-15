@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -9,12 +10,14 @@ import 'package:google_fonts/google_fonts.dart';
 import 'booking_pickup_screen.dart';
 import 'login_screen.dart';
 
-class SignUpPage extends StatefulWidget {
+final userIdProvider = StateProvider<String>((ref) => '');
+
+class SignUpPage extends ConsumerStatefulWidget {
   @override
   _SignUpPageState createState() => _SignUpPageState();
 }
 
-class _SignUpPageState extends State<SignUpPage> {
+class _SignUpPageState extends ConsumerState<SignUpPage> {
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _usernameController = TextEditingController();
@@ -44,7 +47,7 @@ class _SignUpPageState extends State<SignUpPage> {
     super.dispose();
   }
 
-  void _trySubmit() async {
+  void _trySubmit(ref) async {
     //after clicking sign up execute this function
     final isValid = _formKey.currentState!.validate();
     FocusScope.of(context).unfocus();
@@ -63,13 +66,20 @@ class _SignUpPageState extends State<SignUpPage> {
 
         authResult = await _auth.createUserWithEmailAndPassword(
             email: _email, password: _password);
+
+        String userId = authResult.user!.uid;
+
+        ref.watch(userIdProvider.notifier).state = userId;
+
+        print("below is from rivepod");
+        print(ref.watch(userIdProvider));
+
         await FirebaseFirestore.instance
-            .collection('users')
-            .doc(authResult.user!.uid)
-            .set(({
-              'username': _username,
-              'mobile no.': _mob,
-            }));
+            .collection('users registered')
+            .doc(userId)
+
+            ///authResult.user!.uid
+            .set(({'name': _username, 'mob no': _mob, 'email': _email}));
         setState(() {
           _isLoading = false;
         });
@@ -195,7 +205,7 @@ class _SignUpPageState extends State<SignUpPage> {
                 height: 100.h,
               ),
               InkWell(
-                onTap: _trySubmit,
+                onTap: () => _trySubmit(ref),
                 child: Container(
                   height: 50.h,
                   width: 328.w,

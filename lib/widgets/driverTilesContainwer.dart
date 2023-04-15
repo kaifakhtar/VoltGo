@@ -1,5 +1,6 @@
 import 'package:HarRidePay/modals/driver.dart';
 import 'package:HarRidePay/providers/online_driver_provider.dart';
+import 'package:HarRidePay/screens/driver_booked_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -17,6 +18,16 @@ class DriverTilesContainer extends ConsumerStatefulWidget {
 }
 
 class _DriverTilesContainerState extends ConsumerState<DriverTilesContainer> {
+  Stream<QuerySnapshot> getDriversBasedOnAvailbility() {
+    // Replace "collectionName" with the name of your Firestore collection
+    // Replace "isActive" with the name of the Boolean attribute you want to filter on
+    return FirebaseFirestore.instance
+        .collection('drivers')
+        .where('available',
+            isEqualTo: true) // Filter documents where "isActive" is true
+        .snapshots();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -53,9 +64,7 @@ class _DriverTilesContainerState extends ConsumerState<DriverTilesContainer> {
             width: 40.h,
           ),
           StreamBuilder(
-              stream: FirebaseFirestore.instance
-                  .collection('drivers online')
-                  .snapshots(),
+              stream: getDriversBasedOnAvailbility(),
               builder: (BuildContext context,
                   AsyncSnapshot<QuerySnapshot> snapshot) {
                 if (!snapshot.hasData) {
@@ -88,13 +97,13 @@ class _DriverTilesContainerState extends ConsumerState<DriverTilesContainer> {
                         //           snapshot.data?.docs[index]["mob no"]));
                         // }
 
-                        print(
-                            ref.watch(onlineDriverProvider).online_driver_list);
+                        // print(
+                        //     ref.watch(onlineDriverProvider).online_driver_list);
 
                         print(snapshot.data?.docs[index].id);
 
                         return AvailableRidersTile(Driver(
-                            'uid',
+                            snapshot.data?.docs[index].id,
                             snapshot.data?.docs[index]["name"],
                             snapshot.data?.docs[index]["mob no"]));
                       },

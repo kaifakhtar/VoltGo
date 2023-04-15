@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -8,14 +9,14 @@ import 'package:google_fonts/google_fonts.dart';
 import 'booking_pickup_screen.dart';
 import 'signUp_screen.dart';
 
-class LoginScreen extends StatefulWidget {
+class LoginScreen extends ConsumerStatefulWidget {
   const LoginScreen({Key? key}) : super(key: key);
 
   @override
   _LoginScreenState createState() => _LoginScreenState();
 }
 
-class _LoginScreenState extends State<LoginScreen> {
+class _LoginScreenState extends ConsumerState<LoginScreen> {
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _usernameController = TextEditingController();
@@ -62,13 +63,16 @@ class _LoginScreenState extends State<LoginScreen> {
 
         authResult = await _auth.signInWithEmailAndPassword(
             email: _email, password: _password);
+        String userId = authResult.user!.uid;
+
+        ref.watch(userIdProvider.notifier).state = userId;
         setState(() {
           _isLoading = false;
         });
         Navigator.of(context).pushReplacement(
-                        MaterialPageRoute(
-                            builder: (BuildContext context) => BookingPickupScreen()),
-                      );
+          MaterialPageRoute(
+              builder: (BuildContext context) => BookingPickupScreen()),
+        );
       }
     } on PlatformException catch (err) {
       setState(() {
@@ -203,4 +207,30 @@ class _LoginScreenState extends State<LoginScreen> {
       ),
     ));
   }
+
+// void addUser() async {
+//     try {
+//       // Get the Firestore instance
+//       final firestoreInstance = FirebaseFirestore.instance;
+
+//       // Reference to the 'users online' collection
+//       final collectionReference = firestoreInstance.collection('users online');
+
+//       // Create a new user document with the name and mobile number attributes
+//       await collectionReference.add({
+//         'name': nameController.text,
+//         'mobileNumber': mobileNumberController.text,
+//       });
+
+//       // Print a success message
+//       print('User added successfully!');
+
+//       // Clear the text controllers
+//       nameController.clear();
+//       mobileNumberController.clear();
+//     } catch (e) {
+//       // Print an error message
+//       print('Error adding user: $e');
+//     }
+//   }
 }

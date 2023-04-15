@@ -103,10 +103,10 @@ class _DropDownPickUpState extends State<DropDownPickUp> {
           borderRadius: BorderRadius.circular(12.r),
           boxShadow: [
             BoxShadow(
-                color: Colors.black.withOpacity(0.25),
-                blurRadius: 3.r,
+                color: Colors.black.withOpacity(0.2),
+                blurRadius: 6.r,
                 spreadRadius: 0.r,
-                offset: Offset(0.h, 2.h))
+                offset: Offset(0.h, 1.h))
           ],
           color: Colors.white,
         ),
