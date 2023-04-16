@@ -41,6 +41,7 @@ class _DriverBookedScreenState extends ConsumerState<DriverBookedScreen> {
 
     updateOTPInFirestore(userID, code, driverID);
     //'7esR371poUMcDuWHVmH1nWeIgKx2'
+    createOnGoingRide(driverID, userID);
   }
 
   void updateOTPInFirestore(userID, int? code, driverID) {
@@ -64,6 +65,56 @@ class _DriverBookedScreenState extends ConsumerState<DriverBookedScreen> {
     }).catchError((error) {
       print('Failed to update OTP in Firestore: $error');
     });
+  }
+
+  void createOnGoingRide(driverID, passengerID) async {
+    final FirebaseFirestore _firestore = FirebaseFirestore.instance;
+    try {
+      // Define a reference to the 'on going rides' collection
+
+// final CollectionReference driversCollection =
+//         FirebaseFirestore.instance.collection('drivers');
+
+      // Fetch the document by uid
+      final documentReferenceToDriver =
+          _firestore.collection('drivers').doc(driverID);
+
+      final documentSnapshotToDriver = await documentReferenceToDriver.get();
+      final driverName = documentSnapshotToDriver.data()?['name'];
+      final driverMob = documentSnapshotToDriver.data()?['mob no'];
+
+// extracting data from user
+      final documentReferenceToUser =
+          _firestore.collection('users registered').doc(passengerID);
+
+      final documentSnapshotToUser = await documentReferenceToUser.get();
+      final userName = documentSnapshotToUser.data()?['name'];
+      final userMob = documentSnapshotToUser.data()?['mob no'];
+
+      CollectionReference onGoingRidesCollection =
+          _firestore.collection('on going rides');
+
+      // Create a new document with the UID as the document ID
+      final DocumentReference onGoingRidedocRef =
+          await onGoingRidesCollection.add({
+        'driverID': driverID,
+        'driverName': driverName,
+        'passengerID': passengerID,
+        'passengerName': userName,
+        'startPoint': "snacker",
+        'endPoint': "Canteen",
+        'code': code
+      });
+
+      final String onGoingRideID = onGoingRidedocRef.id;
+
+      documentReferenceToDriver.update({"on going ride id": onGoingRideID});
+      documentReferenceToUser.update({"on going ride id": onGoingRideID});
+
+      print('On-going ride document created successfully.');
+    } catch (e) {
+      print('Error creating on-going ride document: $e');
+    }
   }
 
   @override
