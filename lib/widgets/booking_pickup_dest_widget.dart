@@ -27,7 +27,7 @@ class _BookingPickDestWidgetState extends State<BookingPickDestWidget> {
         ],
         color: Colors.white,
       ),
-      height: 280.h,
+      height: 200.h,
       width: 331.w,
       // margin: EdgeInsets.fromLTRB(14.w, 54.h, 14.h, 517.h),
       child: Column(
@@ -61,7 +61,7 @@ class _BookingPickDestWidgetState extends State<BookingPickDestWidget> {
               SizedBox(
                 width: 24.w,
               ),
-              DropDownPickUp("Hostle 7E"),
+              DropDownPickUp("Hostle 7 & 7E"),
               // SizedBox(width: 20.w,),
             ],
           ),
@@ -93,13 +93,15 @@ class _BookingPickDestWidgetState extends State<BookingPickDestWidget> {
                 width: 24.w,
               ),
               DropDownPickUp("Snackers"),
-              //SizedBox(width: 20.w,),
+              SizedBox(
+                height: 20.h,
+              ),
             ],
           ),
-          SizedBox(
-            height: 48.h,
-          ),
-          const Center(child: SearchForRidesButton()),
+          // SizedBox(
+          //   height: 48.h,
+          // ),
+          //const Center(child: SearchForRidesButton()),
           // SizedBox(height: 20.h,)
         ],
       ),
