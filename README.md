@@ -12,7 +12,7 @@ Verification Code: After completing the ride, the user will provide a verificati
 
 Payment: Users can pay for their ride using their own payment methods, making it convenient and hassle-free.
 
-###How to Use
+### How to Use
 
 Install the HaRidePay app on your mobile device.
 Sign up or log in to your account.
