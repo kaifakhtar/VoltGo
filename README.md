@@ -1,16 +1,29 @@
 # HarRidePay
 
-A new Flutter project.
+HaRidePay is a mobile application that allows users to book electric vehicle cabs within the college campus of NIT Jalandhar. Users can easily book a ride by selecting pickup and drop locations from a list of available rides, and then notify the driver. The driver will then reach the pickup location, and after completing the ride, the user will provide a verification code to the driver for payment.
 
-## Getting Started
+## Features
 
-This project is a starting point for a Flutter application.
+Easy Booking: Users can easily book a ride by selecting pickup and drop locations from a list of available rides within the NIT Jalandhar campus.
 
-A few resources to get you started if this is your first Flutter project:
+Driver Notification: Once the user confirms the pickup and drop locations, the app will notify the driver to reach the pickup location.
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+Verification Code: After completing the ride, the user will provide a verification code to the driver for verification and payment.
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+Payment: Users can pay for their ride using their own payment methods, making it convenient and hassle-free.
+
+### How to Use
+
+Install the HaRidePay app on your mobile device.
+
+Sign up or log in to your account.
+
+Choose pickup and drop locations from the list of available rides within the NIT Jalandhar campus.
+
+Confirm the pickup and drop locations.
+
+The app will notify the driver to reach the pickup location.
+
+Once the ride is complete, provide the verification code to the driver for payment.
+
+Pay for your ride using your own payment methods.
