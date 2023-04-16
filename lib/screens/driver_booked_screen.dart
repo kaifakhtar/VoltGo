@@ -52,7 +52,7 @@ class _DriverBookedScreenState extends ConsumerState<DriverBookedScreen> {
     firestore.collection('users registered').doc(userID).update({
       'code': code.toString(),
     }).then((value) {
-      print('OTP updated in Firestore: $code');
+      print('Code updated in Firestore: $code');
     }).catchError((error) {
       print('Failed to update OTP in Firestore: $error');
     });

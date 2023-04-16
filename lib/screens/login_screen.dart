@@ -71,7 +71,7 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
         });
         Navigator.of(context).pushReplacement(
           MaterialPageRoute(
-              builder: (BuildContext context) => BookingPickupScreen()),
+              builder: (BuildContext context) => const BookingPickupScreen()),
         );
       }
     } on PlatformException catch (err) {
