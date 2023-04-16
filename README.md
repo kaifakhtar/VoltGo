@@ -15,9 +15,15 @@ Payment: Users can pay for their ride using their own payment methods, making it
 ### How to Use
 
 Install the HaRidePay app on your mobile device.
+
 Sign up or log in to your account.
+
 Choose pickup and drop locations from the list of available rides within the NIT Jalandhar campus.
+
 Confirm the pickup and drop locations.
+
 The app will notify the driver to reach the pickup location.
+
 Once the ride is complete, provide the verification code to the driver for payment.
+
 Pay for your ride using your own payment methods.
