@@ -20,10 +20,10 @@ class _BookingPickDestWidgetState extends State<BookingPickDestWidget> {
         borderRadius: BorderRadius.circular(12.h),
         boxShadow: [
           BoxShadow(
-              color: Colors.black.withOpacity(0.25),
-              blurRadius: 1.r,
-              spreadRadius: 0.5.r,
-              offset: Offset(0.h, 1.h))
+              color: Colors.black.withOpacity(0.1),
+              blurRadius: 12.r,
+              spreadRadius: 1.r,
+              offset: Offset(0.h, 0.h))
         ],
         color: Colors.white,
       ),
@@ -41,7 +41,7 @@ class _BookingPickDestWidgetState extends State<BookingPickDestWidget> {
             padding: EdgeInsets.only(left: 70.w),
             child: Text(
               "Pickup",
-              style: GoogleFonts.inter(
+              style: GoogleFonts.poppins(
                   fontSize: 12.h, color: Colors.black.withOpacity(0.40)),
             ),
           ),
@@ -72,8 +72,10 @@ class _BookingPickDestWidgetState extends State<BookingPickDestWidget> {
             padding: EdgeInsets.only(left: 70.w),
             child: Text(
               "Drop",
-              style: GoogleFonts.inter(
-                  fontSize: 12.h, color: Colors.black.withOpacity(0.40)),
+              style: GoogleFonts.poppins(
+                  fontSize: 12.h,
+                  color: Colors.black.withOpacity(0.80),
+                  fontWeight: FontWeight.w500),
             ),
           ),
           SizedBox(

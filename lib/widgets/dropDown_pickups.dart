@@ -101,13 +101,14 @@ class _DropDownPickUpState extends State<DropDownPickUp> {
         width: 225.w,
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(12.r),
-          boxShadow: [
-            BoxShadow(
-                color: Colors.black.withOpacity(0.2),
-                blurRadius: 6.r,
-                spreadRadius: 0.r,
-                offset: Offset(0.h, 1.h))
-          ],
+          // boxShadow: [
+          //   BoxShadow(
+          //       color: Colors.black.withOpacity(0.2),
+          //       blurRadius: 6.r,
+          //       spreadRadius: 0.r,
+          //       offset: Offset(0.h, 1.h))
+          // ],
+          border: Border.all(color: Color.fromARGB(255, 218, 218, 218)),
           color: Colors.white,
         ),
         child: Padding(

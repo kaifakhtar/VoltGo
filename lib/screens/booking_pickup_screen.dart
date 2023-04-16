@@ -44,13 +44,13 @@ class _BookingPickupScreenState extends ConsumerState<BookingPickupScreen> {
     return Scaffold(
       appBar: AppBar(
         leading: IconButton(
-          color: Colors.black,
+          color: Color.fromARGB(255, 0, 0, 0),
           icon: Icon(Icons.menu),
           onPressed: () {},
         ),
-        title:
-            Text("HarRidePay", style: GoogleFonts.poppins(color: Colors.black)),
-        backgroundColor: Colors.white,
+        title: Text("HarRidePay",
+            style: GoogleFonts.poppins(color: Color.fromARGB(255, 0, 0, 0))),
+        backgroundColor: Color.fromARGB(255, 255, 255, 255),
         elevation: 1.h,
         actions: [
           IconButton(
@@ -64,11 +64,11 @@ class _BookingPickupScreenState extends ConsumerState<BookingPickupScreen> {
               },
               icon: Icon(
                 Icons.logout,
-                color: Colors.black,
+                color: Color.fromARGB(255, 27, 27, 27),
               ))
         ],
       ),
-      backgroundColor: Color(0xffeeeeee),
+      backgroundColor: Color.fromARGB(255, 249, 249, 249),
       body: Center(
         child: Column(
           // crossAxisAlignment: CrossAxisAlignment.center,
@@ -76,7 +76,7 @@ class _BookingPickupScreenState extends ConsumerState<BookingPickupScreen> {
             SizedBox(height: 20.h),
             BookingPickDestWidget(),
             SizedBox(
-              height: 20.h,
+              height: 48.h,
             ),
             DriverTilesContainer()
           ],

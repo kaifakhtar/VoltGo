@@ -35,10 +35,10 @@ class _DriverTilesContainerState extends ConsumerState<DriverTilesContainer> {
       decoration: BoxDecoration(
         boxShadow: [
           BoxShadow(
-              color: Colors.black.withOpacity(0.25),
-              blurRadius: 1.r,
-              spreadRadius: 0.5.r,
-              offset: Offset(0.h, 1.h))
+              color: Colors.black.withOpacity(0.1),
+              blurRadius: 12.r,
+              spreadRadius: 1.r,
+              offset: Offset(0.h, 0.h))
         ],
         borderRadius: BorderRadius.circular(12.r),
         color: Colors.white,
