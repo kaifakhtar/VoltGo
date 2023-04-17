@@ -41,7 +41,8 @@ class _BookingPickupScreenState extends ConsumerState<BookingPickupScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
+    
+    return Scaffold(
       // appBar: AppBar(
       //   leading: IconButton(
       //     color: Color.fromARGB(255, 0, 0, 0),
@@ -69,7 +70,7 @@ class _BookingPickupScreenState extends ConsumerState<BookingPickupScreen> {
       //   ],
       // ),
       //backgroundColor: Color.fromARGB(255, 249, 249, 249),
-      child: Center(
+      body: Center(
         child: Column(
           // crossAxisAlignment: CrossAxisAlignment.center,
           children: [
@@ -84,4 +85,6 @@ class _BookingPickupScreenState extends ConsumerState<BookingPickupScreen> {
       ),
     );
   }
+  
+
 }

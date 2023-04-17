@@ -7,9 +7,13 @@ class RideStatusPage extends StatefulWidget {
   State<RideStatusPage> createState() => _RideStatusPageState();
 }
 
-class _RideStatusPageState extends State<RideStatusPage> {
+class _RideStatusPageState extends State<RideStatusPage>
+   {
   @override
   Widget build(BuildContext context) {
-    return  Container();
+
+    return Scaffold();
   }
+
+  
 }

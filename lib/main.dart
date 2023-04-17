@@ -56,10 +56,10 @@ class _MyAppState extends State<MyApp> {
         builder: (context, child) {
           return ProviderScope(
             child: MaterialApp(
-                //home: DriverBookedScreen(),
-                home: isLogin
-                    ? const DashBoardScreen()
-                    : SignUpPage() //LoginScreen()//BookingPickupScreen()//Login()//BookingPickupScreen()//CarSelectScreen(),
+                home: DashBoardScreen(),
+                // home: isLogin
+                //     ?  const DashBoardScreen()
+                //     : SignUpPage() //LoginScreen()//BookingPickupScreen()//Login()//BookingPickupScreen()//CarSelectScreen(),
                 ),
           );
         });

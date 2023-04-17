@@ -14,10 +14,11 @@ class DashBoardScreen extends StatefulWidget {
 
 class _DashBoardScreenState extends State<DashBoardScreen> {
   int currentIndex = 0;
-  List pages = [const BookingPickupScreen(), const RideStatusPage()];
+  final pages = [const BookingPickupScreen(), const RideStatusPage()];
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+    
       appBar: AppBar(
         elevation: 1.h,
         leading: Icon(
@@ -27,10 +28,10 @@ class _DashBoardScreenState extends State<DashBoardScreen> {
         backgroundColor: Colors.white,
         title: Text(
           "Dashboard",
-          style: GoogleFonts.inter(color: Colors.black),
+          style: GoogleFonts.montserrat(color: Colors.black),
         ),
       ),
-      body: pages[currentIndex],
+      body: IndexedStack(children: pages,index: currentIndex,) ,
       bottomNavigationBar: BottomNavigationBar(
           currentIndex: currentIndex,
           selectedItemColor: Colors.black,
