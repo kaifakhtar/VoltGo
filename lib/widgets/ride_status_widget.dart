@@ -16,7 +16,16 @@ class _RideStatusWidgetState extends State<RideStatusWidget> {
       width: 340.w,
       padding: EdgeInsets.symmetric(horizontal: 16.h),
       decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(12.h), color: Colors.green),
+        boxShadow: [
+          BoxShadow(
+              color: Colors.black.withOpacity(0.1),
+              blurRadius: 12.r,
+              spreadRadius: 1.r,
+              offset: Offset(0.h, 0.h))
+        ],
+        color: Colors.white,
+        borderRadius: BorderRadius.circular(12.h),
+      ),
       child: Column(
         children: [
           SizedBox(
@@ -37,11 +46,13 @@ class _RideStatusWidgetState extends State<RideStatusWidget> {
                 padding: EdgeInsets.symmetric(vertical: 6.h, horizontal: 8.h),
                 decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(8.h),
-                    color: Colors.pink),
+                    color: Color.fromARGB(255, 44, 233, 30)),
               ),
             ],
           ),
-          Divider(),
+          Divider(
+            thickness: 1.0,
+          ),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [

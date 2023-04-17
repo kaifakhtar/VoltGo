@@ -12,7 +12,7 @@ class RideStatusPage extends StatefulWidget {
 class _RideStatusPageState extends State<RideStatusPage> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return const Scaffold(
       body: RideStatusWidget(),
     );
   }

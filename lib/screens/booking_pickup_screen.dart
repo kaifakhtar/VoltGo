@@ -75,11 +75,11 @@ class _BookingPickupScreenState extends ConsumerState<BookingPickupScreen> {
           // crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             SizedBox(height: 20.h),
-            BookingPickDestWidget(),
+            const BookingPickDestWidget(),
             SizedBox(
               height: 48.h,
             ),
-            DriverTilesContainer()
+            const DriverTilesContainer()
           ],
         ),
       ),
