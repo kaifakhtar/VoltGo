@@ -1,3 +1,4 @@
+import 'package:HarRidePay/screens/dashboard_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -57,7 +58,7 @@ class _MyAppState extends State<MyApp> {
             child: MaterialApp(
                 //home: DriverBookedScreen(),
                 home: isLogin
-                    ? const BookingPickupScreen()
+                    ? const DashBoardScreen()
                     : SignUpPage() //LoginScreen()//BookingPickupScreen()//Login()//BookingPickupScreen()//CarSelectScreen(),
                 ),
           );

@@ -41,35 +41,35 @@ class _BookingPickupScreenState extends ConsumerState<BookingPickupScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        leading: IconButton(
-          color: Color.fromARGB(255, 0, 0, 0),
-          icon: Icon(Icons.menu),
-          onPressed: () {},
-        ),
-        title: Text("HarRidePay",
-            style: GoogleFonts.poppins(color: Color.fromARGB(255, 0, 0, 0))),
-        backgroundColor: Color.fromARGB(255, 255, 255, 255),
-        elevation: 1.h,
-        actions: [
-          IconButton(
-              onPressed: () {
-                _signOut();
-                // Navigator.(context, MaterialPageRoute(builder: (BuildContext context) => LoginScreen()));
-                Navigator.of(context).pushReplacement(
-                  MaterialPageRoute(
-                      builder: (BuildContext context) => LoginScreen()),
-                );
-              },
-              icon: Icon(
-                Icons.logout,
-                color: Color.fromARGB(255, 27, 27, 27),
-              ))
-        ],
-      ),
-      backgroundColor: Color.fromARGB(255, 249, 249, 249),
-      body: Center(
+    return Container(
+      // appBar: AppBar(
+      //   leading: IconButton(
+      //     color: Color.fromARGB(255, 0, 0, 0),
+      //     icon: Icon(Icons.menu),
+      //     onPressed: () {},
+      //   ),
+      //   title: Text("HarRidePay",
+      //       style: GoogleFonts.poppins(color: Color.fromARGB(255, 0, 0, 0))),
+      //   backgroundColor: Color.fromARGB(255, 255, 255, 255),
+      //   elevation: 1.h,
+      //   actions: [
+      //     IconButton(
+      //         onPressed: () {
+      //           _signOut();
+      //           // Navigator.(context, MaterialPageRoute(builder: (BuildContext context) => LoginScreen()));
+      //           Navigator.of(context).pushReplacement(
+      //             MaterialPageRoute(
+      //                 builder: (BuildContext context) => LoginScreen()),
+      //           );
+      //         },
+      //         icon: Icon(
+      //           Icons.logout,
+      //           color: Color.fromARGB(255, 27, 27, 27),
+      //         ))
+      //   ],
+      // ),
+      //backgroundColor: Color.fromARGB(255, 249, 249, 249),
+      child: Center(
         child: Column(
           // crossAxisAlignment: CrossAxisAlignment.center,
           children: [
