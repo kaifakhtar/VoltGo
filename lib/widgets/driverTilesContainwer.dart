@@ -56,7 +56,7 @@ class _DriverTilesContainerState extends ConsumerState<DriverTilesContainer> {
               Text(
                 "Rides available",
                 style: GoogleFonts.poppins(
-                    fontSize: 16.sp, fontWeight: FontWeight.w600),
+                    fontSize: 20.sp, fontWeight: FontWeight.w600),
               )
             ],
           ),
@@ -71,11 +71,24 @@ class _DriverTilesContainerState extends ConsumerState<DriverTilesContainer> {
                   return const Center(
                     child: CircularProgressIndicator(),
                   );
+                } else if (snapshot.data!.size == 0) {
+                  return SizedBox(
+                      height: 280.h,
+                      child: Padding(
+                        padding: const EdgeInsets.all(16.0),
+                        child: Center(
+                            child: Text(
+                          "Oops! No rides available at the moment. Check back soon!",
+                          textAlign: TextAlign.center,
+                          style: GoogleFonts.poppins(
+                              fontSize: 16.sp, color: Colors.deepOrange),
+                        )),
+                      ));
                 }
 
                 return Padding(
                   padding: EdgeInsets.all(16.w),
-                  child: Container(
+                  child: SizedBox(
                     height: 280.h,
                     child: ListView.builder(
                       itemCount: snapshot.data?.size,

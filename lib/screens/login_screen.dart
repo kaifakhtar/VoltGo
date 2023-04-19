@@ -1,3 +1,4 @@
+import 'package:HarRidePay/screens/dashboard_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -71,7 +72,7 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
         });
         Navigator.of(context).pushReplacement(
           MaterialPageRoute(
-              builder: (BuildContext context) => const BookingPickupScreen()),
+              builder: (BuildContext context) => DashBoardScreen()),
         );
       }
     } on PlatformException catch (err) {

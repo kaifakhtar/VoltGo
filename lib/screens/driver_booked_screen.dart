@@ -9,7 +9,11 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
 
+import '../providers/on_going_ride_id_provider.dart';
+
 final driverIdProvider = StateProvider<String>((ref) => "");
+
+final codeProvider = StateProvider<int>((ref) => 0);
 
 class DriverBookedScreen extends ConsumerStatefulWidget {
   //const DriverBookedScreen({super.key});
@@ -23,7 +27,7 @@ class DriverBookedScreen extends ConsumerStatefulWidget {
 }
 
 class _DriverBookedScreenState extends ConsumerState<DriverBookedScreen> {
-  int? code;
+  int code=0000;
 
   @override
   void initState() {
@@ -38,10 +42,11 @@ class _DriverBookedScreenState extends ConsumerState<DriverBookedScreen> {
     String driverID = ref.read(driverIdProvider);
     print("user id in booked screen is $userID");
     print("driver id in booked screen is $driverID");
+    
 
     updateOTPInFirestore(userID, code, driverID);
-    //'7esR371poUMcDuWHVmH1nWeIgKx2'
     createOnGoingRide(driverID, userID);
+    //'7esR371poUMcDuWHVmH1nWeIgKx2'
   }
 
   void updateOTPInFirestore(userID, int? code, driverID) {
@@ -103,11 +108,14 @@ class _DriverBookedScreenState extends ConsumerState<DriverBookedScreen> {
         'passengerName': userName,
         'startPoint': "snacker",
         'endPoint': "Canteen",
-        'code': code
+        'code': code,
+        'driver mob no':driverMob
       });
 
       final String onGoingRideID = onGoingRidedocRef.id;
 
+      ref.watch(onGoingIDprovider.notifier).state = onGoingRideID;
+  ref.read(codeProvider.notifier).state = code;
       documentReferenceToDriver.update({"on going ride id": onGoingRideID});
       documentReferenceToUser.update({"on going ride id": onGoingRideID});
 
@@ -119,6 +127,7 @@ class _DriverBookedScreenState extends ConsumerState<DriverBookedScreen> {
 
   @override
   Widget build(BuildContext context) {
+  
     // Read the code state from the provider
     return Scaffold(
       body: SafeArea(

@@ -53,20 +53,20 @@ class _BookingPickupScreenState extends ConsumerState<BookingPickupScreen> {
       //       style: GoogleFonts.poppins(color: Color.fromARGB(255, 0, 0, 0))),
       //   backgroundColor: Color.fromARGB(255, 255, 255, 255),
       //   elevation: 1.h,
-      //   actions: [
-      //     IconButton(
-      //         onPressed: () {
-      //           _signOut();
-      //           // Navigator.(context, MaterialPageRoute(builder: (BuildContext context) => LoginScreen()));
-      //           Navigator.of(context).pushReplacement(
-      //             MaterialPageRoute(
-      //                 builder: (BuildContext context) => LoginScreen()),
-      //           );
-      //         },
-      //         icon: Icon(
-      //           Icons.logout,
-      //           color: Color.fromARGB(255, 27, 27, 27),
-      //         ))
+        // actions: [
+        //   IconButton(
+        //       onPressed: () {
+        //         _signOut();
+        //         // Navigator.(context, MaterialPageRoute(builder: (BuildContext context) => LoginScreen()));
+        //         Navigator.of(context).pushReplacement(
+        //           MaterialPageRoute(
+        //               builder: (BuildContext context) => LoginScreen()),
+        //         );
+        //       },
+              // icon: Icon(
+              //   Icons.logout,
+              //   color: Color.fromARGB(255, 27, 27, 27),
+              // ))
       //   ],
       // ),
       //backgroundColor: Color.fromARGB(255, 249, 249, 249),
