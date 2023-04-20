@@ -9,6 +9,7 @@ import '../providers/on_going_ride_id_provider.dart';
 import 'booking_pickup_screen.dart';
 import 'login_screen.dart';
 import 'ride_status_screen.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class DashBoardScreen extends ConsumerStatefulWidget {
   const DashBoardScreen({super.key});
@@ -27,7 +28,7 @@ class _DashBoardScreenState extends ConsumerState<DashBoardScreen> {
 
   getOnGoingRideDataFromUserDB() async {
     String userId = FirebaseAuth.instance.currentUser!.uid;
-
+    print("user id in method $userId");
     final result = await FirebaseFirestore.instance
         .collection('users registered')
         .doc(userId)
@@ -42,6 +43,7 @@ class _DashBoardScreenState extends ConsumerState<DashBoardScreen> {
     } else {
       //not exists
       print("on going ride not exist!");
+      print("user id in else $userId");
     }
     // final List<DocumentSnapshot> documents = result.docs;
 
@@ -92,22 +94,23 @@ class _DashBoardScreenState extends ConsumerState<DashBoardScreen> {
         ),
       ),
       body: IndexedStack(
-        children: pages,
         index: currentIndex,
+        children: pages,
       ),
       bottomNavigationBar: BottomNavigationBar(
           currentIndex: currentIndex,
           selectedItemColor: Colors.black,
-          unselectedItemColor: Colors.grey.withOpacity(.5),
+          unselectedItemColor: Colors.grey.withOpacity(.7),
           onTap: (value) {
             setState(() {
               currentIndex = value;
             });
           },
           items: const [
-            BottomNavigationBarItem(icon: Icon(Icons.home), label: "Home"),
             BottomNavigationBarItem(
-                icon: Icon(Icons.car_rental), label: "Ride status")
+                icon: FaIcon(FontAwesomeIcons.house), label: "Home"),
+            BottomNavigationBarItem(
+                icon: FaIcon(FontAwesomeIcons.carOn), label: "Ride status")
           ]),
     );
   }
