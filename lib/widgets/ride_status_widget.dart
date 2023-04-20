@@ -21,7 +21,7 @@ class _RideStatusWidgetState extends ConsumerState<RideStatusWidget> {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsets.symmetric(vertical: 16.h, horizontal: 8.w),
+      padding: EdgeInsets.symmetric(vertical: 24.h, horizontal: 12.w),
       child: Container(
         height: 290.h,
         width: 340.w,
@@ -29,9 +29,9 @@ class _RideStatusWidgetState extends ConsumerState<RideStatusWidget> {
         decoration: BoxDecoration(
           boxShadow: [
             BoxShadow(
-                color: Colors.black.withOpacity(0.1),
+                color: Colors.black.withOpacity(0.15),
                 blurRadius: 12.r,
-                spreadRadius: 1.r,
+                spreadRadius: 2.r,
                 offset: Offset(0.h, 0.h))
           ],
           color: Colors.white,
@@ -47,22 +47,24 @@ class _RideStatusWidgetState extends ConsumerState<RideStatusWidget> {
               children: [
                 Text(
                   'Code',
-                  style: GoogleFonts.poppins(fontSize: 24.sp),
+                  style: GoogleFonts.poppins(fontSize: 20.sp),
                 ),
                 Container(
                   padding: EdgeInsets.symmetric(vertical: 6.h, horizontal: 8.h),
                   decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(8.h),
-                      color: Color.fromARGB(255, 162, 255, 162)),
+                      color: Color.fromARGB(255, 216, 255, 216)),
                   child: Text(
                     widget.code.toString(),
-                    style: GoogleFonts.poppins(fontSize: 24.sp),
+                    style: GoogleFonts.poppins(
+                        fontSize: 20.sp,
+                        color: Color.fromARGB(255, 14, 137, 18)),
                   ),
                 ),
               ],
             ),
             Divider(
-              thickness: 1.0,
+              thickness: 1,
             ),
             SizedBox(
               height: 12.h,
@@ -94,7 +96,7 @@ class _RideStatusWidgetState extends ConsumerState<RideStatusWidget> {
                 Text(
                   'Pickup',
                   style: GoogleFonts.poppins(
-                      fontSize: 12.sp, color: Colors.deepOrange),
+                      fontSize: 12.sp, color: Colors.orange),
                 ),
                 Text(
                   'Drop',
@@ -112,15 +114,15 @@ class _RideStatusWidgetState extends ConsumerState<RideStatusWidget> {
                 Text(
                   'Night Canteen',
                   style: GoogleFonts.poppins(
-                      fontSize: 20.sp,
-                      fontWeight: FontWeight.w600,
+                      fontSize: 16.sp,
+                      fontWeight: FontWeight.w500,
                       color: Color.fromARGB(255, 39, 38, 36)),
                 ),
                 Text(
-                  'Hostel 17',
+                  'Hostel 7',
                   style: GoogleFonts.poppins(
-                      fontSize: 20.sp,
-                      fontWeight: FontWeight.w600,
+                      fontSize: 16.sp,
+                      fontWeight: FontWeight.w500,
                       color: Color.fromARGB(255, 31, 34, 32)),
                 ),
               ],
@@ -136,25 +138,26 @@ class _RideStatusWidgetState extends ConsumerState<RideStatusWidget> {
             // ),
             Container(
               decoration: BoxDecoration(
+                  color: Colors.amber.withOpacity(.1),
                   borderRadius: BorderRadius.all(Radius.circular(12.r)),
                   border: Border.all(color: Colors.grey.withOpacity(.5))),
               child: Padding(
-                padding: EdgeInsets.all(8.h),
+                padding: EdgeInsets.all(12.h),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Text(
                       '23 apr 2023 at 11:30 pm',
                       style: GoogleFonts.poppins(
-                          fontSize: 12.sp,
-                          color: Colors.black.withOpacity(0.7)),
+                          fontSize: 10.sp,
+                          color: Colors.black.withOpacity(0.5)),
                     ),
                     Text(
-                      'Rs.100',
+                      '\u20B9 100',
                       style: GoogleFonts.poppins(
-                          fontSize: 20.sp,
-                          color:
-                              Color.fromARGB(255, 0, 148, 12).withOpacity(0.8),
+                          fontSize: 18.sp,
+                          // color:
+                          //     Color,
                           fontWeight: FontWeight.w700),
                     ),
                   ],
