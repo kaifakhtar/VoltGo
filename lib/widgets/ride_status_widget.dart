@@ -9,10 +9,13 @@ class RideStatusWidget extends ConsumerStatefulWidget {
   String driverName;
   int code;
   String driverMobNno;
+  String pickUP, drop;
   RideStatusWidget(
       {required this.driverName,
       required this.code,
-      required this.driverMobNno});
+      required this.driverMobNno,
+      required this.pickUP,
+      required this.drop});
   @override
   ConsumerState<RideStatusWidget> createState() => _RideStatusWidgetState();
 }
@@ -57,7 +60,9 @@ class _RideStatusWidgetState extends ConsumerState<RideStatusWidget> {
                   child: Text(
                     widget.code.toString(),
                     style: GoogleFonts.poppins(
-                        fontSize: 20.sp, color: Colors.orange),
+                        fontWeight: FontWeight.w600,
+                        fontSize: 20.sp,
+                        color: Colors.deepOrange.shade300),
                   ),
                 ),
               ],
@@ -93,14 +98,19 @@ class _RideStatusWidgetState extends ConsumerState<RideStatusWidget> {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Text(
-                  'Pickup',
+                  "Pick up",
                   style: GoogleFonts.poppins(
-                      fontSize: 12.sp, color: Colors.orange),
+                      fontWeight: FontWeight.w700,
+                      fontSize: 12.sp,
+                      color: Colors.orange),
                 ),
                 Text(
-                  'Drop',
-                  style:
-                      GoogleFonts.poppins(fontSize: 12.sp, color: Colors.green),
+                  "Drop",
+                  style: GoogleFonts.poppins(
+                    fontSize: 12.sp,
+                    color: Colors.green,
+                    fontWeight: FontWeight.w700,
+                  ),
                 ),
               ],
             ),
@@ -111,14 +121,18 @@ class _RideStatusWidgetState extends ConsumerState<RideStatusWidget> {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Text(
-                  'Night Canteen',
+                  widget.pickUP,
                   style: GoogleFonts.poppins(
                       fontSize: 16.sp,
                       fontWeight: FontWeight.w500,
                       color: Color.fromARGB(255, 39, 38, 36)),
                 ),
+                Icon(
+                  Icons.arrow_forward_rounded,
+                  size: 25,
+                ),
                 Text(
-                  'Hostel 7',
+                  widget.drop,
                   style: GoogleFonts.poppins(
                       fontSize: 16.sp,
                       fontWeight: FontWeight.w500,
@@ -139,7 +153,7 @@ class _RideStatusWidgetState extends ConsumerState<RideStatusWidget> {
               decoration: BoxDecoration(
                   color: Color.fromARGB(255, 216, 255, 216).withOpacity(.6),
                   borderRadius: BorderRadius.all(Radius.circular(12.r)),
-                  border: Border.all(color: Colors.grey.withOpacity(.5))),
+                  border: Border.all(color: Colors.grey.withOpacity(.3))),
               child: Padding(
                 padding: EdgeInsets.all(12.h),
                 child: Row(

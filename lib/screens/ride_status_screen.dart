@@ -63,6 +63,8 @@ class _RideStatusPageState extends ConsumerState<RideStatusPage> {
                       driverName: snapshot.data["driverName"],
                       code: snapshot.data["code"],
                       driverMobNno: snapshot.data["driver mob no"],
+                      pickUP: snapshot.data["startPoint"],
+                      drop: snapshot.data["endPoint"],
                     );
                   } else if (snapshot.connectionState ==
                       ConnectionState.waiting) {
@@ -70,7 +72,7 @@ class _RideStatusPageState extends ConsumerState<RideStatusPage> {
                       child: CircularProgressIndicator(),
                     );
                   }
-                    return const Center(child: Text("error"));
+                  return const Center(child: Text("error"));
                 },
               );
             }

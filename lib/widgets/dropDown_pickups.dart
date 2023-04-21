@@ -1,16 +1,29 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-class DropDownPickUp extends StatefulWidget {
-  @override
-  State<DropDownPickUp> createState() => _DropDownPickUpState();
-  String locationName = "Pick";
+final pickUpProvider = StateProvider<String>((ref) => "Hostle 7 & 7E");
+final dropProvider = StateProvider<String>((ref) => "Snackers");
 
-  DropDownPickUp(this.locationName);
+class DropDownPickUp extends ConsumerStatefulWidget {
+  @override
+  ConsumerState<DropDownPickUp> createState() => _DropDownPickUpState();
+  String locationName = "Pick";
+  bool isPickUp;
+
+  DropDownPickUp(this.locationName, this.isPickUp);
 }
 
-class _DropDownPickUpState extends State<DropDownPickUp> {
+class _DropDownPickUpState extends ConsumerState<DropDownPickUp> {
+  void tileOnTap(isPickUp, locationName) {
+    if (isPickUp) {
+      ref.watch(pickUpProvider.notifier).state = locationName;
+    } else {
+      ref.watch(dropProvider.notifier).state = locationName;
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     //String pickUpName="Night Canteen";
@@ -30,9 +43,8 @@ class _DropDownPickUpState extends State<DropDownPickUp> {
                           child: ListTile(
                         title: Text('Hostle 7 & 7E'),
                         onTap: () {
-                          widget.locationName = "Hostle 7 & 7E";
+                          tileOnTap(widget.isPickUp, 'Hostle 7 & 7E');
                           setState(() {});
-
                           Navigator.pop(context);
                         },
                       )),
@@ -40,7 +52,7 @@ class _DropDownPickUpState extends State<DropDownPickUp> {
                           child: ListTile(
                         title: Text('Snackers'),
                         onTap: () {
-                          widget.locationName = "Snackers";
+                          tileOnTap(widget.isPickUp, 'Snackers');
                           setState(() {});
                           Navigator.pop(context);
                         },
@@ -49,7 +61,7 @@ class _DropDownPickUpState extends State<DropDownPickUp> {
                           child: ListTile(
                         title: Text('Hostle 6'),
                         onTap: () {
-                          widget.locationName = "Hostle 6";
+                          tileOnTap(widget.isPickUp, 'Hostle 6');
                           setState(() {});
                           Navigator.pop(context);
                         },
@@ -58,7 +70,7 @@ class _DropDownPickUpState extends State<DropDownPickUp> {
                           child: ListTile(
                         title: Text('Night canteen'),
                         onTap: () {
-                          widget.locationName = "Night canteen";
+                          tileOnTap(widget.isPickUp, 'Night canteen');
                           setState(() {});
                           Navigator.pop(context);
                         },
@@ -67,7 +79,7 @@ class _DropDownPickUpState extends State<DropDownPickUp> {
                           child: ListTile(
                         title: Text('Dispensary'),
                         onTap: () {
-                          widget.locationName = "Dispensary";
+                          tileOnTap(widget.isPickUp, 'Dispensary');
                           setState(() {});
                           Navigator.pop(context);
                         },
@@ -76,7 +88,7 @@ class _DropDownPickUpState extends State<DropDownPickUp> {
                           child: ListTile(
                         title: Text('College gate'),
                         onTap: () {
-                          widget.locationName = "College gate";
+                          tileOnTap(widget.isPickUp, 'College gate');
                           setState(() {});
                           Navigator.pop(context);
                         },
@@ -85,7 +97,7 @@ class _DropDownPickUpState extends State<DropDownPickUp> {
                           child: ListTile(
                         title: Text('Lecture theature'),
                         onTap: () {
-                          widget.locationName = "Lecture theature";
+                          tileOnTap(widget.isPickUp, 'Lecture theature');
                           setState(() {});
                           Navigator.pop(context);
                         },
@@ -118,7 +130,9 @@ class _DropDownPickUpState extends State<DropDownPickUp> {
             children: [
               //SizedBox(width: 10.w,),
               Text(
-                widget.locationName,
+                widget.isPickUp
+                    ? ref.read(pickUpProvider)
+                    : ref.read(dropProvider),
                 style: GoogleFonts.poppins(fontSize: 12.sp),
               ),
               SizedBox(

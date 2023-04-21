@@ -3,6 +3,7 @@ import 'dart:math';
 import 'package:HarRidePay/modals/driver.dart';
 import 'package:HarRidePay/providers/online_driver_provider.dart';
 import 'package:HarRidePay/screens/signUp_screen.dart';
+import 'package:HarRidePay/widgets/dropDown_pickups.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -27,7 +28,7 @@ class DriverBookedScreen extends ConsumerStatefulWidget {
 }
 
 class _DriverBookedScreenState extends ConsumerState<DriverBookedScreen> {
-  int code=0000;
+  int code = 0000;
 
   @override
   void initState() {
@@ -42,7 +43,6 @@ class _DriverBookedScreenState extends ConsumerState<DriverBookedScreen> {
     String driverID = ref.read(driverIdProvider);
     print("user id in booked screen is $userID");
     print("driver id in booked screen is $driverID");
-    
 
     updateOTPInFirestore(userID, code, driverID);
     createOnGoingRide(driverID, userID);
@@ -98,7 +98,8 @@ class _DriverBookedScreenState extends ConsumerState<DriverBookedScreen> {
 
       CollectionReference onGoingRidesCollection =
           _firestore.collection('on going rides');
-
+      String startPoint = ref.read(pickUpProvider);
+      String endPoint = ref.read(dropProvider);
       // Create a new document with the UID as the document ID
       final DocumentReference onGoingRidedocRef =
           await onGoingRidesCollection.add({
@@ -106,16 +107,16 @@ class _DriverBookedScreenState extends ConsumerState<DriverBookedScreen> {
         'driverName': driverName,
         'passengerID': passengerID,
         'passengerName': userName,
-        'startPoint': "snacker",
-        'endPoint': "Canteen",
+        'startPoint': startPoint,
+        'endPoint': endPoint,
         'code': code,
-        'driver mob no':driverMob
+        'driver mob no': driverMob
       });
 
       final String onGoingRideID = onGoingRidedocRef.id;
 
       ref.watch(onGoingIDprovider.notifier).state = onGoingRideID;
-  ref.read(codeProvider.notifier).state = code;
+      ref.read(codeProvider.notifier).state = code;
       documentReferenceToDriver.update({"on going ride id": onGoingRideID});
       documentReferenceToUser.update({"on going ride id": onGoingRideID});
 
@@ -127,7 +128,6 @@ class _DriverBookedScreenState extends ConsumerState<DriverBookedScreen> {
 
   @override
   Widget build(BuildContext context) {
-  
     // Read the code state from the provider
     return Scaffold(
       body: SafeArea(
