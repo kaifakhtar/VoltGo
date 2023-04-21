@@ -42,7 +42,9 @@ class _BookingPickDestWidgetState extends State<BookingPickDestWidget> {
             child: Text(
               "Pickup",
               style: GoogleFonts.poppins(
-                  fontSize: 12.h, color: Colors.black.withOpacity(0.40)),
+                  fontSize: 12.h,
+                  color: Colors.black.withOpacity(0.80),
+                  fontWeight: FontWeight.w700),
             ),
           ),
           SizedBox(
@@ -61,7 +63,7 @@ class _BookingPickDestWidgetState extends State<BookingPickDestWidget> {
               SizedBox(
                 width: 24.w,
               ),
-              DropDownPickUp("Hostle 7 & 7E"),
+              DropDownPickUp("Hostle 7 & 7E", true),
               // SizedBox(width: 20.w,),
             ],
           ),
@@ -75,7 +77,7 @@ class _BookingPickDestWidgetState extends State<BookingPickDestWidget> {
               style: GoogleFonts.poppins(
                   fontSize: 12.h,
                   color: Colors.black.withOpacity(0.80),
-                  fontWeight: FontWeight.w500),
+                  fontWeight: FontWeight.w700),
             ),
           ),
           SizedBox(
@@ -94,7 +96,7 @@ class _BookingPickDestWidgetState extends State<BookingPickDestWidget> {
               SizedBox(
                 width: 24.w,
               ),
-              DropDownPickUp("Snackers"),
+              DropDownPickUp("Snackers", false),
               SizedBox(
                 height: 20.h,
               ),
