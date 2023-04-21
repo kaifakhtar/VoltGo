@@ -53,12 +53,11 @@ class _RideStatusWidgetState extends ConsumerState<RideStatusWidget> {
                   padding: EdgeInsets.symmetric(vertical: 6.h, horizontal: 8.h),
                   decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(8.h),
-                      color: Color.fromARGB(255, 216, 255, 216)),
+                      color: Colors.amber.withOpacity(.2)),
                   child: Text(
                     widget.code.toString(),
                     style: GoogleFonts.poppins(
-                        fontSize: 20.sp,
-                        color: Color.fromARGB(255, 14, 137, 18)),
+                        fontSize: 20.sp, color: Colors.orange),
                   ),
                 ),
               ],
@@ -138,7 +137,7 @@ class _RideStatusWidgetState extends ConsumerState<RideStatusWidget> {
             // ),
             Container(
               decoration: BoxDecoration(
-                  color: Colors.amber.withOpacity(.1),
+                  color: Color.fromARGB(255, 216, 255, 216).withOpacity(.6),
                   borderRadius: BorderRadius.all(Radius.circular(12.r)),
                   border: Border.all(color: Colors.grey.withOpacity(.5))),
               child: Padding(
@@ -147,15 +146,15 @@ class _RideStatusWidgetState extends ConsumerState<RideStatusWidget> {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Text(
-                      '23 apr 2023 at 11:30 pm',
+                      'Amount',
                       style: GoogleFonts.poppins(
-                          fontSize: 10.sp,
-                          color: Colors.black.withOpacity(0.5)),
+                          fontSize: 18.sp, color: Colors.black.withOpacity(.8)),
                     ),
                     Text(
                       '\u20B9 100',
                       style: GoogleFonts.poppins(
                           fontSize: 18.sp,
+                          color: Colors.black.withOpacity(.8),
                           // color:
                           //     Color,
                           fontWeight: FontWeight.w700),
