@@ -1,3 +1,4 @@
+import 'package:HarRidePay/widgets/driver_card.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -26,9 +27,9 @@ class _RideStatusWidgetState extends ConsumerState<RideStatusWidget> {
     return Padding(
       padding: EdgeInsets.symmetric(vertical: 24.h, horizontal: 12.w),
       child: Container(
-        height: 290.h,
+        height: 300.h,
         width: 340.w,
-        padding: EdgeInsets.symmetric(horizontal: 16.h),
+        //padding: EdgeInsets.symmetric(horizontal: 16.h),
         decoration: BoxDecoration(
           boxShadow: [
             BoxShadow(
@@ -41,134 +42,133 @@ class _RideStatusWidgetState extends ConsumerState<RideStatusWidget> {
           borderRadius: BorderRadius.circular(12.h),
         ),
         child: Column(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            SizedBox(
-              height: 12.h,
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Text(
-                  'Code',
-                  style: GoogleFonts.poppins(fontSize: 20.sp),
-                ),
-                Container(
-                  padding: EdgeInsets.symmetric(vertical: 6.h, horizontal: 8.h),
-                  decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(8.h),
-                      color: Colors.amber.withOpacity(.2)),
-                  child: Text(
-                    widget.code.toString(),
-                    style: GoogleFonts.poppins(
-                        fontWeight: FontWeight.w600,
-                        fontSize: 20.sp,
-                        color: Colors.deepOrange.shade300),
+            Padding(
+              padding: EdgeInsets.symmetric(horizontal: 16.w),
+              child: Column(
+                children: [
+                  SizedBox(
+                    height: 12.h,
                   ),
-                ),
-              ],
-            ),
-            Divider(
-              thickness: 1,
-            ),
-            SizedBox(
-              height: 12.h,
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Text(
-                  widget.driverName,
-                  style: GoogleFonts.poppins(
-                      fontSize: 16.sp, color: Colors.black.withOpacity(.7)),
-                ),
-                Text(
-                  widget.driverMobNno,
-                  style: GoogleFonts.poppins(
-                    color: Colors.black.withOpacity(.7),
-                    fontSize: 16.sp,
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Text(
+                        'Code',
+                        style: GoogleFonts.poppins(fontSize: 20.sp),
+                      ),
+                      Container(
+                        padding: EdgeInsets.symmetric(
+                            vertical: 6.h, horizontal: 8.h),
+                        decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(8.h),
+                            color: Colors.amber.withOpacity(.2)),
+                        child: Text(
+                          widget.code.toString(),
+                          style: GoogleFonts.poppins(
+                              fontWeight: FontWeight.w600,
+                              fontSize: 20.sp,
+                              color: Colors.deepOrange.shade300),
+                        ),
+                      ),
+                    ],
                   ),
-                ),
-              ],
-            ),
-            SizedBox(
-              height: 28.h,
-            ),
+                  // const Divider(
+                  //   thickness: 1,
+                  // ),
+                  SizedBox(
+                    height: 16.h,
+                  ),
+                  // CircleAvatar(
+                  //   child: Image.asset('asset/images/taxi.png'),
+                  // ),
+                  DriverCard(
+                      profileImage: 'asset/images/taxi.png',
+                      driverName: widget.driverName,
+                      mobileNumber: widget.driverMobNno),
+                  SizedBox(
+                    height: 16.h,
+                  ),
 
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Text(
-                  "Pick up",
-                  style: GoogleFonts.poppins(
-                      fontWeight: FontWeight.w700,
-                      fontSize: 12.sp,
-                      color: Colors.orange),
-                ),
-                Text(
-                  "Drop",
-                  style: GoogleFonts.poppins(
-                    fontSize: 12.sp,
-                    color: Colors.green,
-                    fontWeight: FontWeight.w700,
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Text(
+                        "Pick up",
+                        style: GoogleFonts.poppins(
+                            fontWeight: FontWeight.w700,
+                            fontSize: 12.sp,
+                            color: Colors.orange),
+                      ),
+                      Text(
+                        "Drop",
+                        style: GoogleFonts.poppins(
+                          fontSize: 12.sp,
+                          color: Colors.green,
+                          fontWeight: FontWeight.w700,
+                        ),
+                      ),
+                    ],
                   ),
-                ),
-              ],
+                  SizedBox(
+                    height: 4.h,
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Text(
+                        widget.pickUP,
+                        style: GoogleFonts.poppins(
+                            fontSize: 16.sp,
+                            fontWeight: FontWeight.w700,
+                            color: Color.fromARGB(255, 39, 38, 36)),
+                      ),
+                      Icon(
+                        Icons.arrow_forward_rounded,
+                        size: 25,
+                        color: Colors.black38,
+                      ),
+                      Text(
+                        widget.drop,
+                        style: GoogleFonts.poppins(
+                            fontSize: 16.sp,
+                            fontWeight: FontWeight.w700,
+                            color: Color.fromARGB(255, 31, 34, 32)),
+                      ),
+                    ],
+                  ),
+
+                  // Divider(
+                  //   thickness: 1.h,
+                  // ),
+                  // SizedBox(
+                  //   height: 12.h,
+                  // ),
+                ],
+              ),
             ),
-            SizedBox(
-              height: 4.h,
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Text(
-                  widget.pickUP,
-                  style: GoogleFonts.poppins(
-                      fontSize: 16.sp,
-                      fontWeight: FontWeight.w500,
-                      color: Color.fromARGB(255, 39, 38, 36)),
-                ),
-                Icon(
-                  Icons.arrow_forward_rounded,
-                  size: 25,
-                ),
-                Text(
-                  widget.drop,
-                  style: GoogleFonts.poppins(
-                      fontSize: 16.sp,
-                      fontWeight: FontWeight.w500,
-                      color: Color.fromARGB(255, 31, 34, 32)),
-                ),
-              ],
-            ),
-            SizedBox(
-              height: 28.h,
-            ),
-            // Divider(
-            //   thickness: 1.h,
-            // ),
-            // SizedBox(
-            //   height: 12.h,
-            // ),
             Container(
               decoration: BoxDecoration(
-                  color: Color.fromARGB(255, 216, 255, 216).withOpacity(.6),
-                  borderRadius: BorderRadius.all(Radius.circular(12.r)),
-                  border: Border.all(color: Colors.grey.withOpacity(.3))),
+                color: Color.fromARGB(255, 220, 255, 223).withOpacity(.6),
+                borderRadius: BorderRadius.all(Radius.circular(12.r)),
+                // border: Border.all(color: Colors.grey.withOpacity(.3))
+              ),
               child: Padding(
-                padding: EdgeInsets.all(12.h),
+                padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 12.h),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Text(
                       'Amount',
                       style: GoogleFonts.poppins(
-                          fontSize: 18.sp, color: Colors.black.withOpacity(.8)),
+                          fontSize: 16.sp, color: Colors.black87),
                     ),
                     Text(
                       '\u20B9 100',
                       style: GoogleFonts.poppins(
-                          fontSize: 18.sp,
-                          color: Colors.black.withOpacity(.8),
+                          fontSize: 20.sp,
+                          color: Colors.black87,
                           // color:
                           //     Color,
                           fontWeight: FontWeight.w700),
