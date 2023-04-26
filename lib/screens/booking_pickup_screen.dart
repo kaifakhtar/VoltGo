@@ -9,6 +9,8 @@ import '../widgets/driverTilesContainwer.dart';
 import 'login_screen.dart';
 import 'signUp_screen.dart';
 
+final badgeCountProvider = StateProvider((ref) => 0);
+
 class BookingPickupScreen extends ConsumerStatefulWidget {
   const BookingPickupScreen({Key? key}) : super(key: key);
 
