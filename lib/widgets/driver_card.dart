@@ -50,7 +50,7 @@ class DriverCard extends StatelessWidget {
                   driverName,
                   style: GoogleFonts.poppins(
                     fontSize: 18.sp,
-                    fontWeight: FontWeight.bold,
+                    fontWeight: FontWeight.w500,
                   ),
                 ),
                 SizedBox(height: 4.h),

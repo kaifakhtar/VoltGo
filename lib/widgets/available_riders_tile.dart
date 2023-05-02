@@ -15,34 +15,65 @@ class AvailableRidersTile extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     return Padding(
-      padding: EdgeInsets.only(top: 16.h),
-      child: Container(
+        padding: EdgeInsets.symmetric(vertical: 8.h, horizontal: 2.h),
+        child: Container(
           decoration: BoxDecoration(
             color: Colors.white,
+            borderRadius: BorderRadius.circular(16),
             boxShadow: [
               BoxShadow(
-                  color: Color.fromARGB(255, 85, 85, 85).withOpacity(0.2),
+                  color: Colors.black.withOpacity(0.1),
                   blurRadius: 8.r,
-                  spreadRadius: 1.r,
-                  offset: Offset(0.h, 0.h))
+                  spreadRadius: 2.r,
+                  offset: Offset(0.h, 0))
             ],
-            borderRadius: BorderRadius.circular(12.r),
           ),
-          height: 72.h,
-          width: 285.w,
           child: Padding(
-            padding: EdgeInsets.symmetric(horizontal: 16.h),
+            padding: EdgeInsets.all(12.h),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Text(
-                  driver.name,
-                  style: GoogleFonts.poppins(fontSize: 14.sp),
+                Row(
+                  children: [
+                    Container(
+                      width: 60.w,
+                      height: 60.h,
+                      decoration: const BoxDecoration(
+                        shape: BoxShape.circle,
+                        image: DecorationImage(
+                          fit: BoxFit.cover,
+                          image: AssetImage('asset/images/taxi.png'),
+                        ),
+                      ),
+                    ),
+                    SizedBox(width: 8.w),
+                    FittedBox(
+                      fit: BoxFit.contain,
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            driver.name,
+                            style: GoogleFonts.poppins(
+                              fontSize: 14.sp,
+                              fontWeight: FontWeight.w500,
+                            ),
+                          ),
+                          SizedBox(height: 4.h),
+                          Text(
+                            "Rating : 4.43",
+                            style: GoogleFonts.poppins(
+                                fontSize: 11.sp, color: Colors.grey),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ],
                 ),
                 BookDriverButton(driver)
               ],
             ),
-          )),
-    );
+          ),
+        ));
   }
 }

@@ -7,6 +7,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:google_fonts/google_fonts.dart';
 
+import '../utils.dart';
 import 'booking_pickup_screen.dart';
 import 'signUp_screen.dart';
 
@@ -75,13 +76,27 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
               builder: (BuildContext context) => DashBoardScreen()),
         );
       }
-    } on PlatformException catch (err) {
+    } on FirebaseAuthException catch (err) {
       setState(() {
         _isLoading = false;
       });
-      var message = 'An error occured!!';
-      if (err.message != null) {
-        //message=err.message;
+      // if (err.code == "user-not-found") {
+      //   print("Rider not found");
+      //   //  throw ("user-not-found");
+      //   showMySnackbar(context, "Rider not found");
+      // }
+      switch (err.code) {
+        case "user-not-found":
+          showMySnackbar(context, "Rider not found");
+          break;
+        case "wrong-password":
+          showMySnackbar(context, "Wrong password");
+          break;
+        case "invalid-email":
+          showMySnackbar(context, "Please enter valid email address");
+          break;
+        default:
+          showMySnackbar(context, "Login failed! Please try again later.");
       }
     }
   }

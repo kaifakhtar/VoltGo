@@ -76,7 +76,8 @@ class _BookDriverButtonState extends ConsumerState<BookDriverButton> {
         child: Center(
           child: Text(
             "Book",
-            style: GoogleFonts.poppins(fontSize: 12.sp),
+            style: GoogleFonts.poppins(
+                fontSize: 12.sp, fontWeight: FontWeight.w700),
           ),
         ),
       ),
