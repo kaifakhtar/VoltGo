@@ -2,6 +2,7 @@ import 'dart:math';
 
 import 'package:HarRidePay/modals/driver.dart';
 import 'package:HarRidePay/providers/online_driver_provider.dart';
+import 'package:HarRidePay/screens/booking_pickup_screen.dart';
 import 'package:HarRidePay/screens/signUp_screen.dart';
 import 'package:HarRidePay/widgets/dropDown_pickups.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -36,7 +37,7 @@ class _DriverBookedScreenState extends ConsumerState<DriverBookedScreen> {
     // TODO: implement initState
     // ref.watch(driverIdProvider.notifier).state = widget.driver.uid;
 
-    code = Random().nextInt(9000) + 1000 ?? 0000;
+    code = Random().nextInt(9000) + 1000;
 
     String userID = ref.read(userIdProvider);
 
@@ -119,6 +120,7 @@ class _DriverBookedScreenState extends ConsumerState<DriverBookedScreen> {
       ref.read(codeProvider.notifier).state = code;
       documentReferenceToDriver.update({"on going ride id": onGoingRideID});
       documentReferenceToUser.update({"on going ride id": onGoingRideID});
+      ref.read(badgeCountProvider.notifier).state++;
 
       print('On-going ride document created successfully.');
     } catch (e) {

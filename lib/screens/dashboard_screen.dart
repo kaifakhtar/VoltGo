@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:badges/badges.dart' as badges;
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -104,13 +105,25 @@ class _DashBoardScreenState extends ConsumerState<DashBoardScreen> {
           onTap: (value) {
             setState(() {
               currentIndex = value;
+              if (value == 1) {
+                ref.watch(badgeCountProvider.notifier).state = 0;
+              }
             });
           },
-          items: const [
+          items: [
             BottomNavigationBarItem(
-                icon: FaIcon(FontAwesomeIcons.house), label: "Home"),
+                icon: const FaIcon(FontAwesomeIcons.house), label: "Home"),
             BottomNavigationBarItem(
-                icon: FaIcon(FontAwesomeIcons.carOn), label: "Ride status")
+                icon: badges.Badge(
+                  
+                    badgeContent: Text(
+                      '1',
+                    ),
+                    position: badges.BadgePosition.topEnd(top: -5, end: -20),
+                    showBadge:
+                        ref.watch(badgeCountProvider) == 0 ? false : true,
+                    child: const FaIcon(FontAwesomeIcons.carOn)),
+                label: "Ride status")
           ]),
     );
   }
