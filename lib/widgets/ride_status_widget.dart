@@ -122,9 +122,9 @@ class _RideStatusWidgetState extends ConsumerState<RideStatusWidget> {
                         style: GoogleFonts.poppins(
                             fontSize: 16.sp,
                             fontWeight: FontWeight.w700,
-                            color: Color.fromARGB(255, 39, 38, 36)),
+                            color: const Color.fromARGB(255, 39, 38, 36)),
                       ),
-                      Icon(
+                      const Icon(
                         Icons.arrow_forward_rounded,
                         size: 25,
                         color: Colors.black38,
@@ -134,7 +134,7 @@ class _RideStatusWidgetState extends ConsumerState<RideStatusWidget> {
                         style: GoogleFonts.poppins(
                             fontSize: 16.sp,
                             fontWeight: FontWeight.w700,
-                            color: Color.fromARGB(255, 31, 34, 32)),
+                            color:const  Color.fromARGB(255, 31, 34, 32)),
                       ),
                     ],
                   ),
