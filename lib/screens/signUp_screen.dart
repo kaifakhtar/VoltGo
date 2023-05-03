@@ -1,3 +1,4 @@
+import 'package:HarRidePay/modals/user_modal.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -64,7 +65,15 @@ class _SignUpPageState extends ConsumerState<SignUpPage> {
         // print("email is ${_email}");
         // print("password is ${_password}");
         // print("mob is ${_mob}");
-
+        UserModal userModal;
+        userModal = UserModal.fromMap({
+          'name': _username,
+          'mob no': _mob,
+          'email': _email,
+          'on going ride id': "",
+          'starPoints': 0,
+          'code': ""
+        });
         authResult = await _auth.createUserWithEmailAndPassword(
             email: _email, password: _password);
 
@@ -80,7 +89,8 @@ class _SignUpPageState extends ConsumerState<SignUpPage> {
             .doc(userId)
 
             ///authResult.user!.uid
-            .set(({'name': _username, 'mob no': _mob, 'email': _email}));
+            //.set(({'name': _username, 'mob no': _mob, 'email': _email}));
+            .set(userModal.toMap()); // the usermodal will convert to map
         setState(() {
           _isLoading = false;
         });
@@ -102,7 +112,8 @@ class _SignUpPageState extends ConsumerState<SignUpPage> {
           showMySnackbar(context, "Email already in use, try logging in.");
           break;
         case "weak-password":
-          showMySnackbar(context, "Weak password, make it atleast 6 characters");
+          showMySnackbar(
+              context, "Weak password, make it atleast 6 characters");
           break;
         case "invalid-email":
           showMySnackbar(context, "Please enter valid email address");
