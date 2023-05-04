@@ -66,14 +66,7 @@ class _SignUpPageState extends ConsumerState<SignUpPage> {
         // print("password is ${_password}");
         // print("mob is ${_mob}");
         UserModal userModal;
-        userModal = UserModal.fromMap({
-          'name': _username,
-          'mob no': _mob,
-          'email': _email,
-          'on going ride id': "",
-          'starPoints': 0,
-          'code': ""
-        });
+       
         authResult = await _auth.createUserWithEmailAndPassword(
             email: _email, password: _password);
 
@@ -83,7 +76,15 @@ class _SignUpPageState extends ConsumerState<SignUpPage> {
 
         print("below is from rivepod");
         print(ref.watch(userIdProvider));
-
+ userModal = UserModal.fromMap({
+          'userId':userId,
+          'name': _username,
+          'mob no': _mob,
+          'email': _email,
+          'on going ride id': "",
+          'starPoints': 0,
+          'code': ""
+        });
         await FirebaseFirestore.instance
             .collection('users registered')
             .doc(userId)

@@ -2,6 +2,7 @@
 import 'dart:convert';
 
 class UserModal {
+  final String userId;
   final String code;
   final String email;
   final String mobNo;
@@ -9,6 +10,7 @@ class UserModal {
   final String onGoingRideId;
   final int starPoints;
   UserModal({
+    required this.userId,
     required this.code,
     required this.email,
     required this.mobNo,
@@ -18,6 +20,7 @@ class UserModal {
   });
 
   UserModal copyWith({
+    String? userId,
     String? code,
     String? email,
     String? mobNo,
@@ -26,6 +29,7 @@ class UserModal {
     int? starPoints,
   }) {
     return UserModal(
+      userId: userId ?? this.userId,
       code: code ?? this.code,
       email: email ?? this.email,
       mobNo: mobNo ?? this.mobNo,
@@ -37,6 +41,7 @@ class UserModal {
 
   Map<String, dynamic> toMap() {
     return <String, dynamic>{
+      'userId': userId,
       'code': code,
       'email': email,
       'mob no': mobNo,
@@ -46,8 +51,9 @@ class UserModal {
     };
   }
 
-  factory UserModal.fromMap(Map<String, dynamic> map) {
+  factory UserModal.fromMap(Map<String, dynamic>? map) {
     return UserModal(
+      userId: map!['userId'] as String,
       code: map['code'] as String,
       email: map['email'] as String,
       mobNo: map['mob no'] as String,
@@ -63,7 +69,7 @@ class UserModal {
 
   @override
   String toString() {
-    return 'UserModal(code: $code, email: $email, mobNo: $mobNo, name: $name, onGoingRideId: $onGoingRideId, starPoints: $starPoints)';
+    return 'UserModal(userId: $userId, code: $code, email: $email, mobNo: $mobNo, name: $name, onGoingRideId: $onGoingRideId, starPoints: $starPoints)';
   }
 
   @override
@@ -71,6 +77,7 @@ class UserModal {
     if (identical(this, other)) return true;
   
     return 
+      other.userId == userId &&
       other.code == code &&
       other.email == email &&
       other.mobNo == mobNo &&
@@ -81,7 +88,8 @@ class UserModal {
 
   @override
   int get hashCode {
-    return code.hashCode ^
+    return userId.hashCode ^
+      code.hashCode ^
       email.hashCode ^
       mobNo.hashCode ^
       name.hashCode ^

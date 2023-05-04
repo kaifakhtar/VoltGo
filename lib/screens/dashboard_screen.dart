@@ -62,6 +62,7 @@ class _DashBoardScreenState extends ConsumerState<DashBoardScreen> {
 
   Future<void> _signOut() async {
     await FirebaseAuth.instance.signOut();
+    ref.watch(userModalProvider.notifier).state = null;
   }
 
   @override
@@ -115,7 +116,6 @@ class _DashBoardScreenState extends ConsumerState<DashBoardScreen> {
                 icon: const FaIcon(FontAwesomeIcons.house), label: "Home"),
             BottomNavigationBarItem(
                 icon: badges.Badge(
-                  
                     badgeContent: Text(
                       '1',
                     ),

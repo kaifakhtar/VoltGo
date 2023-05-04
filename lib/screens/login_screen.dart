@@ -1,15 +1,22 @@
 import 'package:HarRidePay/screens/dashboard_screen.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:go_router/go_router.dart';
 import 'package:google_fonts/google_fonts.dart';
 
+import '../modals/user_modal.dart';
 import '../utils.dart';
 import 'booking_pickup_screen.dart';
 import 'signUp_screen.dart';
+
+final userModalProvider = StateProvider<UserModal?>((ref) {
+  return null;
+});
 
 class LoginScreen extends ConsumerStatefulWidget {
   const LoginScreen({Key? key}) : super(key: key);
@@ -68,6 +75,23 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
         String userId = authResult.user!.uid;
 
         ref.watch(userIdProvider.notifier).state = userId;
+
+        final usersnapshot = await FirebaseFirestore.instance
+            .collection('users registered')
+            .doc(userId)
+            .get();
+
+        final userDataMap = usersnapshot.data();
+        await FirebaseFirestore.instance
+            .collection('users registered')
+            .doc(userId)
+            .update(userDataMap!);
+
+        ref.watch(userModalProvider.notifier).state = UserModal.fromMap(
+            userDataMap!); //??UserModal(code: "",name: '',userId: "",mobNo: "",email: "",onGoingRideId: "",starPoints:0);
+        print(
+            "this is logged in user data map from riverpod ${ref.watch(userModalProvider).toString()}");
+
         setState(() {
           _isLoading = false;
         });
@@ -208,11 +232,10 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
                     child: Text("Sign Up",
                         style: GoogleFonts.poppins(fontSize: 14.sp)),
                     onPressed: () {
-                      // Navigator.push(context, MaterialPageRoute(builder: (BuildContext context) => SignUpPage()));
-                      Navigator.of(context).pushReplacement(
-                        MaterialPageRoute(
-                            builder: (BuildContext context) => SignUpPage()),
-                      );
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (BuildContext context) => SignUpPage()));
                     },
                   )
                 ],
