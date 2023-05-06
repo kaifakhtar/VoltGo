@@ -66,7 +66,7 @@ class _SignUpPageState extends ConsumerState<SignUpPage> {
         // print("password is ${_password}");
         // print("mob is ${_mob}");
         UserModal userModal;
-       
+
         authResult = await _auth.createUserWithEmailAndPassword(
             email: _email, password: _password);
 
@@ -76,8 +76,9 @@ class _SignUpPageState extends ConsumerState<SignUpPage> {
 
         print("below is from rivepod");
         print(ref.watch(userIdProvider));
- userModal = UserModal.fromMap({
-          'userId':userId,
+        userModal = UserModal.fromMap({
+          // creates userModal from input map
+          'userId': userId,
           'name': _username,
           'mob no': _mob,
           'email': _email,

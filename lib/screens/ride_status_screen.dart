@@ -48,7 +48,7 @@ class _RideStatusPageState extends ConsumerState<RideStatusPage> {
     //checkIfDocumentExists();
 
     return Scaffold(
-      backgroundColor: Colors.grey[200],
+      //backgroundColor: Colors.grey[200],
       // body: onGoingIDExits
       //     ?
       body: FutureBuilder<bool>(

@@ -1,5 +1,6 @@
 import 'package:HarRidePay/screens/dashboard_screen.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -40,7 +41,8 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
   void initState() {
     super.initState();
     Firebase.initializeApp().whenComplete(() {
-      print("completed");
+      if (kDebugMode) print("completed");
+
       setState(() {});
     });
   }
@@ -82,13 +84,14 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
             .get();
 
         final userDataMap = usersnapshot.data();
-        await FirebaseFirestore.instance
-            .collection('users registered')
-            .doc(userId)
-            .update(userDataMap!);
+        // await FirebaseFirestore.instance
+        //     .collection('users registered')
+        //     .doc(userId)
+        //     .update(userDataMap!);
 
-        ref.watch(userModalProvider.notifier).state = UserModal.fromMap(
-            userDataMap!); //??UserModal(code: "",name: '',userId: "",mobNo: "",email: "",onGoingRideId: "",starPoints:0);
+        ref.watch(userModalProvider.notifier).state =
+            UserModal.fromMap(userDataMap);
+        //??UserModal(code: "",name: '',userId: "",mobNo: "",email: "",onGoingRideId: "",starPoints:0);
         print(
             "this is logged in user data map from riverpod ${ref.watch(userModalProvider).toString()}");
 

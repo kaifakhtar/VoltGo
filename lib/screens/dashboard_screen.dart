@@ -1,3 +1,4 @@
+import 'package:HarRidePay/features/start_points/controllers.dart/star_points_controller.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:badges/badges.dart' as badges;
 import 'package:firebase_auth/firebase_auth.dart';
@@ -26,6 +27,14 @@ class _DashBoardScreenState extends ConsumerState<DashBoardScreen> {
     getOnGoingRideDataFromUserDB();
     super.initState();
   }
+
+  //To open drawer
+
+  //final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
+
+  // void _openDrawer() {
+  //   _scaffoldKey.currentState!.openDrawer();
+  // }
 
   getOnGoingRideDataFromUserDB() async {
     String userId = FirebaseAuth.instance.currentUser!.uid;
@@ -65,10 +74,21 @@ class _DashBoardScreenState extends ConsumerState<DashBoardScreen> {
     ref.watch(userModalProvider.notifier).state = null;
   }
 
+  void incrementStartPoint(
+      // increments starpoints by calling to controller (UI -> controller -> Repo -> firebase)
+      String collecName,
+      String docId) {
+    ref.read(starPointControllerProvider).incrementStarPointControllermethod(
+        ref, collecName, docId); // calls controller method to increment
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        centerTitle: true,
+        iconTheme: const IconThemeData(color: Colors.black),
+        //automaticallyImplyLeading: false,
         actions: [
           IconButton(
               icon: const Icon(
@@ -80,24 +100,69 @@ class _DashBoardScreenState extends ConsumerState<DashBoardScreen> {
                 // Navigator.(context, MaterialPageRoute(builder: (BuildContext context) => LoginScreen()));
                 Navigator.of(context).pushReplacement(
                   MaterialPageRoute(
-                      builder: (BuildContext context) => LoginScreen()),
+                      builder: (BuildContext context) => const LoginScreen()),
                 );
               }),
+          IconButton(
+              onPressed: () => incrementStartPoint(
+                  "users registered", ref.watch(userModalProvider)!.userId),
+              icon: const Icon(
+                Icons.add,
+                color: Colors.black,
+              ))
         ],
         elevation: 1.h,
-        leading: const Icon(
-          Icons.menu,
-          color: Colors.black,
-        ),
+        // leading: IconButton(
+        //   onPressed: _openDrawer,
+        //   icon: const Icon(Icons.menu),
+        //   color: Colors.black,
+        // ),
         backgroundColor: Colors.white,
         title: Text(
           "Dashboard",
-          style: GoogleFonts.montserrat(color: Colors.black),
+          style: GoogleFonts.poppins(color: Colors.black, fontSize: 16.sp),
         ),
       ),
       body: IndexedStack(
         index: currentIndex,
         children: pages,
+      ),
+      drawer: Drawer(
+        child: ListView(
+          // Important: Remove any padding from the ListView.
+          padding: EdgeInsets.zero,
+          children: [
+            DrawerHeader(
+              decoration: BoxDecoration(
+                color: Colors.black,
+              ),
+              child: Text(
+                ref.watch(userModalProvider)?.name ?? "No name",
+                style: GoogleFonts.poppins(color: Colors.white),
+              ),
+            ),
+            ListTile(
+              leading: const Icon(
+                Icons.star,
+              ),
+              title: Text(
+                  'Star points ${ref.watch(userModalProvider)?.starPoints ?? "0"}'),
+              onTap: () {
+                Navigator.pop(context);
+              },
+            ),
+            ListTile(
+              leading: const Icon(
+                Icons.star_rate,
+                color: Color(0xffffd700),
+              ),
+              title: const Text('Become a premium member'),
+              onTap: () {
+                Navigator.pop(context);
+              },
+            ),
+          ],
+        ),
       ),
       bottomNavigationBar: BottomNavigationBar(
           currentIndex: currentIndex,

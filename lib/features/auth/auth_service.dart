@@ -8,7 +8,9 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 final authRepositoryProvider = Provider((ref) {
-  return AuthRepository(auth: ref.read(firebaseAuthProvider),firestore: ref.read(fireStoreProvider));
+  return AuthRepository(
+      auth: ref.read(firebaseAuthProvider),
+      firestore: ref.read(fireStoreProvider));
 });
 
 class AuthRepository {
@@ -19,13 +21,13 @@ class AuthRepository {
       : _auth = auth,
         _firestore = firestore;
 
-
-
   Stream<User?> get onAuthStateChange => _auth.authStateChanges();
 
   Stream<UserModal> getUserdata(uid) {
     final collectionReference = _firestore.collection('users registered');
-    return collectionReference.doc(uid).snapshots().map(
-        (event) => UserModal.fromMap(event.data() as Map < String, dynamic>?));
+    return collectionReference
+        .doc(uid)
+        .snapshots()
+        .map((event) => UserModal.fromMap(event.data()));
   }
 }
