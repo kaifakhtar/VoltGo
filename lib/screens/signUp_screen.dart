@@ -1,3 +1,4 @@
+import 'package:HarRidePay/modals/user_modal.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -7,6 +8,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:google_fonts/google_fonts.dart';
 
+import '../utils.dart';
 import 'booking_pickup_screen.dart';
 import 'login_screen.dart';
 
@@ -63,6 +65,7 @@ class _SignUpPageState extends ConsumerState<SignUpPage> {
         // print("email is ${_email}");
         // print("password is ${_password}");
         // print("mob is ${_mob}");
+        UserModal userModal;
 
         authResult = await _auth.createUserWithEmailAndPassword(
             email: _email, password: _password);
@@ -73,13 +76,23 @@ class _SignUpPageState extends ConsumerState<SignUpPage> {
 
         print("below is from rivepod");
         print(ref.watch(userIdProvider));
-
+        userModal = UserModal.fromMap({
+          // creates userModal from input map
+          'userId': userId,
+          'name': _username,
+          'mob no': _mob,
+          'email': _email,
+          'on going ride id': "",
+          'starPoints': 0,
+          'code': ""
+        });
         await FirebaseFirestore.instance
             .collection('users registered')
             .doc(userId)
 
             ///authResult.user!.uid
-            .set(({'name': _username, 'mob no': _mob, 'email': _email}));
+            //.set(({'name': _username, 'mob no': _mob, 'email': _email}));
+            .set(userModal.toMap()); // the usermodal will convert to map
         setState(() {
           _isLoading = false;
         });
@@ -87,13 +100,28 @@ class _SignUpPageState extends ConsumerState<SignUpPage> {
           MaterialPageRoute(builder: (BuildContext context) => LoginScreen()),
         );
       }
-    } on PlatformException catch (err) {
+    } on FirebaseAuthException catch (err) {
       setState(() {
         _isLoading = false;
       });
-      var message = 'An error occured!';
-      if (err.message != null) {
-        //message=err.message;
+      // if (err.code == "user-not-found") {
+      //   print("Rider not found");
+      //   //  throw ("user-not-found");
+      //   showMySnackbar(context, "Rider not found");
+      // }
+      switch (err.code) {
+        case "email-already-in-use":
+          showMySnackbar(context, "Email already in use, try logging in.");
+          break;
+        case "weak-password":
+          showMySnackbar(
+              context, "Weak password, make it atleast 6 characters");
+          break;
+        case "invalid-email":
+          showMySnackbar(context, "Please enter valid email address");
+          break;
+        default:
+          showMySnackbar(context, "Sign up failed! Please try again later.");
       }
     }
   }

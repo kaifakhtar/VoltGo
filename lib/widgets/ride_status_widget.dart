@@ -56,20 +56,21 @@ class _RideStatusWidgetState extends ConsumerState<RideStatusWidget> {
                     children: [
                       Text(
                         'Code',
-                        style: GoogleFonts.poppins(fontSize: 20.sp),
+                        style: GoogleFonts.poppins(fontSize: 24.sp),
                       ),
                       Container(
                         padding: EdgeInsets.symmetric(
                             vertical: 6.h, horizontal: 8.h),
                         decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(8.h),
-                            color: Colors.amber.withOpacity(.2)),
+                            color: const Color.fromARGB(255, 136, 199, 255)
+                                .withOpacity(.2)),
                         child: Text(
                           widget.code.toString(),
                           style: GoogleFonts.poppins(
                               fontWeight: FontWeight.w600,
-                              fontSize: 20.sp,
-                              color: Colors.deepOrange.shade300),
+                              fontSize: 24.sp,
+                              color: const Color.fromARGB(255, 0, 136, 255)),
                         ),
                       ),
                     ],
@@ -134,7 +135,7 @@ class _RideStatusWidgetState extends ConsumerState<RideStatusWidget> {
                         style: GoogleFonts.poppins(
                             fontSize: 16.sp,
                             fontWeight: FontWeight.w700,
-                            color:const  Color.fromARGB(255, 31, 34, 32)),
+                            color: const Color.fromARGB(255, 31, 34, 32)),
                       ),
                     ],
                   ),
@@ -142,15 +143,15 @@ class _RideStatusWidgetState extends ConsumerState<RideStatusWidget> {
                   // Divider(
                   //   thickness: 1.h,
                   // ),
-                  // SizedBox(
-                  //   height: 12.h,
-                  // ),
+                  SizedBox(
+                    height: 12.h,
+                  ),
                 ],
               ),
             ),
             Container(
               decoration: BoxDecoration(
-                color: Color.fromARGB(255, 220, 255, 223).withOpacity(.6),
+                color: const Color.fromARGB(255, 220, 255, 223).withOpacity(.6),
                 borderRadius: BorderRadius.all(Radius.circular(12.r)),
                 // border: Border.all(color: Colors.grey.withOpacity(.3))
               ),

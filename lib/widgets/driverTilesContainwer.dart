@@ -87,7 +87,8 @@ class _DriverTilesContainerState extends ConsumerState<DriverTilesContainer> {
                 }
 
                 return Padding(
-                  padding: EdgeInsets.all(16.w),
+                  padding:
+                      EdgeInsets.symmetric(vertical: 16.w, horizontal: 16.w),
                   child: SizedBox(
                     height: 280.h,
                     child: ListView.builder(

@@ -70,13 +70,13 @@ class _BookingPickupScreenState extends ConsumerState<BookingPickupScreen> {
       // ))
       //   ],
       // ),S
-      //backgroundColor: Color.fromARGB(255, 249, 249, 249),
+      // backgroundColor: Colors.grey[100],
       body: SingleChildScrollView(
         child: Center(
           child: Column(
             // crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              SizedBox(height: 20.h),
+              SizedBox(height: 24.h),
               const BookingPickDestWidget(),
               SizedBox(
                 height: 48.h,
