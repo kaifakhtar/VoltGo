@@ -56,7 +56,7 @@ class _DriverBookedScreenState extends ConsumerState<DriverBookedScreen> {
 
     FirebaseFirestore firestore = FirebaseFirestore.instance;
     firestore.collection('users registered').doc(userID).update({
-      'code': code.toString(),
+      'code': code,
     }).then((value) {
       print('Code updated in Firestore: $code');
     }).catchError((error) {
