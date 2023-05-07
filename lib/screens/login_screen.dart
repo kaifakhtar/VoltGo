@@ -125,6 +125,8 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
         default:
           showMySnackbar(context, "Login failed! Please try again later.");
       }
+    } catch (e) {
+      showMySnackbar(context, e.toString());
     }
   }
 

@@ -4,6 +4,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
 
+import '../features/carousel/views/widgets/carousel_card.dart';
 import '../widgets/booking_pickup_dest_widget.dart';
 import '../widgets/driverTilesContainwer.dart';
 import 'login_screen.dart';
@@ -77,9 +78,11 @@ class _BookingPickupScreenState extends ConsumerState<BookingPickupScreen> {
             // crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               SizedBox(height: 24.h),
+              CardBanner(),
+              SizedBox(height: 24.h),
               const BookingPickDestWidget(),
               SizedBox(
-                height: 48.h,
+                height: 24.h,
               ),
               const DriverTilesContainer()
             ],

@@ -1,3 +1,4 @@
+import 'package:HarRidePay/features/history/controller/history_controller.dart';
 import 'package:HarRidePay/features/start_points/controllers.dart/star_points_controller.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:badges/badges.dart' as badges;
@@ -82,6 +83,20 @@ class _DashBoardScreenState extends ConsumerState<DashBoardScreen> {
         ref, collecName, docId); // calls controller method to increment
   }
 
+  Future<List<dynamic>> getArrayFromDocument(
+      String documentId, String collectionName) async {
+    return ref
+        .read(historyControllerProvider)
+        .getArrayFromDocument(documentId, collectionName);
+  }
+
+  void searchForRidesDataFromIds(
+      List completedRidesIDsList, String collectionName) {
+    ref
+        .read(historyControllerProvider)
+        .searchForDocuments(ref, completedRidesIDsList, collectionName);
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -104,8 +119,16 @@ class _DashBoardScreenState extends ConsumerState<DashBoardScreen> {
                 );
               }),
           IconButton(
-              onPressed: () => incrementStartPoint(
-                  "users registered", ref.watch(userModalProvider)!.userId),
+              onPressed: () async {
+                incrementStartPoint(
+                    "users registered", ref.watch(userModalProvider)!.userId);
+                final listofRideIDS = getArrayFromDocument(
+                        ref.watch(userModalProvider)!.userId,
+                        'users registered')
+                    .then((value) {
+                  searchForRidesDataFromIds(value, 'TotalRides');
+                });
+              },
               icon: const Icon(
                 Icons.add,
                 color: Colors.black,
@@ -161,6 +184,17 @@ class _DashBoardScreenState extends ConsumerState<DashBoardScreen> {
                 Navigator.pop(context);
               },
             ),
+            SizedBox(
+              height: 20.h,
+            ),
+            ListTile(
+              leading: const Icon(Icons.person_2),
+              title: Text(
+                'Ride history',
+                style: GoogleFonts.poppins(),
+              ),
+              trailing: const Icon(Icons.arrow_right_alt_rounded),
+            )
           ],
         ),
       ),

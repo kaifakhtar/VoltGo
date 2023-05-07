@@ -7,10 +7,12 @@ class UserModal {
   final String email;
   final String mobNo;
   //final bool isRiding;
+  final List completedRides;
   final String name;
   final String onGoingRideId;
-  int starPoints;
+  final int starPoints;
   UserModal({
+    required this.completedRides,
     required this.userId,
     required this.code,
     required this.email,
@@ -41,6 +43,7 @@ class UserModal {
       name: name ?? this.name,
       onGoingRideId: onGoingRideId ?? this.onGoingRideId,
       starPoints: starPoints ?? this.starPoints,
+      completedRides: completedRides,
     );
   }
 
@@ -54,6 +57,7 @@ class UserModal {
       'name': name,
       'onGoingRideId': onGoingRideId,
       'starPoints': starPoints,
+      'completedRides': completedRides
     };
   }
 
@@ -66,6 +70,7 @@ class UserModal {
       name: map['name'] != null ? map['name'] as String : '',
       onGoingRideId: map['onGoingRideId'] as String,
       starPoints: map['starPoints'] as int,
+      completedRides: map['completedRides'],
       //  isRiding: map['isRiding'] as bool,
     );
   }
