@@ -91,44 +91,43 @@ class _DriverTilesContainerState extends ConsumerState<DriverTilesContainer> {
                 return Padding(
                   padding:
                       EdgeInsets.symmetric(vertical: 16.w, horizontal: 16.w),
-                  child: Container(
-                    child: LayoutBuilder(builder:
-                        (BuildContext context, BoxConstraints constraints) {
-                      return ListView.builder(
-                        shrinkWrap: true,
-                        physics: const NeverScrollableScrollPhysics(),
-                        itemCount: min(3, snapshot.data?.size ?? 0),
-                        itemBuilder: (BuildContext context, int index) {
-                          // ref
-                          //     .watch(onlineDriverProvider.notifier)
-                          //     .state
-                          //     .removeAllDriver();
-                          // if (!ref
-                          //     .watch(onlineDriverProvider.notifier)
-                          //     .state
-                          //     .hasUid(snapshot.data?.docs[index].id)) {
-                          //   ref
-                          //       .watch(onlineDriverProvider.notifier)
-                          //       .state
-                          //       .addDriver(Driver(
-                          //           snapshot.data?.docs[index].id,
-                          //           snapshot.data?.docs[index]["name"],
-                          //           snapshot.data?.docs[index]["mob no"]));
-                          // }
+                  child: LayoutBuilder(builder:
+                      (BuildContext context, BoxConstraints constraints) {
+                    return ListView.builder(
+                      shrinkWrap: true,
+                      physics: const NeverScrollableScrollPhysics(),
+                      itemCount: snapshot
+                          .data?.size, //max(3, snapshot.data?.size ?? 0),
+                      itemBuilder: (BuildContext context, int index) {
+                        // ref
+                        //     .watch(onlineDriverProvider.notifier)
+                        //     .state
+                        //     .removeAllDriver();
+                        // if (!ref
+                        //     .watch(onlineDriverProvider.notifier)
+                        //     .state
+                        //     .hasUid(snapshot.data?.docs[index].id)) {
+                        //   ref
+                        //       .watch(onlineDriverProvider.notifier)
+                        //       .state
+                        //       .addDriver(Driver(
+                        //           snapshot.data?.docs[index].id,
+                        //           snapshot.data?.docs[index]["name"],
+                        //           snapshot.data?.docs[index]["mob no"]));
+                        // }
 
-                          // print(
-                          //     ref.watch(onlineDriverProvider).online_driver_list);
+                        // print(
+                        //     ref.watch(onlineDriverProvider).online_driver_list);
 
-                          print(snapshot.data?.docs[index].id);
+                        print(snapshot.data?.docs[index].id);
 
-                          return AvailableRidersTile(Driver(
-                              snapshot.data?.docs[index].id,
-                              snapshot.data?.docs[index]["name"],
-                              snapshot.data?.docs[index]["mob no"]));
-                        },
-                      );
-                    }),
-                  ),
+                        return AvailableRidersTile(Driver(
+                            snapshot.data?.docs[index].id,
+                            snapshot.data?.docs[index]["name"],
+                            snapshot.data?.docs[index]["mob no"]));
+                      },
+                    );
+                  }),
                 );
               })
         ],

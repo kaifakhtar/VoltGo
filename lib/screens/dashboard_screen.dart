@@ -141,7 +141,7 @@ class _DashBoardScreenState extends ConsumerState<DashBoardScreen> {
         //   icon: const Icon(Icons.menu),
         //   color: Colors.black,
         // ),
-        backgroundColor: Color.fromARGB(255, 255, 255, 255),
+        backgroundColor: Colors.white,
         title: Text(
           "Dashboard",
           style: GoogleFonts.poppins(color: Colors.black, fontSize: 16.sp),

@@ -72,44 +72,46 @@ class _BookingPickupScreenState extends ConsumerState<BookingPickupScreen> {
       //   ],
       // ),S
       // backgroundColor: Colors.grey[100],
-      body: SingleChildScrollView(
-        child: Center(
-          child: Column(
-            children: [
-              SizedBox(height: 12.h),
-              CardBanner(),
-              SizedBox(height: 32.h),
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                // crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  Text(
-                    "Pickup & Drop",
-                    style: GoogleFonts.poppins(
-                        fontSize: 28.sp, fontWeight: FontWeight.w600),
-                  ),
-                  SizedBox(
-                    height: 8.h,
-                  ),
-                  const BookingPickDestWidget(),
-                  SizedBox(
-                    height: 32.h,
-                  ),
-                  Text(
-                    "Rides available",
-                    style: GoogleFonts.poppins(
-                        fontSize: 28.sp, fontWeight: FontWeight.w600),
-                  ),
-                  SizedBox(
-                    height: 8.h,
-                  ),
-                  const DriverTilesContainer(),
-                  SizedBox(
-                    height: 32.h,
-                  ),
-                ],
-              ),
-            ],
+      body: Scrollbar(
+        child: SingleChildScrollView(
+          child: Center(
+            child: Column(
+              children: [
+                SizedBox(height: 12.h),
+                CardBanner(),
+                SizedBox(height: 32.h),
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  // crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    Text(
+                      "Pickup & Drop",
+                      style: GoogleFonts.poppins(
+                          fontSize: 24.sp, fontWeight: FontWeight.w600),
+                    ),
+                    SizedBox(
+                      height: 8.h,
+                    ),
+                    const BookingPickDestWidget(),
+                    SizedBox(
+                      height: 32.h,
+                    ),
+                    Text(
+                      "Rides available",
+                      style: GoogleFonts.poppins(
+                          fontSize: 24.sp, fontWeight: FontWeight.w600),
+                    ),
+                    SizedBox(
+                      height: 8.h,
+                    ),
+                    const DriverTilesContainer(),
+                    SizedBox(
+                      height: 32.h,
+                    ),
+                  ],
+                ),
+              ],
+            ),
           ),
         ),
       ),
