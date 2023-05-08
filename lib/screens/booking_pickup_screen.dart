@@ -75,16 +75,40 @@ class _BookingPickupScreenState extends ConsumerState<BookingPickupScreen> {
       body: SingleChildScrollView(
         child: Center(
           child: Column(
-            // crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              SizedBox(height: 24.h),
+              SizedBox(height: 12.h),
               CardBanner(),
-              SizedBox(height: 24.h),
-              const BookingPickDestWidget(),
-              SizedBox(
-                height: 24.h,
+              SizedBox(height: 32.h),
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                // crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  Text(
+                    "Pickup & Drop",
+                    style: GoogleFonts.poppins(
+                        fontSize: 28.sp, fontWeight: FontWeight.w600),
+                  ),
+                  SizedBox(
+                    height: 8.h,
+                  ),
+                  const BookingPickDestWidget(),
+                  SizedBox(
+                    height: 32.h,
+                  ),
+                  Text(
+                    "Rides available",
+                    style: GoogleFonts.poppins(
+                        fontSize: 28.sp, fontWeight: FontWeight.w600),
+                  ),
+                  SizedBox(
+                    height: 8.h,
+                  ),
+                  const DriverTilesContainer(),
+                  SizedBox(
+                    height: 32.h,
+                  ),
+                ],
               ),
-              const DriverTilesContainer()
             ],
           ),
         ),

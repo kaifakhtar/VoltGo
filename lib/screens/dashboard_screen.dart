@@ -1,4 +1,5 @@
 import 'package:HarRidePay/features/history/controller/history_controller.dart';
+import 'package:HarRidePay/features/history/view/screen/ride_history_screen.dart';
 import 'package:HarRidePay/features/start_points/controllers.dart/star_points_controller.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:badges/badges.dart' as badges;
@@ -102,13 +103,13 @@ class _DashBoardScreenState extends ConsumerState<DashBoardScreen> {
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
-        iconTheme: const IconThemeData(color: Colors.black),
+        iconTheme: const IconThemeData(color: Color.fromARGB(255, 0, 0, 0)),
         //automaticallyImplyLeading: false,
         actions: [
           IconButton(
               icon: const Icon(
                 Icons.logout,
-                color: Color.fromARGB(255, 27, 27, 27),
+                // color: Color.fromARGB(255, 27, 27, 27),
               ),
               onPressed: () {
                 _signOut();
@@ -118,21 +119,21 @@ class _DashBoardScreenState extends ConsumerState<DashBoardScreen> {
                       builder: (BuildContext context) => const LoginScreen()),
                 );
               }),
-          IconButton(
-              onPressed: () async {
-                incrementStartPoint(
-                    "users registered", ref.watch(userModalProvider)!.userId);
-                final listofRideIDS = getArrayFromDocument(
-                        ref.watch(userModalProvider)!.userId,
-                        'users registered')
-                    .then((value) {
-                  searchForRidesDataFromIds(value, 'TotalRides');
-                });
-              },
-              icon: const Icon(
-                Icons.add,
-                color: Colors.black,
-              ))
+          // IconButton(
+          //     onPressed: () async {
+          //       incrementStartPoint(
+          //           "users registered", ref.watch(userModalProvider)!.userId);
+          //       final listofRideIDS = getArrayFromDocument(
+          //               ref.watch(userModalProvider)!.userId,
+          //               'users registered')
+          //           .then((value) {
+          //         searchForRidesDataFromIds(value, 'TotalRides');
+          //       });
+          //     },
+          //     icon: const Icon(
+          //       Icons.add,
+          //       //color: Colors.black,
+          //     ))
         ],
         elevation: 1.h,
         // leading: IconButton(
@@ -140,7 +141,7 @@ class _DashBoardScreenState extends ConsumerState<DashBoardScreen> {
         //   icon: const Icon(Icons.menu),
         //   color: Colors.black,
         // ),
-        backgroundColor: Colors.white,
+        backgroundColor: Color.fromARGB(255, 255, 255, 255),
         title: Text(
           "Dashboard",
           style: GoogleFonts.poppins(color: Colors.black, fontSize: 16.sp),
@@ -156,12 +157,36 @@ class _DashBoardScreenState extends ConsumerState<DashBoardScreen> {
           padding: EdgeInsets.zero,
           children: [
             DrawerHeader(
-              decoration: BoxDecoration(
+              decoration: const BoxDecoration(
                 color: Colors.black,
               ),
-              child: Text(
-                ref.watch(userModalProvider)?.name ?? "No name",
-                style: GoogleFonts.poppins(color: Colors.white),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    "Hi ${ref.watch(userModalProvider)?.name ?? "No name"}!",
+                    style: GoogleFonts.poppins(
+                        color: Colors.white, fontSize: 32.sp),
+                  ),
+                  SizedBox(
+                    height: 4.h,
+                  ),
+                  Text(
+                    ref.watch(userModalProvider)?.mobNo ?? "No mobile no.",
+                    style: GoogleFonts.poppins(
+                        color: const Color.fromARGB(255, 214, 214, 214),
+                        fontSize: 16.sp),
+                  ),
+                  SizedBox(
+                    height: 4.h,
+                  ),
+                  Text(
+                    ref.watch(userModalProvider)?.email ?? "No email",
+                    style: GoogleFonts.poppins(
+                        color: const Color.fromARGB(255, 214, 214, 214),
+                        fontSize: 16.sp),
+                  ),
+                ],
               ),
             ),
             ListTile(
@@ -174,21 +199,28 @@ class _DashBoardScreenState extends ConsumerState<DashBoardScreen> {
                 Navigator.pop(context);
               },
             ),
-            ListTile(
-              leading: const Icon(
-                Icons.star_rate,
-                color: Color(0xffffd700),
-              ),
-              title: const Text('Become a premium member'),
-              onTap: () {
-                Navigator.pop(context);
-              },
-            ),
+            // ListTile(
+            //   leading: const Icon(
+            //     Icons.star_rate,
+            //     color: Color(0xffffd700),
+            //   ),
+            //   title: const Text('Become a premium member'),
+            //   onTap: () {
+            //     Navigator.pop(context);
+            //   },
+            // ),
             SizedBox(
               height: 20.h,
             ),
             ListTile(
-              leading: const Icon(Icons.person_2),
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => const RideHistoryScreen()),
+                );
+              },
+              leading: const Icon(Icons.car_rental),
               title: Text(
                 'Ride history',
                 style: GoogleFonts.poppins(),
@@ -199,9 +231,10 @@ class _DashBoardScreenState extends ConsumerState<DashBoardScreen> {
         ),
       ),
       bottomNavigationBar: BottomNavigationBar(
+          backgroundColor: Colors.white,
           currentIndex: currentIndex,
           selectedItemColor: Colors.black,
-          unselectedItemColor: Colors.grey.withOpacity(.7),
+          unselectedItemColor: Colors.black.withOpacity(.6),
           onTap: (value) {
             setState(() {
               currentIndex = value;
@@ -212,16 +245,20 @@ class _DashBoardScreenState extends ConsumerState<DashBoardScreen> {
           },
           items: [
             BottomNavigationBarItem(
-                icon: const FaIcon(FontAwesomeIcons.house), label: "Home"),
+                icon: Icon(
+                  Icons.home,
+                  size: 24.h,
+                ),
+                label: "Home"),
             BottomNavigationBarItem(
                 icon: badges.Badge(
-                    badgeContent: Text(
+                    badgeContent: const Text(
                       '1',
                     ),
                     position: badges.BadgePosition.topEnd(top: -5, end: -20),
                     showBadge:
                         ref.watch(badgeCountProvider) == 0 ? false : true,
-                    child: const FaIcon(FontAwesomeIcons.carOn)),
+                    child: const Icon(Icons.travel_explore)),
                 label: "Ride status")
           ]),
     );

@@ -80,11 +80,12 @@ class _SignUpPageState extends ConsumerState<SignUpPage> {
           // creates userModal from input map
           'userId': userId,
           'name': _username,
-          'mob no': _mob,
+          'mobNo': _mob,
           'email': _email,
-          'on going ride id': "",
+          'onGoingRideId': "",
           'starPoints': 0,
-          'code': ""
+          'code': 0,
+          'completedRides': []
         });
         await FirebaseFirestore.instance
             .collection('users registered')

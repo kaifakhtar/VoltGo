@@ -61,7 +61,7 @@ class AvailableRidersTile extends ConsumerWidget {
                           ),
                           SizedBox(height: 4.h),
                           Text(
-                            "Rating : 4.43",
+                            "Dedicated driver",
                             style: GoogleFonts.poppins(
                                 fontSize: 11.sp, color: Colors.grey),
                           ),

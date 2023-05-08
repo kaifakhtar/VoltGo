@@ -3,7 +3,7 @@ import 'dart:convert';
 
 class UserModal {
   final String userId;
-  final String code;
+  final int code;
   final String email;
   final String mobNo;
   //final bool isRiding;
@@ -26,7 +26,7 @@ class UserModal {
   UserModal copyWith({
     // returns new object
     String? userId,
-    String? code,
+    int? code,
     String? email,
     String? mobNo,
     // bool? isRiding,
@@ -64,7 +64,7 @@ class UserModal {
   factory UserModal.fromMap(Map<String, dynamic>? map) {
     return UserModal(
       userId: map!['userId'] as String,
-      code: map['code'] as String,
+      code: map['code'] as int,
       email: map['email'] as String,
       mobNo: map['mobNo'] as String,
       name: map['name'] != null ? map['name'] as String : '',
