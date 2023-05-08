@@ -63,7 +63,7 @@ class _RideStatusPageState extends ConsumerState<RideStatusPage> {
                     return RideStatusWidget(
                       driverName: snapshot.data["driverName"],
                       code: snapshot.data["code"],
-                      driverMobNno: snapshot.data["driver mob no"],
+                      driverMobNno: snapshot.data["driverMobNo"],
                       pickUP: snapshot.data["startPoint"],
                       drop: snapshot.data["endPoint"],
                     );

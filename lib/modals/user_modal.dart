@@ -7,7 +7,7 @@ class UserModal {
   final String email;
   final String mobNo;
   //final bool isRiding;
-  final List completedRides;
+  final List<dynamic> completedRides;
   final String name;
   final String onGoingRideId;
   final int starPoints;
@@ -32,19 +32,19 @@ class UserModal {
     // bool? isRiding,
     String? name,
     String? onGoingRideId,
+    List<String>? completedRides,
     int? starPoints,
   }) {
     return UserModal(
-      userId: userId ?? this.userId,
-      code: code ?? this.code,
-      email: email ?? this.email,
-      mobNo: mobNo ?? this.mobNo,
-      //  isRiding: isRiding ?? this.isRiding,
-      name: name ?? this.name,
-      onGoingRideId: onGoingRideId ?? this.onGoingRideId,
-      starPoints: starPoints ?? this.starPoints,
-      completedRides: completedRides,
-    );
+        userId: userId ?? this.userId,
+        code: code ?? this.code,
+        email: email ?? this.email,
+        mobNo: mobNo ?? this.mobNo,
+        //  isRiding: isRiding ?? this.isRiding,
+        name: name ?? this.name,
+        onGoingRideId: onGoingRideId ?? this.onGoingRideId,
+        starPoints: starPoints ?? this.starPoints,
+        completedRides: completedRides ?? this.completedRides);
   }
 
   Map<String, dynamic> toMap() {

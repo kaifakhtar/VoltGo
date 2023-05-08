@@ -119,21 +119,21 @@ class _DashBoardScreenState extends ConsumerState<DashBoardScreen> {
                       builder: (BuildContext context) => const LoginScreen()),
                 );
               }),
-          // IconButton(
-          //     onPressed: () async {
-          //       incrementStartPoint(
-          //           "users registered", ref.watch(userModalProvider)!.userId);
-          //       final listofRideIDS = getArrayFromDocument(
-          //               ref.watch(userModalProvider)!.userId,
-          //               'users registered')
-          //           .then((value) {
-          //         searchForRidesDataFromIds(value, 'TotalRides');
-          //       });
-          //     },
-          //     icon: const Icon(
-          //       Icons.add,
-          //       //color: Colors.black,
-          //     ))
+          IconButton(
+              onPressed: () async {
+                incrementStartPoint(
+                    "users registered", ref.watch(userModalProvider)!.userId);
+                final listofRideIDS = getArrayFromDocument(
+                        ref.watch(userModalProvider)!.userId,
+                        'users registered')
+                    .then((value) {
+                  searchForRidesDataFromIds(value, 'TotalRides');
+                });
+              },
+              icon: const Icon(
+                Icons.add,
+                //color: Colors.black,
+              ))
         ],
         elevation: 1.h,
         // leading: IconButton(

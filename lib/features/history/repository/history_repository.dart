@@ -18,13 +18,10 @@ class HistoryUserRepository {
   Future<List> getArrayFromDocument(
       String documentId, String collectionName) async {
     final DocumentSnapshot<Map<String, dynamic>> snapshot =
-        await FirebaseFirestore.instance
-            .collection(collectionName)
-            .doc(documentId)
-            .get();
+        await _firestore.collection(collectionName).doc(documentId).get();
     final List<dynamic> completedRidesIDsList =
         snapshot.data()?['completedRides'];
-    print(completedRidesIDsList);
+    print("completed ride list is $completedRidesIDsList");
     return completedRidesIDsList;
   }
 
@@ -36,6 +33,7 @@ class HistoryUserRepository {
             .where(FieldPath.documentId, whereIn: completedRidesIDsList)
             .get();
     final List<RideModal> listOfHistoryRides = [];
+
     for (int i = 0; i < querySnapshot.docs.length; i++) {
       listOfHistoryRides.add(RideModal.fromMap(querySnapshot.docs[i].data()));
     }

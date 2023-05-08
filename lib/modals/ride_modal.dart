@@ -10,6 +10,7 @@ class RideModal {
   String endPoint;
   String passengerName;
   String passengerID;
+  String passengerMobNO;
   RideModal({
     required this.uid,
     required this.code,
@@ -20,6 +21,7 @@ class RideModal {
     required this.endPoint,
     required this.passengerName,
     required this.passengerID,
+    required this.passengerMobNO,
   });
 
   RideModal copyWith({
@@ -32,6 +34,7 @@ class RideModal {
     String? endPoint,
     String? passengerName,
     String? passengerID,
+    String? passengerMobNO,
   }) {
     return RideModal(
       uid: uid ?? this.uid,
@@ -43,6 +46,7 @@ class RideModal {
       endPoint: endPoint ?? this.endPoint,
       passengerName: passengerName ?? this.passengerName,
       passengerID: passengerID ?? this.passengerID,
+      passengerMobNO: passengerMobNO ?? this.passengerMobNO,
     );
   }
 
@@ -57,6 +61,7 @@ class RideModal {
       'endPoint': endPoint,
       'passengerName': passengerName,
       'passengerID': passengerID,
+      'passengerMobNO': passengerMobNO,
     };
   }
 
@@ -71,6 +76,7 @@ class RideModal {
       endPoint: map['endPoint'] ?? '',
       passengerName: map['passengerName'] ?? '',
       passengerID: map['passengerID'] ?? '',
+      passengerMobNO: map['passengerMobNO'] ?? '',
     );
   }
 
@@ -81,7 +87,7 @@ class RideModal {
 
   @override
   String toString() {
-    return 'RideModal(uid: $uid, code: $code, driverMobNo: $driverMobNo, driverID: $driverID, driverName: $driverName, startPoint: $startPoint, endPoint: $endPoint, passengerName: $passengerName, passengerID: $passengerID)';
+    return 'RideModal(uid: $uid, code: $code, driverMobNo: $driverMobNo, driverID: $driverID, driverName: $driverName, startPoint: $startPoint, endPoint: $endPoint, passengerName: $passengerName, passengerID: $passengerID, passengerMobNO: $passengerMobNO)';
   }
 
   @override
@@ -97,7 +103,8 @@ class RideModal {
         other.startPoint == startPoint &&
         other.endPoint == endPoint &&
         other.passengerName == passengerName &&
-        other.passengerID == passengerID;
+        other.passengerID == passengerID &&
+        other.passengerMobNO == passengerMobNO;
   }
 
   @override
@@ -110,6 +117,7 @@ class RideModal {
         startPoint.hashCode ^
         endPoint.hashCode ^
         passengerName.hashCode ^
-        passengerID.hashCode;
+        passengerID.hashCode ^
+        passengerMobNO.hashCode;
   }
 }

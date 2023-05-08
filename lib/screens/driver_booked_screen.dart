@@ -1,9 +1,11 @@
 import 'dart:math';
 
 import 'package:HarRidePay/modals/driver.dart';
+import 'package:HarRidePay/modals/ride_modal.dart';
 import 'package:HarRidePay/providers/online_driver_provider.dart';
 import 'package:HarRidePay/screens/booking_pickup_screen.dart';
 import 'package:HarRidePay/screens/signUp_screen.dart';
+import 'package:HarRidePay/utils.dart';
 import 'package:HarRidePay/widgets/dropDown_pickups.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
@@ -65,7 +67,7 @@ class _DriverBookedScreenState extends ConsumerState<DriverBookedScreen> {
 
     //for driver
     firestore.collection('drivers').doc(driverID).update({
-      'passengerCode': code.toString(),
+      'passengerCode': code,
     }).then((value) {
       print('OTP updated in Firestore: $code');
     }).catchError((error) {
@@ -87,7 +89,7 @@ class _DriverBookedScreenState extends ConsumerState<DriverBookedScreen> {
 
       final documentSnapshotToDriver = await documentReferenceToDriver.get();
       final driverName = documentSnapshotToDriver.data()?['name'];
-      final driverMob = documentSnapshotToDriver.data()?['mob no'];
+      final driverMob = documentSnapshotToDriver.data()?['mobNo'];
 
 // extracting data from user
       final documentReferenceToUser =
@@ -95,15 +97,23 @@ class _DriverBookedScreenState extends ConsumerState<DriverBookedScreen> {
 
       final documentSnapshotToUser = await documentReferenceToUser.get();
       final userName = documentSnapshotToUser.data()?['name'];
-      final userMob = documentSnapshotToUser.data()?['mob no'];
+      final userMob = documentSnapshotToUser.data()?['mobNo'];
 
       CollectionReference onGoingRidesCollection =
           _firestore.collection('on going rides');
+      // String onGoingRideID = _firestore.collection('on going rides').id;
+      final onGoingdoc = onGoingRidesCollection.doc();
+      final onGoingdocId = onGoingdoc.id;
+
+      _firestore.collection('users registered').doc(passengerID).update({
+        'onGoingRideId': onGoingdocId,
+      });
+      // String onGoingRideID = _firestore.collection('on going rides').id;
       String startPoint = ref.read(pickUpProvider);
       String endPoint = ref.read(dropProvider);
       // Create a new document with the UID as the document ID
-      final DocumentReference onGoingRidedocRef =
-          await onGoingRidesCollection.add({
+      final mapOnGoingRideData = {
+        'uid': onGoingdocId,
         'driverID': driverID,
         'driverName': driverName,
         'passengerID': passengerID,
@@ -111,20 +121,30 @@ class _DriverBookedScreenState extends ConsumerState<DriverBookedScreen> {
         'startPoint': startPoint,
         'endPoint': endPoint,
         'code': code,
-        'driver mob no': driverMob
-      });
+        'driverMobNo': driverMob,
+        'passengerMobNO': userMob
+      };
 
-      final String onGoingRideID = onGoingRidedocRef.id;
+      final onGoingRideModal = RideModal.fromMap(mapOnGoingRideData);
 
-      ref.watch(onGoingIDprovider.notifier).state = onGoingRideID;
+      await onGoingRidesCollection
+          .doc(onGoingdocId)
+          .set(onGoingRideModal.toMap());
+
+      await _firestore
+          .collection('TotalRides')
+          .doc(onGoingdocId)
+          .set(onGoingRideModal.toMap());
+
+      ref.watch(onGoingIDprovider.notifier).state = onGoingdocId;
       ref.read(codeProvider.notifier).state = code;
-      documentReferenceToDriver.update({"on going ride id": onGoingRideID});
-      documentReferenceToUser.update({"on going ride id": onGoingRideID});
+      // documentReferenceToDriver.update({"on going ride id": onGoingRideID});
+      // documentReferenceToUser.update({"on going ride id": onGoingRideID});
       ref.read(badgeCountProvider.notifier).state++;
 
       print('On-going ride document created successfully.');
     } catch (e) {
-      print('Error creating on-going ride document: $e');
+      showMySnackbar(context, "Error occured");
     }
   }
 
@@ -132,6 +152,7 @@ class _DriverBookedScreenState extends ConsumerState<DriverBookedScreen> {
   Widget build(BuildContext context) {
     // Read the code state from the provider
     return Scaffold(
+      appBar: AppBar(),
       body: SafeArea(
           child: Column(
         //mainAxisAlignment: MainAxisAlignment.center,
@@ -150,7 +171,7 @@ class _DriverBookedScreenState extends ConsumerState<DriverBookedScreen> {
           ),
           Container(
             alignment: Alignment.center,
-            color: Color(0xff80ED6E),
+            color: const Color(0xff80ED6E),
             child: Padding(
               padding: EdgeInsets.symmetric(vertical: 10.h),
               child: Text(
