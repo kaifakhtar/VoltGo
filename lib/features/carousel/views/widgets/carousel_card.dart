@@ -6,7 +6,9 @@ class CardBanner extends StatefulWidget {
   List<String> images = [
     'asset/images/carosel_image.png',
     'asset/images/carosel_image2.png',
-    'asset/images/harridepay_hurry.png'
+    'asset/images/harridepay_hurry.png',
+    // 'asset/images/card_image_ready.png',
+    'asset/images/card_image_ready4x.png'
   ];
 
   //CardBanner({super.key, required this.images});
@@ -31,14 +33,14 @@ class _CardBannerState extends State<CardBanner> {
                   child: Image(
                     width: 300.w,
                     image: AssetImage(image),
-                    fit: BoxFit.cover,
+                    fit: BoxFit.fill,
                   ),
                 ),
               ))
           .toList(),
       options: CarouselOptions(
-        viewportFraction: 0.8,
-        height: 200.h,
+        viewportFraction: 1,
+        height: 150.h,
         autoPlay: true,
         autoPlayInterval: const Duration(seconds: 6),
         onPageChanged: (index, _) {
