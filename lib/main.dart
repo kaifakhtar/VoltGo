@@ -1,21 +1,20 @@
 //import 'package:HarRidePay/router.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:routemaster/routemaster.dart';
+
 import 'package:HarRidePay/features/auth/auth_controller.dart';
 import 'package:HarRidePay/modals/user_modal.dart';
 import 'package:HarRidePay/router.dart';
 import 'package:HarRidePay/screens/dashboard_screen.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:HarRidePay/screens/login_screen.dart';
-
-import 'package:HarRidePay/screens/onthejourney_screen.dart';
 import 'package:HarRidePay/screens/signUp_screen.dart';
-import 'package:firebase_auth/firebase_auth.dart';
-import 'package:firebase_core/firebase_core.dart';
-import 'package:routemaster/routemaster.dart';
-import 'screens/car_select_screen.dart';
-import './widgets/booking_pickup_dest_widget.dart';
+
 import './screens/booking_pickup_screen.dart';
+import './widgets/booking_pickup_dest_widget.dart';
 import 'screens/driver_booked_screen.dart';
 
 void main() async {
