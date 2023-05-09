@@ -15,7 +15,6 @@ import 'package:HarRidePay/screens/signUp_screen.dart';
 
 import './screens/booking_pickup_screen.dart';
 import './widgets/booking_pickup_dest_widget.dart';
-import 'screens/driver_booked_screen.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();

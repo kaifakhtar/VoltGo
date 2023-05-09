@@ -106,7 +106,12 @@ class _DriverBookedScreenState extends ConsumerState<DriverBookedScreen> {
       final onGoingdocId = onGoingdoc.id;
 
       _firestore.collection('users registered').doc(passengerID).update({
+        'completedRides': FieldValue.arrayUnion([onGoingdocId]),
         'onGoingRideId': onGoingdocId,
+      });
+      _firestore.collection('drivers').doc(driverID).update({
+        'onGoingRideId': onGoingdocId,
+        
       });
       // String onGoingRideID = _firestore.collection('on going rides').id;
       String startPoint = ref.read(pickUpProvider);

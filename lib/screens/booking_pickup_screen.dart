@@ -86,7 +86,7 @@ class _BookingPickupScreenState extends ConsumerState<BookingPickupScreen> {
                   children: [
                     Text(
                       "Pickup & Drop",
-                      style: GoogleFonts.poppins(
+                      style: GoogleFonts.inter(
                           fontSize: 24.sp, fontWeight: FontWeight.w600),
                     ),
                     SizedBox(
@@ -98,7 +98,7 @@ class _BookingPickupScreenState extends ConsumerState<BookingPickupScreen> {
                     ),
                     Text(
                       "Rides available",
-                      style: GoogleFonts.poppins(
+                      style: GoogleFonts.inter(
                           fontSize: 24.sp, fontWeight: FontWeight.w600),
                     ),
                     SizedBox(

@@ -12,7 +12,7 @@ class RideStatusWidget extends ConsumerStatefulWidget {
   String driverMobNno;
   String pickUP, drop;
   RideStatusWidget(
-      {required this.driverName,
+      {super.key, required this.driverName,
       required this.code,
       required this.driverMobNno,
       required this.pickUP,
