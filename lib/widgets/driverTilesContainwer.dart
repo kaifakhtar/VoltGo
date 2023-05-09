@@ -1,6 +1,7 @@
 import 'dart:math';
 
 import 'package:HarRidePay/modals/driver.dart';
+import 'package:HarRidePay/providers/firebase_providers.dart';
 import 'package:HarRidePay/providers/online_driver_provider.dart';
 import 'package:HarRidePay/screens/driver_booked_screen.dart';
 import 'package:flutter/material.dart';
@@ -20,6 +21,7 @@ class DriverTilesContainer extends ConsumerStatefulWidget {
 }
 
 class _DriverTilesContainerState extends ConsumerState<DriverTilesContainer> {
+   late Stream<QuerySnapshot> _driverAvailStream;
   Stream<QuerySnapshot> getDriversBasedOnAvailbility() {
     // Replace "collectionName" with the name of your Firestore collection
     // Replace "isActive" with the name of the Boolean attribute you want to filter on
@@ -28,6 +30,18 @@ class _DriverTilesContainerState extends ConsumerState<DriverTilesContainer> {
         .where('available',
             isEqualTo: true) // Filter documents where "isActive" is true
         .snapshots();
+  }
+
+  @override
+  void initState() {
+    // TODO: implement initState
+   _driverAvailStream= ref
+        .read(fireStoreProvider)
+        .collection('drivers')
+        .where('available',
+            isEqualTo: true) // Filter documents where "isActive" is true
+        .snapshots();
+    super.initState();
   }
 
   @override
@@ -66,7 +80,7 @@ class _DriverTilesContainerState extends ConsumerState<DriverTilesContainer> {
             width: 40.h,
           ),
           StreamBuilder(
-              stream: getDriversBasedOnAvailbility(),
+              stream: _driverAvailStream,
               builder: (BuildContext context,
                   AsyncSnapshot<QuerySnapshot> snapshot) {
                 if (!snapshot.hasData) {
