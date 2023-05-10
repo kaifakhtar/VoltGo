@@ -220,16 +220,10 @@ class _DashBoardScreenState extends ConsumerState<DashBoardScreen> {
               height: 20.h,
             ),
             ListTile(
-              onTap: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                      builder: (context) => const RideHistoryScreen()),
-                );
-              },
-              leading: const Icon(Icons.car_rental),
+              
+              leading: const Icon(Icons.message),
               title: Text(
-                'Ride history',
+                'Give feedback',
                 style: GoogleFonts.poppins(),
               ),
               trailing: const Icon(Icons.arrow_right_alt_rounded),
@@ -238,6 +232,7 @@ class _DashBoardScreenState extends ConsumerState<DashBoardScreen> {
         ),
       ),
       bottomNavigationBar: BottomNavigationBar(
+        elevation: 2.h,
           backgroundColor: Colors.white,
           currentIndex: currentIndex,
           selectedItemColor: Colors.black,

@@ -122,7 +122,7 @@ class _RideStatusWidgetState extends ConsumerState<RideStatusWidget> {
                         widget.pickUP,
                         style: GoogleFonts.poppins(
                             fontSize: 16.sp,
-                            fontWeight: FontWeight.w700,
+                            fontWeight: FontWeight.w500,
                             color: const Color.fromARGB(255, 39, 38, 36)),
                       ),
                       const Icon(
@@ -134,7 +134,7 @@ class _RideStatusWidgetState extends ConsumerState<RideStatusWidget> {
                         widget.drop,
                         style: GoogleFonts.poppins(
                             fontSize: 16.sp,
-                            fontWeight: FontWeight.w700,
+                            fontWeight: FontWeight.w500,
                             color: const Color.fromARGB(255, 31, 34, 32)),
                       ),
                     ],
