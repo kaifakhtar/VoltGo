@@ -69,7 +69,11 @@ class _DashBoardScreenState extends ConsumerState<DashBoardScreen> {
   }
 
   int currentIndex = 0;
-  final pages = [const BookingPickupScreen(), const RideStatusPage()];
+  final pages = [
+    const BookingPickupScreen(),
+    const RideStatusPage(),
+    const RideHistoryScreen()
+  ];
 
   Future<void> _signOut() async {
     await FirebaseAuth.instance.signOut();
@@ -119,23 +123,23 @@ class _DashBoardScreenState extends ConsumerState<DashBoardScreen> {
                       builder: (BuildContext context) => const LoginScreen()),
                 );
               }),
-          IconButton(
-              onPressed: () async {
-                incrementStartPoint(
-                    "users registered", ref.watch(userModalProvider)!.userId);
-                final listofRideIDS = getArrayFromDocument(
-                        ref.watch(userModalProvider)!.userId,
-                        'users registered')
-                    .then((value) {
-                  searchForRidesDataFromIds(value, 'TotalRides');
-                });
-              },
-              icon: const Icon(
-                Icons.add,
-                //color: Colors.black,
-              ))
+          // IconButton(
+          //     onPressed: () async {
+          //       incrementStartPoint(
+          //           "users registered", ref.watch(userModalProvider)!.userId);
+          //       final listofRideIDS = getArrayFromDocument(
+          //               ref.watch(userModalProvider)!.userId,
+          //               'users registered')
+          //           .then((value) {
+          //         searchForRidesDataFromIds(value, 'TotalRides');
+          //       });
+          //     },
+          //     icon: const Icon(
+          //       Icons.add,
+          //       //color: Colors.black,
+          //     ))
         ],
-        elevation: 1.h,
+        elevation: 2.h,
         // leading: IconButton(
         //   onPressed: _openDrawer,
         //   icon: const Icon(Icons.menu),
@@ -143,8 +147,11 @@ class _DashBoardScreenState extends ConsumerState<DashBoardScreen> {
         // ),
         backgroundColor: Colors.white,
         title: Text(
-          "Dashboard",
-          style: GoogleFonts.poppins(color: Colors.black, fontSize: 16.sp),
+          "HarRidePay",
+          style: GoogleFonts.notoSans(
+              color: Colors.black,
+              fontSize: 16.sp,
+              fontWeight: FontWeight.w500),
         ),
       ),
       body: IndexedStack(
@@ -259,7 +266,13 @@ class _DashBoardScreenState extends ConsumerState<DashBoardScreen> {
                     showBadge:
                         ref.watch(badgeCountProvider) == 0 ? false : true,
                     child: const Icon(Icons.travel_explore)),
-                label: "Ride status")
+                label: "Ride status"),
+            BottomNavigationBarItem(
+                icon: Icon(
+                  Icons.history,
+                  size: 24.h,
+                ),
+                label: "Ride history"),
           ]),
     );
   }

@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-import 'search_for_ride_button.dart';
 import 'dropDown_pickups.dart';
 
 class BookingPickDestWidget extends StatefulWidget {
@@ -42,9 +41,10 @@ class _BookingPickDestWidgetState extends State<BookingPickDestWidget> {
             child: Text(
               "Pickup",
               style: GoogleFonts.poppins(
-                  fontSize: 12.h,
-                  color: Colors.black.withOpacity(0.80),
-                  fontWeight: FontWeight.w700),
+                fontSize: 12.sp,
+                color: Colors.black.withOpacity(0.4),
+                fontWeight: FontWeight.w500,
+              ),
             ),
           ),
           SizedBox(
@@ -71,15 +71,15 @@ class _BookingPickDestWidgetState extends State<BookingPickDestWidget> {
             height: 24.h,
           ),
           Padding(
-            padding: EdgeInsets.only(left: 70.w),
-            child: Text(
-              "Drop",
-              style: GoogleFonts.poppins(
-                  fontSize: 12.h,
-                  color: Colors.black.withOpacity(0.80),
-                  fontWeight: FontWeight.w700),
-            ),
-          ),
+              padding: EdgeInsets.only(left: 70.w),
+              child: Text(
+                "Drop",
+                style: GoogleFonts.poppins(
+                  fontSize: 12.sp,
+                  color: Colors.black.withOpacity(0.4),
+                  fontWeight: FontWeight.w500,
+                ),
+              )),
           SizedBox(
             height: 8.h,
           ),

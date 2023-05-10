@@ -33,7 +33,7 @@ class _DropDownPickUpState extends ConsumerState<DropDownPickUp> {
             context: context,
             builder: (BuildContext context) {
               return AlertDialog(
-                title: Text('Pick a cab stop'),
+                title: const Text('Pick a cab stop'),
                 content: SizedBox(
                   width: double.maxFinite,
                   height: 400.h,
@@ -41,7 +41,7 @@ class _DropDownPickUpState extends ConsumerState<DropDownPickUp> {
                     children: <Widget>[
                       Card(
                           child: ListTile(
-                        title: Text('Hostle 7 & 7E'),
+                        title: const Text('Hostle 7 & 7E'),
                         onTap: () {
                           tileOnTap(widget.isPickUp, 'Hostle 7 & 7E');
                           setState(() {});
@@ -50,7 +50,7 @@ class _DropDownPickUpState extends ConsumerState<DropDownPickUp> {
                       )),
                       Card(
                           child: ListTile(
-                        title: Text('Snackers'),
+                        title: const Text('Snackers'),
                         onTap: () {
                           tileOnTap(widget.isPickUp, 'Snackers');
                           setState(() {});
@@ -59,7 +59,7 @@ class _DropDownPickUpState extends ConsumerState<DropDownPickUp> {
                       )),
                       Card(
                           child: ListTile(
-                        title: Text('Hostle 6'),
+                        title: const Text('Hostle 6'),
                         onTap: () {
                           tileOnTap(widget.isPickUp, 'Hostle 6');
                           setState(() {});
@@ -68,7 +68,7 @@ class _DropDownPickUpState extends ConsumerState<DropDownPickUp> {
                       )),
                       Card(
                           child: ListTile(
-                        title: Text('Night canteen'),
+                        title: const Text('Night canteen'),
                         onTap: () {
                           tileOnTap(widget.isPickUp, 'Night canteen');
                           setState(() {});
@@ -77,7 +77,7 @@ class _DropDownPickUpState extends ConsumerState<DropDownPickUp> {
                       )),
                       Card(
                           child: ListTile(
-                        title: Text('Dispensary'),
+                        title: const Text('Dispensary'),
                         onTap: () {
                           tileOnTap(widget.isPickUp, 'Dispensary');
                           setState(() {});
@@ -86,7 +86,7 @@ class _DropDownPickUpState extends ConsumerState<DropDownPickUp> {
                       )),
                       Card(
                           child: ListTile(
-                        title: Text('College gate'),
+                        title: const Text('College gate'),
                         onTap: () {
                           tileOnTap(widget.isPickUp, 'College gate');
                           setState(() {});
@@ -95,7 +95,7 @@ class _DropDownPickUpState extends ConsumerState<DropDownPickUp> {
                       )),
                       Card(
                           child: ListTile(
-                        title: Text('Lecture theature'),
+                        title: const Text('Lecture theatre'),
                         onTap: () {
                           tileOnTap(widget.isPickUp, 'Lecture theature');
                           setState(() {});
@@ -120,7 +120,7 @@ class _DropDownPickUpState extends ConsumerState<DropDownPickUp> {
           //       spreadRadius: 0.r,
           //       offset: Offset(0.h, 1.h))
           // ],
-          border: Border.all(color: Color.fromARGB(255, 218, 218, 218)),
+          border: Border.all(color: const Color.fromARGB(255, 218, 218, 218)),
           color: Colors.white,
         ),
         child: Padding(
@@ -133,12 +133,13 @@ class _DropDownPickUpState extends ConsumerState<DropDownPickUp> {
                 widget.isPickUp
                     ? ref.read(pickUpProvider)
                     : ref.read(dropProvider),
-                style: GoogleFonts.poppins(fontSize: 12.sp),
+                style: GoogleFonts.poppins(
+                    fontSize: 14.sp, fontWeight: FontWeight.w500),
               ),
               SizedBox(
                 width: 75.w,
               ),
-              Icon(Icons.arrow_drop_down_outlined)
+              const Icon(Icons.arrow_drop_down_outlined)
             ],
           ),
         ),

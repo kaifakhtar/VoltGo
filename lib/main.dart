@@ -20,7 +20,7 @@ void main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
   await Firebase.initializeApp();
-  runApp(const ProviderScope(child:  MyApp()));
+  runApp(const ProviderScope(child: MyApp()));
 }
 
 class MyApp extends ConsumerStatefulWidget {
@@ -54,7 +54,7 @@ class _MyAppState extends ConsumerState<MyApp> {
 
   @override
   void initState() {
-   // checkIfLogin();
+    // checkIfLogin();
     super.initState();
   }
 

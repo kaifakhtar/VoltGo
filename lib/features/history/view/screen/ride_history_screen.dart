@@ -44,10 +44,7 @@ class _RideHistoryScreenState extends ConsumerState<RideHistoryScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Colors.black,
-        title: const Text("Ride history"),
-      ),
+      
       body: SafeArea(
         child: ref.watch(historyRidesListProvider).isEmpty
             ? const Center(
