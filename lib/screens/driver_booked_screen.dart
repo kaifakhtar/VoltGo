@@ -89,7 +89,7 @@ class _DriverBookedScreenState extends ConsumerState<DriverBookedScreen> {
 
       final documentSnapshotToDriver = await documentReferenceToDriver.get();
       final driverName = documentSnapshotToDriver.data()?['name'];
-      final driverMob = documentSnapshotToDriver.data()?['mobNo'];
+      final driverMob = documentSnapshotToDriver.data()?['mob no'];
 
 // extracting data from user
       final documentReferenceToUser =
@@ -141,7 +141,7 @@ class _DriverBookedScreenState extends ConsumerState<DriverBookedScreen> {
           .doc(onGoingdocId)
           .set(onGoingRideModal.toMap());
 
-      ref.watch(onGoingIDprovider.notifier).state = onGoingdocId;
+      ref.read(onGoingIDprovider.notifier).state = onGoingdocId;
       ref.read(codeProvider.notifier).state = code;
       // documentReferenceToDriver.update({"on going ride id": onGoingRideID});
       // documentReferenceToUser.update({"on going ride id": onGoingRideID});

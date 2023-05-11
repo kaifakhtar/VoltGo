@@ -1,8 +1,11 @@
+import 'package:HarRidePay/providers/list_of_history_rides_provider.dart';
 import 'package:HarRidePay/providers/on_going_ride_id_provider.dart';
 import 'package:HarRidePay/screens/driver_booked_screen.dart';
+import 'package:HarRidePay/screens/login_screen.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -20,6 +23,7 @@ class RideStatusPage extends ConsumerStatefulWidget {
 }
 
 class _RideStatusPageState extends ConsumerState<RideStatusPage> {
+ late  String onGoingRideId;
   // void checkIfDocumentExists() async {
   //   String onGoingID = ref.read(onGoingIDprovider);
   //   DocumentSnapshot documentSnapshot =
@@ -27,6 +31,20 @@ class _RideStatusPageState extends ConsumerState<RideStatusPage> {
 
   //   ref.read(doesOngoingIDExitProvider.notifier).state =
   //       documentSnapshot.exists;
+  // }
+  // void _fetchData() async {
+  //   DocumentSnapshot snapshot = await FirebaseFirestore.instance
+  //       .collection('rides')
+  //       .doc(ref.read(userModalProvider)!.userId)
+  //       .get();
+
+  //   if (snapshot.exists) {
+  //     setState(() {
+  //       onGoingRideId = snapshot.data()['onGoingRideId'];
+  //     });
+  //   } else {
+  //     print('Document does not exist on Firestore');
+  //   }
   // }
 
   @override
@@ -38,7 +56,7 @@ class _RideStatusPageState extends ConsumerState<RideStatusPage> {
 
   @override
   Widget build(BuildContext context) {
-    String onGoingID = ref.watch(onGoingIDprovider);
+    String onGoingID = ref.read(userModalProvider)!.onGoingRideId;
     // bool onGoingIDExits = ref.watch(doesOngoingIDExitProvider);
     // var snap=FirebaseFirestore.instance
     //     .collection('on going rides')
@@ -46,6 +64,9 @@ class _RideStatusPageState extends ConsumerState<RideStatusPage> {
     //     .get();
 
     //checkIfDocumentExists();
+    if (kDebugMode) {
+      print("in ride status build value of onGoingIDprovider is ${onGoingID}");
+    }
 
     return Scaffold(
       //backgroundColor: Colors.grey[200],

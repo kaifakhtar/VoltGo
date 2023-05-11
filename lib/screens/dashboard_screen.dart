@@ -25,9 +25,10 @@ class DashBoardScreen extends ConsumerStatefulWidget {
 class _DashBoardScreenState extends ConsumerState<DashBoardScreen> {
   @override
   void initState() {
+    super.initState();
     // TODO: implement initState
     getOnGoingRideDataFromUserDB();
-    super.initState();
+    
   }
 
   //To open drawer

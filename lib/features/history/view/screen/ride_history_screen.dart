@@ -65,7 +65,23 @@ class _RideHistoryScreenState extends ConsumerState<RideHistoryScreen> {
                   );
                 },
               ),
+            
       ),
-    );
+     floatingActionButton: FloatingActionButton.small(
+          child: const Icon(Icons.replay_outlined),
+          onPressed: () {
+            setState(() {
+               final listofRideIDS = getArrayFromDocument(
+                        ref.watch(userModalProvider)!.userId,
+                        'users registered')
+                    .then((value) {
+                  searchForRidesDataFromIds(value, 'TotalRides');
+            });
+            }
+            );
+            }
+            ));
+    
+       
   }
 }
