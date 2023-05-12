@@ -9,12 +9,8 @@ import 'package:routemaster/routemaster.dart';
 import 'package:HarRidePay/features/auth/auth_controller.dart';
 import 'package:HarRidePay/modals/user_modal.dart';
 import 'package:HarRidePay/router.dart';
-import 'package:HarRidePay/screens/dashboard_screen.dart';
 import 'package:HarRidePay/screens/login_screen.dart';
-import 'package:HarRidePay/screens/signUp_screen.dart';
 
-import './screens/booking_pickup_screen.dart';
-import './widgets/booking_pickup_dest_widget.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();

@@ -27,6 +27,8 @@ class HistoryUserRepository {
 
   Future<void> searchForDocuments(WidgetRef ref,
       List<dynamic> completedRidesIDsList, String collectionName) async {
+
+
     final QuerySnapshot<Map<String, dynamic>> querySnapshot =
         await FirebaseFirestore.instance
             .collection(collectionName)

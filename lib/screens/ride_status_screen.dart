@@ -51,6 +51,9 @@ class _RideStatusPageState extends ConsumerState<RideStatusPage> {
   void initState() {
     // TODO: implement initState
     //getOnGoingRideDataFromUserDB();
+    setState(() {
+      
+    });
     super.initState();
   }
 

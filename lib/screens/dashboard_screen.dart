@@ -13,7 +13,6 @@ import '../providers/on_going_ride_id_provider.dart';
 import 'booking_pickup_screen.dart';
 import 'login_screen.dart';
 import 'ride_status_screen.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class DashBoardScreen extends ConsumerStatefulWidget {
   const DashBoardScreen({super.key});
@@ -23,12 +22,13 @@ class DashBoardScreen extends ConsumerStatefulWidget {
 }
 
 class _DashBoardScreenState extends ConsumerState<DashBoardScreen> {
+  List<String> appbarTitle = ['Home', 'Ride status', 'Ride History'];
+  int appbarTitleIndex = 0;
   @override
   void initState() {
     super.initState();
     // TODO: implement initState
     getOnGoingRideDataFromUserDB();
-    
   }
 
   //To open drawer
@@ -140,7 +140,7 @@ class _DashBoardScreenState extends ConsumerState<DashBoardScreen> {
           //       //color: Colors.black,
           //     ))
         ],
-        elevation: 2.h,
+        elevation: 1.h,
         // leading: IconButton(
         //   onPressed: _openDrawer,
         //   icon: const Icon(Icons.menu),
@@ -148,7 +148,7 @@ class _DashBoardScreenState extends ConsumerState<DashBoardScreen> {
         // ),
         backgroundColor: Colors.white,
         title: Text(
-          "HarRidePay",
+          appbarTitle[appbarTitleIndex],
           style: GoogleFonts.notoSans(
               color: Colors.black,
               fontSize: 16.sp,
@@ -174,7 +174,7 @@ class _DashBoardScreenState extends ConsumerState<DashBoardScreen> {
                   Text(
                     "Hi ${ref.watch(userModalProvider)?.name ?? "No name"}!",
                     style: GoogleFonts.poppins(
-                        color: Colors.white, fontSize: 32.sp),
+                        color: Colors.white, fontSize: 20.sp),
                   ),
                   SizedBox(
                     height: 4.h,
@@ -183,7 +183,7 @@ class _DashBoardScreenState extends ConsumerState<DashBoardScreen> {
                     ref.watch(userModalProvider)?.mobNo ?? "No mobile no.",
                     style: GoogleFonts.poppins(
                         color: const Color.fromARGB(255, 214, 214, 214),
-                        fontSize: 16.sp),
+                        fontSize: 14.sp),
                   ),
                   SizedBox(
                     height: 4.h,
@@ -192,7 +192,7 @@ class _DashBoardScreenState extends ConsumerState<DashBoardScreen> {
                     ref.watch(userModalProvider)?.email ?? "No email",
                     style: GoogleFonts.poppins(
                         color: const Color.fromARGB(255, 214, 214, 214),
-                        fontSize: 16.sp),
+                        fontSize: 14.sp),
                   ),
                 ],
               ),
@@ -221,7 +221,6 @@ class _DashBoardScreenState extends ConsumerState<DashBoardScreen> {
               height: 20.h,
             ),
             ListTile(
-              
               leading: const Icon(Icons.message),
               title: Text(
                 'Give feedback',
@@ -233,13 +232,14 @@ class _DashBoardScreenState extends ConsumerState<DashBoardScreen> {
         ),
       ),
       bottomNavigationBar: BottomNavigationBar(
-        elevation: 2.h,
+          elevation: 2.h,
           backgroundColor: Colors.white,
           currentIndex: currentIndex,
           selectedItemColor: Colors.black,
           unselectedItemColor: Colors.black.withOpacity(.6),
           onTap: (value) {
             setState(() {
+              appbarTitleIndex = value;
               currentIndex = value;
               if (value == 1) {
                 ref.watch(badgeCountProvider.notifier).state = 0;

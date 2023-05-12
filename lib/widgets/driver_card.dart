@@ -19,21 +19,15 @@ class DriverCard extends StatelessWidget {
       decoration: BoxDecoration(
         color: Colors.white,
         borderRadius: BorderRadius.circular(16),
-        boxShadow: [
-          BoxShadow(
-              color: Colors.black.withOpacity(0.1),
-              blurRadius: 8.r,
-              spreadRadius: 2.r,
-              offset: Offset(0.h, 0))
-        ],
+        border: Border.all(color: Colors.black12),
       ),
       child: Padding(
         padding: EdgeInsets.all(16.h),
         child: Row(
           children: [
             Container(
-              width: 60.w,
-              height: 60.h,
+              width: 50.w,
+              height: 50.h,
               decoration: BoxDecoration(
                 shape: BoxShape.circle,
                 image: DecorationImage(
@@ -49,15 +43,17 @@ class DriverCard extends StatelessWidget {
                 Text(
                   driverName,
                   style: GoogleFonts.poppins(
-                    fontSize: 18.sp,
+                    fontSize: 16.sp,
+                    color: Colors.black54,
                     fontWeight: FontWeight.w500,
                   ),
                 ),
                 SizedBox(height: 4.h),
                 Text(
                   mobileNumber,
-                  style:
-                      GoogleFonts.poppins(fontSize: 16.sp, color: Colors.grey),
+                  style: GoogleFonts.poppins(
+                    fontSize: 20.sp,
+                  ),
                 ),
               ],
             ),

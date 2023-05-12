@@ -12,7 +12,8 @@ class RideStatusWidget extends ConsumerStatefulWidget {
   String driverMobNno;
   String pickUP, drop;
   RideStatusWidget(
-      {super.key, required this.driverName,
+      {super.key,
+      required this.driverName,
       required this.code,
       required this.driverMobNno,
       required this.pickUP,
@@ -27,7 +28,7 @@ class _RideStatusWidgetState extends ConsumerState<RideStatusWidget> {
     return Padding(
       padding: EdgeInsets.symmetric(vertical: 24.h, horizontal: 12.w),
       child: Container(
-        height: 300.h,
+        height: 320.h,
         width: 340.w,
         //padding: EdgeInsets.symmetric(horizontal: 16.h),
         decoration: BoxDecoration(
@@ -53,24 +54,32 @@ class _RideStatusWidgetState extends ConsumerState<RideStatusWidget> {
                   ),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    crossAxisAlignment: CrossAxisAlignment.end,
                     children: [
                       Text(
                         'Code',
                         style: GoogleFonts.poppins(fontSize: 24.sp),
                       ),
+                      // Text(
+                      //   widget.code.toString(),
+                      //   style: GoogleFonts.poppins(
+                      //       fontWeight: FontWeight.w600,
+                      //       fontSize: 24.sp,
+                      //       color: const Color(0xff38E54D)),
+                      // ),
                       Container(
+                        alignment: Alignment.center,
                         padding: EdgeInsets.symmetric(
                             vertical: 6.h, horizontal: 8.h),
                         decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(8.h),
-                            color: const Color.fromARGB(255, 136, 199, 255)
-                                .withOpacity(.2)),
+                            color: const Color(0xff38E54D)),
                         child: Text(
                           widget.code.toString(),
                           style: GoogleFonts.poppins(
                               fontWeight: FontWeight.w600,
-                              fontSize: 24.sp,
-                              color: const Color.fromARGB(255, 0, 136, 255)),
+                              fontSize: 20.sp,
+                              color: Colors.white),
                         ),
                       ),
                     ],
@@ -89,7 +98,7 @@ class _RideStatusWidgetState extends ConsumerState<RideStatusWidget> {
                       driverName: widget.driverName,
                       mobileNumber: widget.driverMobNno),
                   SizedBox(
-                    height: 16.h,
+                    height: 24.h,
                   ),
 
                   Row(
@@ -121,19 +130,19 @@ class _RideStatusWidgetState extends ConsumerState<RideStatusWidget> {
                       Text(
                         widget.pickUP,
                         style: GoogleFonts.poppins(
-                            fontSize: 16.sp,
+                            fontSize: 20.sp,
                             fontWeight: FontWeight.w500,
                             color: const Color.fromARGB(255, 39, 38, 36)),
                       ),
                       const Icon(
                         Icons.arrow_forward_rounded,
-                        size: 25,
+                        size: 20,
                         color: Colors.black38,
                       ),
                       Text(
                         widget.drop,
                         style: GoogleFonts.poppins(
-                            fontSize: 16.sp,
+                            fontSize: 20.sp,
                             fontWeight: FontWeight.w500,
                             color: const Color.fromARGB(255, 31, 34, 32)),
                       ),
@@ -144,15 +153,31 @@ class _RideStatusWidgetState extends ConsumerState<RideStatusWidget> {
                   //   thickness: 1.h,
                   // ),
                   SizedBox(
-                    height: 12.h,
+                    height: 0.h,
                   ),
                 ],
               ),
             ),
             Container(
-              decoration: BoxDecoration(
-                color: const Color.fromARGB(255, 220, 255, 223).withOpacity(.6),
-                borderRadius: BorderRadius.all(Radius.circular(12.r)),
+              decoration: const BoxDecoration(
+                border: Border(
+                  top: BorderSide(
+                    color: Colors.black12,
+                    width: 1.0,
+                  ),
+                ),
+                // boxShadow: [
+                //   BoxShadow(
+                //     color: const Color(0xff4BB543).withOpacity(.3),
+                //     spreadRadius: 2,
+                //     blurRadius: 4,
+                //     offset: const Offset(0, -3), // changes position of shadow
+                //   ),
+                // ],
+
+                // borderRadius: BorderRadius.only(
+                //     bottomLeft: Radius.circular(12.r),
+                //     bottomRight: Radius.circular(12.r)),
                 // border: Border.all(color: Colors.grey.withOpacity(.3))
               ),
               child: Padding(
@@ -163,16 +188,18 @@ class _RideStatusWidgetState extends ConsumerState<RideStatusWidget> {
                     Text(
                       'Amount',
                       style: GoogleFonts.poppins(
-                          fontSize: 16.sp, color: Colors.black87),
+                          fontSize: 20.sp,
+                          color: const Color.fromARGB(255, 0, 0, 0),
+                          fontWeight: FontWeight.bold),
                     ),
                     Text(
-                      '\u20B9 100',
+                      '\u20B9 100.00',
                       style: GoogleFonts.poppins(
                           fontSize: 20.sp,
-                          color: Colors.black87,
+                          color: const Color.fromARGB(255, 0, 0, 0),
                           // color:
                           //     Color,
-                          fontWeight: FontWeight.w700),
+                          fontWeight: FontWeight.bold),
                     ),
                   ],
                 ),
