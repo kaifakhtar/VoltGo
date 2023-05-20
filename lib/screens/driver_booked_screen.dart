@@ -1,5 +1,5 @@
 import 'dart:math';
-
+import 'package:intl/intl.dart';
 import 'package:HarRidePay/modals/driver.dart';
 import 'package:HarRidePay/modals/ride_modal.dart';
 import 'package:HarRidePay/providers/online_driver_provider.dart';
@@ -116,6 +116,10 @@ class _DriverBookedScreenState extends ConsumerState<DriverBookedScreen> {
       // String onGoingRideID = _firestore.collection('on going rides').id;
       String startPoint = ref.read(pickUpProvider);
       String endPoint = ref.read(dropProvider);
+
+  final DateFormat formatter = DateFormat('yyyy-MM-dd HH:mm:ss');
+  String rideDateTime= formatter.format(DateTime.now());
+      
       // Create a new document with the UID as the document ID
       final mapOnGoingRideData = {
         'uid': onGoingdocId,
@@ -127,7 +131,8 @@ class _DriverBookedScreenState extends ConsumerState<DriverBookedScreen> {
         'endPoint': endPoint,
         'code': code,
         'driverMobNo': driverMob,
-        'passengerMobNO': userMob
+        'passengerMobNO': userMob,
+        'rideDateTime' : rideDateTime
       };
 
       final onGoingRideModal = RideModal.fromMap(mapOnGoingRideData);

@@ -40,7 +40,8 @@ class _BookingPickDestWidgetState extends State<BookingPickDestWidget> {
             padding: EdgeInsets.only(left: 70.w),
             child: Text(
               "Pickup",
-              style: GoogleFonts.poppins(
+              style: TextStyle(
+                            fontFamily: 'HelveticaNeue',
                 fontSize: 12.sp,
                 color: Colors.black.withOpacity(0.4),
                 fontWeight: FontWeight.w500,
@@ -74,7 +75,8 @@ class _BookingPickDestWidgetState extends State<BookingPickDestWidget> {
               padding: EdgeInsets.only(left: 70.w),
               child: Text(
                 "Drop",
-                style: GoogleFonts.poppins(
+                style: TextStyle(
+                            fontFamily: 'HelveticaNeue',
                   fontSize: 12.sp,
                   color: Colors.black.withOpacity(0.4),
                   fontWeight: FontWeight.w500,

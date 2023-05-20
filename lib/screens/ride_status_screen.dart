@@ -67,9 +67,9 @@ class _RideStatusPageState extends ConsumerState<RideStatusPage> {
     //     .get();
 
     //checkIfDocumentExists();
-    if (kDebugMode) {
+    
       print("in ride status build value of onGoingIDprovider is ${onGoingID}");
-    }
+    
 
     return Scaffold(
       //backgroundColor: Colors.grey[200],
@@ -90,6 +90,7 @@ class _RideStatusPageState extends ConsumerState<RideStatusPage> {
                       driverMobNno: snapshot.data["driverMobNo"],
                       pickUP: snapshot.data["startPoint"],
                       drop: snapshot.data["endPoint"],
+                      formattedDateTime: snapshot.data["rideDateTime"],
                     );
                   } else if (snapshot.connectionState ==
                       ConnectionState.waiting) {
@@ -118,6 +119,7 @@ class _RideStatusPageState extends ConsumerState<RideStatusPage> {
         future: isDocExist(onGoingID),
       ),
       floatingActionButton: FloatingActionButton.small(
+        heroTag: null,
           child: const Icon(Icons.replay_outlined),
           onPressed: () {
             setState(() {

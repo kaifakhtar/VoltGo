@@ -1,3 +1,4 @@
+import 'package:HarRidePay/utils.dart';
 import 'package:HarRidePay/widgets/driver_card.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -10,14 +11,16 @@ class RideStatusWidget extends ConsumerStatefulWidget {
   String driverName;
   int code;
   String driverMobNno;
-  String pickUP, drop;
+  String pickUP, drop, formattedDateTime;
+
   RideStatusWidget(
       {super.key,
       required this.driverName,
       required this.code,
       required this.driverMobNno,
       required this.pickUP,
-      required this.drop});
+      required this.drop,
+      required this.formattedDateTime});
   @override
   ConsumerState<RideStatusWidget> createState() => _RideStatusWidgetState();
 }
@@ -58,7 +61,8 @@ class _RideStatusWidgetState extends ConsumerState<RideStatusWidget> {
                     children: [
                       Text(
                         'Code',
-                        style: GoogleFonts.poppins(fontSize: 24.sp),
+                        style: TextStyle(
+                            fontFamily: 'HelveticaNeue', fontSize: 24.sp),
                       ),
                       // Text(
                       //   widget.code.toString(),
@@ -73,11 +77,12 @@ class _RideStatusWidgetState extends ConsumerState<RideStatusWidget> {
                             vertical: 6.h, horizontal: 8.h),
                         decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(8.h),
-                            color: const Color(0xff38E54D)),
+                            color:const Color.fromARGB(255, 54, 182, 69)),
                         child: Text(
                           widget.code.toString(),
-                          style: GoogleFonts.poppins(
-                              fontWeight: FontWeight.w600,
+                          style: TextStyle(
+                              fontFamily: 'HelveticaNeue',
+                              fontWeight: FontWeight.w800,
                               fontSize: 20.sp,
                               color: Colors.white),
                         ),
@@ -106,14 +111,16 @@ class _RideStatusWidgetState extends ConsumerState<RideStatusWidget> {
                     children: [
                       Text(
                         "Pick up",
-                        style: GoogleFonts.poppins(
+                        style: TextStyle(
+                            fontFamily: 'HelveticaNeue',
                             fontWeight: FontWeight.w700,
                             fontSize: 12.sp,
                             color: Colors.orange),
                       ),
                       Text(
                         "Drop",
-                        style: GoogleFonts.poppins(
+                        style: TextStyle(
+                          fontFamily: 'HelveticaNeue',
                           fontSize: 12.sp,
                           color: Colors.green,
                           fontWeight: FontWeight.w700,
@@ -129,7 +136,8 @@ class _RideStatusWidgetState extends ConsumerState<RideStatusWidget> {
                     children: [
                       Text(
                         widget.pickUP,
-                        style: GoogleFonts.poppins(
+                        style: TextStyle(
+                            fontFamily: 'HelveticaNeue',
                             fontSize: 20.sp,
                             fontWeight: FontWeight.w500,
                             color: const Color.fromARGB(255, 39, 38, 36)),
@@ -141,10 +149,35 @@ class _RideStatusWidgetState extends ConsumerState<RideStatusWidget> {
                       ),
                       Text(
                         widget.drop,
-                        style: GoogleFonts.poppins(
+                        style: TextStyle(
+                            fontFamily: 'HelveticaNeue',
                             fontSize: 20.sp,
                             fontWeight: FontWeight.w500,
                             color: const Color.fromARGB(255, 31, 34, 32)),
+                      ),
+                    ],
+                  ),
+                  SizedBox(
+                    height: 32.h,
+                  ),
+                  // const Divider(
+                  //   thickness: 1,
+                  // ),
+                  Row(
+                    children: [
+                      Text(
+                        "${extractDate(widget.formattedDateTime)} at ",
+                        style: TextStyle(
+                            fontFamily: 'HelveticaNeue',
+                            fontSize: 10.sp,
+                            color: Colors.black54),
+                      ),
+                      Text(
+                        extractTime(widget.formattedDateTime),
+                        style: TextStyle(
+                            fontFamily: 'HelveticaNeue',
+                            fontSize: 10.sp,
+                            color: Colors.black54),
                       ),
                     ],
                   ),
@@ -187,15 +220,17 @@ class _RideStatusWidgetState extends ConsumerState<RideStatusWidget> {
                   children: [
                     Text(
                       'Amount',
-                      style: GoogleFonts.poppins(
-                          fontSize: 20.sp,
+                      style: TextStyle(
+                          fontFamily: 'HelveticaNeue',
+                          fontSize: 16.sp,
                           color: const Color.fromARGB(255, 0, 0, 0),
                           fontWeight: FontWeight.bold),
                     ),
                     Text(
-                      '\u20B9 100.00',
-                      style: GoogleFonts.poppins(
-                          fontSize: 20.sp,
+                      '\u20B9 103.00',
+                      style: TextStyle(
+                          fontFamily: 'HelveticaNeue',
+                          fontSize: 16.sp,
                           color: const Color.fromARGB(255, 0, 0, 0),
                           // color:
                           //     Color,

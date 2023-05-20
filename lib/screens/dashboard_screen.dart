@@ -9,6 +9,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
 
+import '../features/policy/view/screens/policy_main_screen.dart';
 import '../providers/on_going_ride_id_provider.dart';
 import 'booking_pickup_screen.dart';
 import 'login_screen.dart';
@@ -27,8 +28,9 @@ class _DashBoardScreenState extends ConsumerState<DashBoardScreen> {
   @override
   void initState() {
     super.initState();
-    // TODO: implement initState
     getOnGoingRideDataFromUserDB();
+
+    // TODO: implement initState
   }
 
   //To open drawer
@@ -78,7 +80,7 @@ class _DashBoardScreenState extends ConsumerState<DashBoardScreen> {
 
   Future<void> _signOut() async {
     await FirebaseAuth.instance.signOut();
-    ref.watch(userModalProvider.notifier).state = null;
+    ref.read(userModalProvider.notifier).state = null;
   }
 
   void incrementStartPoint(
@@ -111,19 +113,40 @@ class _DashBoardScreenState extends ConsumerState<DashBoardScreen> {
         iconTheme: const IconThemeData(color: Color.fromARGB(255, 0, 0, 0)),
         //automaticallyImplyLeading: false,
         actions: [
-          IconButton(
-              icon: const Icon(
-                Icons.logout,
-                // color: Color.fromARGB(255, 27, 27, 27),
-              ),
-              onPressed: () {
+          PopupMenuButton<String>(
+            onSelected: (value) {
+              if (value == 'logout') {
                 _signOut();
                 // Navigator.(context, MaterialPageRoute(builder: (BuildContext context) => LoginScreen()));
                 Navigator.of(context).pushReplacement(
                   MaterialPageRoute(
                       builder: (BuildContext context) => const LoginScreen()),
                 );
-              }),
+              }
+            },
+            itemBuilder: (BuildContext context) {
+              return const [
+                PopupMenuItem<String>(
+                  value: 'logout',
+                  child: Text('Logout'),
+                ),
+              ];
+            },
+          ),
+
+          // IconButton(
+          //     icon: const Icon(
+          //       Icons.logout,
+          //       // color: Color.fromARGB(255, 27, 27, 27),
+          //     ),
+          //     onPressed: () {
+          //       _signOut();
+          //       // Navigator.(context, MaterialPageRoute(builder: (BuildContext context) => LoginScreen()));
+          //       Navigator.of(context).pushReplacement(
+          //         MaterialPageRoute(
+          //             builder: (BuildContext context) => const LoginScreen()),
+          //       );
+          //     }),
           // IconButton(
           //     onPressed: () async {
           //       incrementStartPoint(
@@ -172,15 +195,16 @@ class _DashBoardScreenState extends ConsumerState<DashBoardScreen> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    "Hi ${ref.watch(userModalProvider)?.name ?? "No name"}!",
-                    style: GoogleFonts.poppins(
+                    "Hi ${ref.read(userModalProvider)?.name ?? "No name"}",
+                    style: GoogleFonts.notoSans(
                         color: Colors.white, fontSize: 20.sp),
                   ),
                   SizedBox(
-                    height: 4.h,
+                    height: 8.h,
                   ),
                   Text(
-                    ref.watch(userModalProvider)?.mobNo ?? "No mobile no.",
+                    ref.read(userModalProvider)?.mobNo ??
+                        "No mobile no.",
                     style: GoogleFonts.poppins(
                         color: const Color.fromARGB(255, 214, 214, 214),
                         fontSize: 14.sp),
@@ -189,8 +213,9 @@ class _DashBoardScreenState extends ConsumerState<DashBoardScreen> {
                     height: 4.h,
                   ),
                   Text(
-                    ref.watch(userModalProvider)?.email ?? "No email",
-                    style: GoogleFonts.poppins(
+                    ref.read(userModalProvider)?.email ??
+                        "No email",
+                    style: GoogleFonts.notoSans(
                         color: const Color.fromARGB(255, 214, 214, 214),
                         fontSize: 14.sp),
                   ),
@@ -227,6 +252,20 @@ class _DashBoardScreenState extends ConsumerState<DashBoardScreen> {
                 style: GoogleFonts.poppins(),
               ),
               trailing: const Icon(Icons.arrow_right_alt_rounded),
+            ),
+            ListTile(
+              leading: const Icon(Icons.read_more),
+              onTap: () {
+                Navigator.of(context).push(
+                  MaterialPageRoute(
+                      builder: (BuildContext context) => const PolicyScreen()),
+                );
+              },
+              title: Text(
+                'Read our policy',
+                style: GoogleFonts.poppins(),
+              ),
+              // trailing: const Icon(Icons.arrow_right_alt_rounded),
             )
           ],
         ),

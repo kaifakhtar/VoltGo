@@ -42,8 +42,9 @@ class DriverCard extends StatelessWidget {
               children: [
                 Text(
                   driverName,
-                  style: GoogleFonts.poppins(
-                    fontSize: 16.sp,
+                  style: TextStyle(
+                    fontFamily: 'HelveticaNeue',
+                    fontSize: 12.sp,
                     color: Colors.black54,
                     fontWeight: FontWeight.w500,
                   ),
@@ -51,8 +52,9 @@ class DriverCard extends StatelessWidget {
                 SizedBox(height: 4.h),
                 Text(
                   mobileNumber,
-                  style: GoogleFonts.poppins(
-                    fontSize: 20.sp,
+                  style: TextStyle(
+                    fontFamily: 'HelveticaNeue',
+                    fontSize: 16.sp,
                   ),
                 ),
               ],

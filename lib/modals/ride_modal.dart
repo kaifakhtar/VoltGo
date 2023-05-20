@@ -11,6 +11,7 @@ class RideModal {
   String passengerName;
   String passengerID;
   String passengerMobNO;
+  String rideDateTime;
   RideModal({
     required this.uid,
     required this.code,
@@ -22,6 +23,7 @@ class RideModal {
     required this.passengerName,
     required this.passengerID,
     required this.passengerMobNO,
+    required this.rideDateTime
   });
 
   RideModal copyWith({
@@ -35,6 +37,7 @@ class RideModal {
     String? passengerName,
     String? passengerID,
     String? passengerMobNO,
+    String? rideDateTime
   }) {
     return RideModal(
       uid: uid ?? this.uid,
@@ -47,6 +50,7 @@ class RideModal {
       passengerName: passengerName ?? this.passengerName,
       passengerID: passengerID ?? this.passengerID,
       passengerMobNO: passengerMobNO ?? this.passengerMobNO,
+      rideDateTime: rideDateTime ?? this.rideDateTime,
     );
   }
 
@@ -62,6 +66,7 @@ class RideModal {
       'passengerName': passengerName,
       'passengerID': passengerID,
       'passengerMobNO': passengerMobNO,
+      'rideDateTime' : rideDateTime
     };
   }
 
@@ -77,6 +82,7 @@ class RideModal {
       passengerName: map['passengerName'] ?? '',
       passengerID: map['passengerID'] ?? '',
       passengerMobNO: map['passengerMobNO'] ?? '',
+      rideDateTime: map['rideDateTime'] ?? '',
     );
   }
 
@@ -104,7 +110,9 @@ class RideModal {
         other.endPoint == endPoint &&
         other.passengerName == passengerName &&
         other.passengerID == passengerID &&
-        other.passengerMobNO == passengerMobNO;
+        other.passengerMobNO == passengerMobNO &&
+        other.rideDateTime==rideDateTime;
+    
   }
 
   @override
@@ -118,6 +126,7 @@ class RideModal {
         endPoint.hashCode ^
         passengerName.hashCode ^
         passengerID.hashCode ^
-        passengerMobNO.hashCode;
+        passengerMobNO.hashCode ^
+        rideDateTime.hashCode;
   }
 }

@@ -96,7 +96,8 @@ class _DriverTilesContainerState extends ConsumerState<DriverTilesContainer> {
                             child: Text(
                           "Oops! No rides available at the moment. Check back soon!",
                           textAlign: TextAlign.center,
-                          style: GoogleFonts.poppins(
+                          style: TextStyle(
+                            fontFamily: 'HelveticaNeue',
                               fontSize: 16.sp, color: Colors.orange),
                         )),
                       ));

@@ -133,8 +133,10 @@ class _DropDownPickUpState extends ConsumerState<DropDownPickUp> {
                 widget.isPickUp
                     ? ref.read(pickUpProvider)
                     : ref.read(dropProvider),
-                style: GoogleFonts.poppins(
-                    fontSize: 14.sp, fontWeight: FontWeight.w500),
+                style: TextStyle(
+                    fontFamily: 'HelveticaNeue',
+                    fontSize: 14.sp,
+                    fontWeight: FontWeight.w500),
               ),
               SizedBox(
                 width: 75.w,
