@@ -1,4 +1,5 @@
 import 'dart:math';
+import 'package:HarRidePay/screens/login_screen.dart';
 import 'package:intl/intl.dart';
 import 'package:HarRidePay/modals/driver.dart';
 import 'package:HarRidePay/modals/ride_modal.dart';
@@ -32,7 +33,7 @@ class DriverBookedScreen extends ConsumerStatefulWidget {
 
 class _DriverBookedScreenState extends ConsumerState<DriverBookedScreen> {
   int code = 0000;
-
+  bool isLoading = false;
   @override
   void initState() {
     super.initState();
@@ -55,7 +56,10 @@ class _DriverBookedScreenState extends ConsumerState<DriverBookedScreen> {
   void updateOTPInFirestore(userID, int? code, driverID) {
     //userId = 'DPOGKRIvXMgwivoDtoo978YAgdL2';
     print("driver id in booked screen is $driverID");
-
+    setState(() {
+      isLoading =
+          true; // Once the async operation is complete, set isLoading to false
+    });
     FirebaseFirestore firestore = FirebaseFirestore.instance;
     firestore.collection('users registered').doc(userID).update({
       'code': code,
@@ -109,17 +113,22 @@ class _DriverBookedScreenState extends ConsumerState<DriverBookedScreen> {
         'completedRides': FieldValue.arrayUnion([onGoingdocId]),
         'onGoingRideId': onGoingdocId,
       });
+      print("before copy with id ${ref.read(userModalProvider).toString()}");
+      ref.read(userModalProvider.notifier).state!.code = code;
+      ref.read(userModalProvider.notifier).state!.onGoingRideId = onGoingdocId;
+
+      print(
+          "copy with id ${ref.read(userModalProvider).toString()}"); // update ongoing id in the usermodal
       _firestore.collection('drivers').doc(driverID).update({
         'onGoingRideId': onGoingdocId,
-        
       });
       // String onGoingRideID = _firestore.collection('on going rides').id;
       String startPoint = ref.read(pickUpProvider);
       String endPoint = ref.read(dropProvider);
 
-  final DateFormat formatter = DateFormat('yyyy-MM-dd HH:mm:ss');
-  String rideDateTime= formatter.format(DateTime.now());
-      
+      final DateFormat formatter = DateFormat('yyyy-MM-dd HH:mm:ss');
+      String rideDateTime = formatter.format(DateTime.now());
+
       // Create a new document with the UID as the document ID
       final mapOnGoingRideData = {
         'uid': onGoingdocId,
@@ -132,7 +141,7 @@ class _DriverBookedScreenState extends ConsumerState<DriverBookedScreen> {
         'code': code,
         'driverMobNo': driverMob,
         'passengerMobNO': userMob,
-        'rideDateTime' : rideDateTime
+        'rideDateTime': rideDateTime
       };
 
       final onGoingRideModal = RideModal.fromMap(mapOnGoingRideData);
@@ -153,6 +162,11 @@ class _DriverBookedScreenState extends ConsumerState<DriverBookedScreen> {
       ref.read(badgeCountProvider.notifier).state++;
 
       print('On-going ride document created successfully.');
+
+      setState(() {
+        isLoading =
+            false; // Once the async operation is complete, set isLoading to false
+      });
     } catch (e) {
       showMySnackbar(context, "Error occured");
     }
@@ -164,93 +178,95 @@ class _DriverBookedScreenState extends ConsumerState<DriverBookedScreen> {
     return Scaffold(
       appBar: AppBar(),
       body: SafeArea(
-          child: Column(
-        //mainAxisAlignment: MainAxisAlignment.center,
-        crossAxisAlignment: CrossAxisAlignment.stretch,
-        children: [
-          SizedBox(
-            height: 64.h,
-          ),
-          Image.asset(
-            'asset/images/green_tick.png',
-            height: 110.h,
-            width: 110.w,
-          ),
-          SizedBox(
-            height: 28.h,
-          ),
-          Container(
-            alignment: Alignment.center,
-            color: const Color(0xff80ED6E),
-            child: Padding(
-              padding: EdgeInsets.symmetric(vertical: 10.h),
-              child: Text(
-                "Yeh! Driver booked.",
-                style: GoogleFonts.poppins(
-                    fontSize: 16.sp, fontWeight: FontWeight.w700),
-              ),
-            ),
-          ),
-          SizedBox(
-            height: 44.h,
-          ),
-          Column(
-            children: [
-              Text(
-                "Driver name",
-                style: GoogleFonts.poppins(
-                    color: Colors.black.withOpacity(.4),
-                    fontSize: 20.sp,
-                    fontWeight: FontWeight.w700),
-              ),
-              SizedBox(
-                height: 12.h,
-              ),
-              Text(
-                widget.driver.name,
-                style: GoogleFonts.poppins(
-                    fontSize: 24.sp, fontWeight: FontWeight.w500),
-              ),
-              SizedBox(
-                height: 28.h,
-              ),
-              Text(
-                "Contact number",
-                style: GoogleFonts.poppins(
-                    color: Colors.black.withOpacity(.4),
-                    fontSize: 20.sp,
-                    fontWeight: FontWeight.w700),
-              ),
-              SizedBox(
-                height: 12.h,
-              ),
-              Text(
-                "+91 ${widget.driver.mobile}",
-                style: GoogleFonts.poppins(
-                    fontSize: 24.sp, fontWeight: FontWeight.w500),
-              ),
-              SizedBox(
-                height: 100.h,
-              ),
-              Text(
-                "Driver code",
-                style: GoogleFonts.poppins(
-                    color: Colors.black.withOpacity(.4),
-                    fontSize: 28.sp,
-                    fontWeight: FontWeight.w700),
-              ),
-              SizedBox(
-                height: 12.h,
-              ),
-              Text(
-                "$code", ////code.state.value
-                style: GoogleFonts.poppins(
-                    fontSize: 24.sp, fontWeight: FontWeight.w700),
-              ),
-            ],
-          )
-        ],
-      )),
+          child: isLoading
+              ? const Center(child: CircularProgressIndicator())
+              : Column(
+                  //mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.stretch,
+                  children: [
+                    SizedBox(
+                      height: 64.h,
+                    ),
+                    Image.asset(
+                      'asset/images/green_tick.png',
+                      height: 110.h,
+                      width: 110.w,
+                    ),
+                    SizedBox(
+                      height: 28.h,
+                    ),
+                    Container(
+                      alignment: Alignment.center,
+                      color: const Color(0xff80ED6E),
+                      child: Padding(
+                        padding: EdgeInsets.symmetric(vertical: 10.h),
+                        child: Text(
+                          "Yeh! Driver booked.",
+                          style: GoogleFonts.poppins(
+                              fontSize: 16.sp, fontWeight: FontWeight.w700),
+                        ),
+                      ),
+                    ),
+                    SizedBox(
+                      height: 44.h,
+                    ),
+                    Column(
+                      children: [
+                        Text(
+                          "Driver name",
+                          style: GoogleFonts.poppins(
+                              color: Colors.black.withOpacity(.4),
+                              fontSize: 20.sp,
+                              fontWeight: FontWeight.w700),
+                        ),
+                        SizedBox(
+                          height: 12.h,
+                        ),
+                        Text(
+                          widget.driver.name,
+                          style: GoogleFonts.poppins(
+                              fontSize: 24.sp, fontWeight: FontWeight.w500),
+                        ),
+                        SizedBox(
+                          height: 28.h,
+                        ),
+                        Text(
+                          "Contact number",
+                          style: GoogleFonts.poppins(
+                              color: Colors.black.withOpacity(.4),
+                              fontSize: 20.sp,
+                              fontWeight: FontWeight.w700),
+                        ),
+                        SizedBox(
+                          height: 12.h,
+                        ),
+                        Text(
+                          "+91 ${widget.driver.mobile}",
+                          style: GoogleFonts.poppins(
+                              fontSize: 24.sp, fontWeight: FontWeight.w500),
+                        ),
+                        SizedBox(
+                          height: 100.h,
+                        ),
+                        Text(
+                          "Driver code",
+                          style: GoogleFonts.poppins(
+                              color: Colors.black.withOpacity(.4),
+                              fontSize: 28.sp,
+                              fontWeight: FontWeight.w700),
+                        ),
+                        SizedBox(
+                          height: 12.h,
+                        ),
+                        Text(
+                          "$code", ////code.state.value
+                          style: GoogleFonts.poppins(
+                              fontSize: 24.sp, fontWeight: FontWeight.w700),
+                        ),
+                      ],
+                    )
+                  ],
+                )),
     );
   }
 }

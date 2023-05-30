@@ -194,17 +194,36 @@ class _DashBoardScreenState extends ConsumerState<DashBoardScreen> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
+                  RichText(
+                      text: TextSpan(
+                    text: 'Volt',
+                    style: GoogleFonts.inter(
+                      color: Colors.white,
+                      fontSize: 24.sp,
+                    ),
+                    children: <TextSpan>[
+                      TextSpan(
+                        text: 'GO',
+                        style: GoogleFonts.inter(
+                          color: const Color(0xff00FF0A),
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                    ],
+                  )),
+                  SizedBox(
+                    height: 12.h,
+                  ),
                   Text(
-                    "Hi ${ref.read(userModalProvider)?.name ?? "No name"}",
-                    style: GoogleFonts.notoSans(
-                        color: Colors.white, fontSize: 20.sp),
+                    "Hi ${ref.watch(userModalProvider)?.name ?? "No name"}",
+                    style:
+                        GoogleFonts.inter(color: Colors.white, fontSize: 20.sp),
                   ),
                   SizedBox(
                     height: 8.h,
                   ),
                   Text(
-                    ref.read(userModalProvider)?.mobNo ??
-                        "No mobile no.",
+                    ref.watch(userModalProvider)?.mobNo ?? "No mobile no.",
                     style: GoogleFonts.poppins(
                         color: const Color.fromARGB(255, 214, 214, 214),
                         fontSize: 14.sp),
@@ -213,8 +232,7 @@ class _DashBoardScreenState extends ConsumerState<DashBoardScreen> {
                     height: 4.h,
                   ),
                   Text(
-                    ref.read(userModalProvider)?.email ??
-                        "No email",
+                    ref.watch(userModalProvider)?.email ?? "No email",
                     style: GoogleFonts.notoSans(
                         color: const Color.fromARGB(255, 214, 214, 214),
                         fontSize: 14.sp),
@@ -249,7 +267,7 @@ class _DashBoardScreenState extends ConsumerState<DashBoardScreen> {
               leading: const Icon(Icons.message),
               title: Text(
                 'Give feedback',
-                style: GoogleFonts.poppins(),
+                style: GoogleFonts.inter(),
               ),
               trailing: const Icon(Icons.arrow_right_alt_rounded),
             ),
@@ -263,7 +281,7 @@ class _DashBoardScreenState extends ConsumerState<DashBoardScreen> {
               },
               title: Text(
                 'Read our policy',
-                style: GoogleFonts.poppins(),
+                style: GoogleFonts.inter(),
               ),
               // trailing: const Icon(Icons.arrow_right_alt_rounded),
             )

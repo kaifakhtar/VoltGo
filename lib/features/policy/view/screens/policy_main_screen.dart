@@ -22,7 +22,7 @@ class _PolicyScreenState extends State<PolicyScreen> {
   @override
   void didChangeDependencies() {
     // TODO: implement didChangeDependencies
-    
+
     super.didChangeDependencies();
   }
 
@@ -32,14 +32,31 @@ class _PolicyScreenState extends State<PolicyScreen> {
       create: (context) => policyBloc,
       child: Scaffold(
           appBar: AppBar(
-            title: const Text("ElectroCab Policy"),
+            backgroundColor: Colors.black,
+            title: RichText(
+                text: const TextSpan(
+              text: 'Volt',
+              style: TextStyle(
+                color: Colors.white,
+                fontSize: 24,
+              ),
+              children: <TextSpan>[
+                TextSpan(
+                  text: 'GO',
+                  style: TextStyle(
+                    color:  Color(0xff00FF0A),
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+              ],
+            )),
             centerTitle: true,
           ),
-         // backgroundColor: Colors.black,
+          // backgroundColor: Colors.black,
           body: BlocBuilder<PolicyBloc, PolicyState>(
             builder: (context, state) {
               if (state is PolicyLoading) {
-                return const Center(child:  CircularProgressIndicator());
+                return const Center(child: CircularProgressIndicator());
               } else if (state is PolicyLoaded) {
                 return loadedPolicyWidget(state.policy);
               } else if (state is PolicyError) {
@@ -54,7 +71,8 @@ class _PolicyScreenState extends State<PolicyScreen> {
   }
 
   Widget loadedPolicyWidget(String policy) {
-    return SingleChildScrollView(child: Padding(
+    return SingleChildScrollView(
+        child: Padding(
       padding: const EdgeInsets.all(8),
       child: Html(data: policy),
     ));

@@ -31,7 +31,7 @@ class _RideStatusWidgetState extends ConsumerState<RideStatusWidget> {
     return Padding(
       padding: EdgeInsets.symmetric(vertical: 24.h, horizontal: 12.w),
       child: Container(
-        height: 320.h,
+        height: 300.h,
         width: 340.w,
         //padding: EdgeInsets.symmetric(horizontal: 16.h),
         decoration: BoxDecoration(
@@ -77,7 +77,7 @@ class _RideStatusWidgetState extends ConsumerState<RideStatusWidget> {
                             vertical: 6.h, horizontal: 8.h),
                         decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(8.h),
-                            color:const Color.fromARGB(255, 54, 182, 69)),
+                            color: const Color.fromARGB(255, 54, 182, 69)),
                         child: Text(
                           widget.code.toString(),
                           style: TextStyle(
@@ -103,7 +103,7 @@ class _RideStatusWidgetState extends ConsumerState<RideStatusWidget> {
                       driverName: widget.driverName,
                       mobileNumber: widget.driverMobNno),
                   SizedBox(
-                    height: 24.h,
+                    height: 18.h,
                   ),
 
                   Row(
@@ -158,7 +158,7 @@ class _RideStatusWidgetState extends ConsumerState<RideStatusWidget> {
                     ],
                   ),
                   SizedBox(
-                    height: 32.h,
+                    height: 16.h,
                   ),
                   // const Divider(
                   //   thickness: 1,
@@ -169,14 +169,14 @@ class _RideStatusWidgetState extends ConsumerState<RideStatusWidget> {
                         "${extractDate(widget.formattedDateTime)} at ",
                         style: TextStyle(
                             fontFamily: 'HelveticaNeue',
-                            fontSize: 10.sp,
+                            fontSize: 12.sp,
                             color: Colors.black54),
                       ),
                       Text(
                         extractTime(widget.formattedDateTime),
                         style: TextStyle(
                             fontFamily: 'HelveticaNeue',
-                            fontSize: 10.sp,
+                            fontSize: 12.sp,
                             color: Colors.black54),
                       ),
                     ],

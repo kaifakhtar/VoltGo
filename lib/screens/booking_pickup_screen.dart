@@ -44,35 +44,35 @@ class _BookingPickupScreenState extends ConsumerState<BookingPickupScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      // appBar: AppBar(
-      //   leading: IconButton(
-      //     color: Color.fromARGB(255, 0, 0, 0),
-      //     icon: Icon(Icons.menu),
-      //     onPressed: () {},
-      //   ),
-      //   title: Text("HarRidePay",
-      //       style: GoogleFonts.poppins(color: Color.fromARGB(255, 0, 0, 0))),
-      //   backgroundColor: Color.fromARGB(255, 255, 255, 255),
-      //   elevation: 1.h,
-      // actions: [
-      //   IconButton(
-      //       onPressed: () {
-      //         _signOut();
-      //         // Navigator.(context, MaterialPageRoute(builder: (BuildContext context) => LoginScreen()));
-      //         Navigator.of(context).pushReplacement(
-      //           MaterialPageRoute(
-      //               builder: (BuildContext context) => LoginScreen()),
-      //         );
-      //       },
-      // icon: Icon(
-      //   Icons.logout,
-      //   color: Color.fromARGB(255, 27, 27, 27),
-      // ))
-      //   ],
-      // ),S
-      // backgroundColor: Colors.grey[100],
-      body: Scrollbar(
+    return
+        // appBar: AppBar(
+        //   leading: IconButton(
+        //     color: Color.fromARGB(255, 0, 0, 0),
+        //     icon: Icon(Icons.menu),
+        //     onPressed: () {},
+        //   ),
+        //   title: Text("HarRidePay",
+        //       style: GoogleFonts.poppins(color: Color.fromARGB(255, 0, 0, 0))),
+        //   backgroundColor: Color.fromARGB(255, 255, 255, 255),
+        //   elevation: 1.h,
+        // actions: [
+        //   IconButton(
+        //       onPressed: () {
+        //         _signOut();
+        //         // Navigator.(context, MaterialPageRoute(builder: (BuildContext context) => LoginScreen()));
+        //         Navigator.of(context).pushReplacement(
+        //           MaterialPageRoute(
+        //               builder: (BuildContext context) => LoginScreen()),
+        //         );
+        //       },
+        // icon: Icon(
+        //   Icons.logout,
+        //   color: Color.fromARGB(255, 27, 27, 27),
+        // ))
+        //   ],
+        // ),S
+        // backgroundColor: Colors.grey[100],
+       Scrollbar(
         child: SingleChildScrollView(
           child: Center(
             child: Column(
@@ -87,7 +87,7 @@ class _BookingPickupScreenState extends ConsumerState<BookingPickupScreen> {
                     Text(
                       "Pickup & Drop",
                       style: GoogleFonts.notoSans(
-                          fontSize: 24.sp, fontWeight: FontWeight.w600),
+                          fontSize: 24.sp, fontWeight: FontWeight.w700),
                     ),
                     SizedBox(
                       height: 8.h,
@@ -114,7 +114,6 @@ class _BookingPickupScreenState extends ConsumerState<BookingPickupScreen> {
             ),
           ),
         ),
-      ),
-    );
+      );
   }
 }

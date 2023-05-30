@@ -11,6 +11,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
 
+import '../app_fonts.dart';
 import '../widgets/ride_status_widget.dart';
 
 final doesOngoingIDExitProvider = StateProvider((ref) => false);
@@ -23,7 +24,7 @@ class RideStatusPage extends ConsumerStatefulWidget {
 }
 
 class _RideStatusPageState extends ConsumerState<RideStatusPage> {
- late  String onGoingRideId;
+  late String onGoingRideId;
   // void checkIfDocumentExists() async {
   //   String onGoingID = ref.read(onGoingIDprovider);
   //   DocumentSnapshot documentSnapshot =
@@ -51,15 +52,12 @@ class _RideStatusPageState extends ConsumerState<RideStatusPage> {
   void initState() {
     // TODO: implement initState
     //getOnGoingRideDataFromUserDB();
-    setState(() {
-      
-    });
     super.initState();
   }
 
   @override
   Widget build(BuildContext context) {
-    String onGoingID = ref.read(userModalProvider)!.onGoingRideId;
+    String onGoingID = ref.watch(userModalProvider)!.onGoingRideId;
     // bool onGoingIDExits = ref.watch(doesOngoingIDExitProvider);
     // var snap=FirebaseFirestore.instance
     //     .collection('on going rides')
@@ -67,66 +65,113 @@ class _RideStatusPageState extends ConsumerState<RideStatusPage> {
     //     .get();
 
     //checkIfDocumentExists();
-    
-      print("in ride status build value of onGoingIDprovider is ${onGoingID}");
-    
 
-    return Scaffold(
-      //backgroundColor: Colors.grey[200],
-      // body: onGoingIDExits
-      //     ?
-      body: FutureBuilder<bool>(
-        builder: (context, snapshot) {
-          if (snapshot.hasData) {
-            if (snapshot.data!) {
-              return FutureBuilder(
-                future: retreiveData(onGoingID),
-                //initialData: InitialData,
-                builder: (BuildContext context, AsyncSnapshot snapshot) {
-                  if (snapshot.hasData) {
-                    return RideStatusWidget(
-                      driverName: snapshot.data["driverName"],
-                      code: snapshot.data["code"],
-                      driverMobNno: snapshot.data["driverMobNo"],
-                      pickUP: snapshot.data["startPoint"],
-                      drop: snapshot.data["endPoint"],
-                      formattedDateTime: snapshot.data["rideDateTime"],
-                    );
-                  } else if (snapshot.connectionState ==
-                      ConnectionState.waiting) {
-                    return const Center(
-                      child: CircularProgressIndicator(),
-                    );
-                  }
-                  return const Center(child: Text("error"));
-                },
-              );
+    print("in ride status build value of onGoingIDprovider is ${onGoingID}");
+
+    return
+        //backgroundColor: Colors.grey[200],
+        // body: onGoingIDExits
+        //     ?
+        Column(
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      children: [
+        FutureBuilder<bool>(
+          builder: (context, snapshot) {
+            if (snapshot.hasData) {
+              if (snapshot.data!) {
+                return Column(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    FutureBuilder(
+                      future: retreiveData(onGoingID),
+                      //initialData: InitialData,
+                      builder: (BuildContext context, AsyncSnapshot snapshot) {
+                        if (snapshot.hasData) {
+                          return RideStatusWidget(
+                            driverName: snapshot.data["driverName"],
+                            code: snapshot.data["code"],
+                            driverMobNno: snapshot.data["driverMobNo"],
+                            pickUP: snapshot.data["startPoint"],
+                            drop: snapshot.data["endPoint"],
+                            formattedDateTime: snapshot.data["rideDateTime"],
+                          );
+                        } else if (snapshot.connectionState ==
+                            ConnectionState.waiting) {
+                          return const Center(
+                            child: CircularProgressIndicator(),
+                          );
+                        }
+                        return const Center(child: Text("error"));
+                      },
+                    ),
+                  ],
+                );
+              }
+
+              // return const Center(
+              //   child: Text("You have no ongoing rides"),
+              // );
             }
-
-            // return const Center(
-            //   child: Text("You have no ongoing rides"),
-            // );
-          }
-          if (snapshot.connectionState == ConnectionState.waiting) {
-            return const Center(child: CircularProgressIndicator());
-          }
-          return Center(
-              child: Text(
-            "You have no ongoing rides",
-            style: GoogleFonts.poppins(fontSize: 16.sp),
-          ));
-        },
-        future: isDocExist(onGoingID),
-      ),
-      floatingActionButton: FloatingActionButton.small(
-        heroTag: null,
-          child: const Icon(Icons.replay_outlined),
-          onPressed: () {
-            setState(() {
-              //checkIfDocumentExists();
-            });
-          }),
+            if (snapshot.connectionState == ConnectionState.waiting) {
+              return const Center(child: CircularProgressIndicator());
+            }
+            return Column(children: [
+              SizedBox(
+                height: 280.h,
+              ),
+              Text(
+                "You have no ongoing rides",
+                style: AppFonts.bodyText20black,
+              )
+            ]);
+          },
+          future: isDocExist(onGoingID),
+        ),
+        Padding(
+          padding: EdgeInsets.only(left: 16.w, right: 16.w, bottom: 8.h),
+          child: SizedBox(
+            height: 44.h,
+            width: double.infinity,
+            child: ElevatedButton.icon(
+              onPressed: () {
+                setState(() {
+                  //checkIfDocumentExists();
+                });
+              },
+              style: ButtonStyle(
+                backgroundColor: MaterialStateProperty.all(
+                    const Color.fromARGB(255, 0, 0, 0)),
+                side: MaterialStateProperty.all(
+                  const BorderSide(width: 2.0, color: Colors.black),
+                ),
+                shape: MaterialStateProperty.all(
+                  RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(10.0),
+                  ),
+                ),
+              ),
+              icon: Icon(
+                Icons.replay_outlined,
+                color: Colors.white,
+                size: 20.h,
+              ),
+              label: Text(
+                "Reload",
+                style: AppFonts.bodyText16white,
+              ),
+            ),
+          ),
+        )
+      ],
     );
+    // floatingActionButton: FloatingActionButton.small(
+    //   heroTag: null,
+    //     child: const Icon(Icons.replay_outlined),
+    //     onPressed: () {
+    //       setState(() {
+    //         //checkIfDocumentExists();
+    //       });
+    //     });
   }
 
   Stream<QuerySnapshot>? getRideBasedOnCode() {

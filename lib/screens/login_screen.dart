@@ -151,7 +151,7 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
                     style: GoogleFonts.poppins(
                         fontSize: 36.sp,
                         fontWeight: FontWeight.w500,
-                        color: Color(0xffC18A00)),
+                        color:const Color(0xffC18A00)),
                   )
                 ],
               ),

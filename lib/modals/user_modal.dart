@@ -2,15 +2,15 @@
 import 'dart:convert';
 
 class UserModal {
-  final String userId;
-  final int code;
-  final String email;
-  final String mobNo;
+   String userId;
+   int code;
+   String email;
+   String mobNo;
   //final bool isRiding;
-  final List<dynamic> completedRides;
-  final String name;
-  final String onGoingRideId;
-  final int starPoints;
+   List<dynamic> completedRides;
+   String name;
+   String onGoingRideId;
+   int starPoints;
   UserModal({
     required this.completedRides,
     required this.userId,
